@@ -1,18 +1,13 @@
 /*
-* Author: Dylan Byrne
-*
-* Function: SplitImg 
-* Description: Splits an image into a number of canvas elements
+* Function SplitImg 
+* Description: splits an image into a number or canvas elements
 * and appends those canvas elements to the invoking html page
-* 
 * Paramaters: Path to image and the number of tiles required
-* Ex 9 tiles for a 3x3 image. Tiles must be a number squared
+* Ex 9 tiles for a 3x3 image. tiles must be a number squared
 */
-
-
-
-function splitImg(imgsrc, tiles) {
-
+var PicPuzzle_Image = {
+  split: function(imgsrc, tiles) {
+  
 	var img = new Image();
 	var canvasArray = new Array();
 	var imgWidth;
@@ -31,6 +26,7 @@ function splitImg(imgsrc, tiles) {
 	console.log('row_col',row_col);
 	console.log('tileH',tileH);
 	console.log('tilW',tileW);
+	console.log('Tiles: ', tiles)
 
 	canvasArray = [tiles];
   
@@ -72,5 +68,6 @@ function splitImg(imgsrc, tiles) {
 	}
 	
 	return canvasArray;
-}
+  }
+};
 
