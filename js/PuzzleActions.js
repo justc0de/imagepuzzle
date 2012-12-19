@@ -4,7 +4,7 @@ $(document).ready(function() {
 	// generates table
 	$('#pieceSelection').submit(function() {
 		console.log("Scrambling image into " + $("#numOfPieces").val() + 'x' + $("#numOfPieces").val() + ' rows and cols');
-		var canvasArray = PicPuzzle_Image.split('Images/test.jpg', $("#numOfPieces").val() * $("#numOfPieces").val());
+		var canvasArray = PicPuzzle_Image.split( $("#Image").val() , $("#numOfPieces").val() * $("#numOfPieces").val());
 		//alert(canvasArray.length)
 		
 		$(function () {
@@ -22,13 +22,12 @@ $(document).ready(function() {
 					//var $cell = $("<td>").text('Row : ' + i + ', Col: ' + j);
 					console.log('jQuery Tiles: ', canvasArray.length);
 					
-					//var $cell = $("<td>").append(canvasArray[tileCount]); // Each data cell will contain a separate <canvas> element
-					//$cell.appendTo(trow); 
+					var $cell = $("<td>").append(canvasArray[tileCount]); // Each data cell will contain a separate <canvas> element
+					
 					tileCount++;
 					
-					var $cell = $("<td>").text('Row : ' + i + ', Col: ' + j);
+					//var $cell = $("<td>").text('Row : ' + i + ', Col: ' + j);
 
-					//$cell.append(canvasArray[i]); // Each data cell will contain a separate <canvas> element
 					$cell.appendTo(trow); 
 				}
 

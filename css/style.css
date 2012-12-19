@@ -14,12 +14,15 @@ body
 {
 	margin-left:auto;
 	margin-right:auto;
+	border: 1px white solid ;
 }
 
 
-
+/* Center Form */
 #pieceSelection
 {
 	text-align:center;
 }
+
+/*Highlight selected cell*/
 
