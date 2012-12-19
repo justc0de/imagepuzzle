@@ -3,7 +3,7 @@ $(document).ready(function() {
 	// listener attached to form submit button
 	// generates table
 	$('#pieceSelection').submit(function() {
-		alert("Scrambling image into " + $("#numOfPieces").val() + 'x' + $("#numOfPieces").val() + ' rows and cols');
+		console.log("Scrambling image into " + $("#numOfPieces").val() + 'x' + $("#numOfPieces").val() + ' rows and cols');
 		var canvasArray = PicPuzzle_Image.split('Images/test.jpg', $("#numOfPieces").val() * $("#numOfPieces").val());
 		//alert(canvasArray.length)
 		
