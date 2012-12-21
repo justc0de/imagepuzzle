@@ -67,32 +67,5 @@ $(document).ready(function() {
 	        currow.insertBefore(empty, afterthis);
 	        emptyrow.insertBefore(this, afterempty);
 	    }
-			
-		if ($(this).parent().prev().children("#blankCell").index() == $(this).index()){
-			//alert('blank is above');
-
-			var blank = document.getElementById("blankCell");
-			var after = blank.nextSibling; 
-			this.parentNode.insertBefore(blank, this); 
-			after.parentNode.insertBefore(this, after);
-			
-			$(this).attr('id', 'blankCell');
-			$(this).parent().prev().children("#blankCell").attr('id', 'piece');
-			
-		}else if ($(this).parent().next().children("#blankCell").index() == $(this).index()){
-			//alert('blank is below');	
-			
-			var blank = document.getElementById("blankCell");
-			var after = blank.previousSibling; 
-			this.parentNode.insertBefore(blank, this); 
-			after.parentNode.insertBefore(this, after);
-			
-			//var emtpyCellText = $(this).parent().next().children("#blankCell").text();
-			//$(this).parent().next().children("#blankCell").text($(this).text());
-			$(this).text(emtpyCellText);
-			$(this).attr('id', 'blankCell');
-			$(this).parent().next().children("#blankCell").attr('id', 'piece');
-			
-		}
 	});
 });
