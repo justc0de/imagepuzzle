@@ -1,14 +1,26 @@
 /* CSS for index.html */
 
-body { background:gray;	color:white; }
+body 
+{ 
+	background:gray;	
+	color:white; 
+}
 
 /* Center the grid */
-#grid { margin-left:auto;
-	    margin-right:auto;
-	    border: 1px white solid; }
+
+#grid 
+{ 
+	margin-left:auto;
+	margin-right:auto;
+	border: 1px white solid; 
+}
 
 
 /* Center Form */
-#pieceSelection { text-align:center; }
+
+#pieceSelection 
+{ 
+	text-align:center; 	
+}
 
 /*Highlight selected cell*/
