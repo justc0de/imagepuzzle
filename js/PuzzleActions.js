@@ -4,7 +4,7 @@ $(document).ready(function() {
 	// generates table
 	$('#pieceSelection').submit(function() {
 		console.log("Scrambling image into " + $("#numOfPieces").val() + 'x' + $("#numOfPieces").val() + ' rows and cols');
-		var canvasArray = PicPuzzle_Image.split( $("#Image").val() , $("#numOfPieces").val() * $("#numOfPieces").val());
+		var canvasArray = PicPuzzle_Image.split( $("#image").val() , $("#numOfPieces").val() * $("#numOfPieces").val());
 		//alert(canvasArray.length)
 		
 		$(function () {
@@ -20,13 +20,11 @@ $(document).ready(function() {
 				for (var j = 0; j < $("#numOfPieces").val(); j++) {
 				
 					//var $cell = $("<td>").text('Row : ' + i + ', Col: ' + j);
-					console.log('jQuery Tiles: ', canvasArray.length);
 					
 					var $cell = $("<td>").append(canvasArray[tileCount]); // Each data cell will contain a separate <canvas> element
 					
+					console.log('jQuery Tiles: ', canvasArray.length);
 					tileCount++;
-					
-					//var $cell = $("<td>").text('Row : ' + i + ', Col: ' + j);
 
 					$cell.appendTo(trow); 
 				}
@@ -51,27 +49,36 @@ $(document).ready(function() {
 		
 		return false;
 	});
+
 	
 	// Event handler for clicking table cells
 	$('body').on('click', '#grid td', function(e) {
+		
+		var $this = $(this);
 		if ($(this).closest('td').next("#blankCell").length){
-			//alert('cell to the right');
-			var emtpyCellText = $(this).closest('td').next("#blankCell").text();
-			$(this).closest('td').next("#blankCell").text($(this).text());
-			$(this).text(emtpyCellText);
+			
+	        blank = $(this).closest('td').next("#blankCell");
+			
+			if (blank.length) {
+		        //alert('blank to the right');
+		        $this.before(blank);
+		    }
 			$(this).attr('id', 'blankCell');
 			$(this).closest('td').next("#blankCell").attr('id', 'piece');
 			
 		}else if ($(this).closest('td').prev("#blankCell").length){
-			//alert('cell to the left');
-			var emtpyCellText = $(this).closest('td').prev("#blankCell").text();
-			$(this).closest('td').prev("#blankCell").text($(this).text());
-			$(this).text(emtpyCellText);
+			
+			blank = $(this).closest('td').prev("#blankCell");
+			if (blank.length) {
+		        //alert('blank to the left');
+		        $this.after(blank);
+		    }
+			
 			$(this).attr('id', 'blankCell');
 			$(this).closest('td').prev("#blankCell").attr('id', 'piece');
 			
 		}else if ($(this).parent().prev().children("#blankCell").index() == $(this).index()){
-			//alert('Cell is above');
+			//alert('blank is above');
 			var emtpyCellText = $(this).parent().prev().children("#blankCell").text();
 			$(this).parent().prev().children("#blankCell").text($(this).text());
 			$(this).text(emtpyCellText);
@@ -79,7 +86,7 @@ $(document).ready(function() {
 			$(this).parent().prev().children("#blankCell").attr('id', 'piece');
 			
 		}else if ($(this).parent().next().children("#blankCell").index() == $(this).index()){
-			//alert('Cell is below');	
+			//alert('blank is below');	
 			var emtpyCellText = $(this).parent().next().children("#blankCell").text();
 			$(this).parent().next().children("#blankCell").text($(this).text());
 			$(this).text(emtpyCellText);
