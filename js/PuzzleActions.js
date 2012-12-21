@@ -3,21 +3,24 @@ $(document).ready(function() {
 	// listener attached to form submit button
 	// generates table
 	$('#pieceSelection').submit(function() {
-		console.log("Scrambling image into " + $("#numOfPieces").val() + 'x' + $("#numOfPieces").val() + ' rows and cols');
-		var canvasArray = PicPuzzle_Image.split( $("#image").val() , $("#numOfPieces").val() * $("#numOfPieces").val());
-		//alert(canvasArray.length)
+		
+		var rowCount = $("#numOfPieces").val();
+		
+		console.log("Scrambling image into " + rowCount + 'x' + rowCount + ' rows and cols');
+		var canvasArray = PicPuzzle_Image.split( $("#image").val() , rowCount * rowCount);
 		
 		$(function () {
 
 			var $tbl = $('<table border="1">').attr('id', 'grid');
 			var $tbody = $('<tbody>').attr('id', 'tableBody');
+			
 			var tileCount = 0;
 			
-			for (var i = 0; i < $("#numOfPieces").val(); i++) {
+			for (var i = 0; i < rowCount; i++) {
 
 				var trow = $("<tr>").attr('id', 'row' + i); // New row
 				
-				for (var j = 0; j < $("#numOfPieces").val(); j++) {
+				for (var j = 0; j < rowCount; j++) {
 				
 					//var $cell = $("<td>").text('Row : ' + i + ', Col: ' + j);
 					
@@ -35,12 +38,6 @@ $(document).ready(function() {
 			$tbl.append($tbody);
 			$('table').remove();
 			$('body').append($tbl);
-
-			// debug, output of canvas elements, need to be removed
-			//for(var i = 0; i < canvasArray.length; i++) {
-
-				//$('body').append(canvasArray[canvasArray.length - 1]);
-			//}
 		});
 		
 		// set table cell to be blank for logic purposes
@@ -54,41 +51,44 @@ $(document).ready(function() {
 	// Event handler for clicking table cells
 	$('body').on('click', '#grid td', function(e) {
 		
-		var $this = $(this);
-		if ($(this).closest('td').next("#blankCell").length){
+		var empty = $("#blankCell").get(0);
+		if (!empty || this == empty) return; // abort, abort!
+
+	    var currow = this.parentNode,
+	        emptyrow = empty.parentNode;
+	    var cx = this.cellIndex,
+	        cy = currow.rowIndex,
+	        ex = empty.cellIndex,
+	        ey = emptyrow.rowIndex;
+	    if (cx==ex && Math.abs(cy-ey)==1 || cy==ey && Math.abs(cx-ex)==1) {
+	        // empty and this are next to each other in the grid
+	        var afterempty = empty.nextSibling,
+	            afterthis = this.nextSibling;
+	        currow.insertBefore(empty, afterthis);
+	        emptyrow.insertBefore(this, afterempty);
+	    }
 			
-	        blank = $(this).closest('td').next("#blankCell");
-			
-			if (blank.length) {
-		        //alert('blank to the right');
-		        $this.before(blank);
-		    }
-			$(this).attr('id', 'blankCell');
-			$(this).closest('td').next("#blankCell").attr('id', 'piece');
-			
-		}else if ($(this).closest('td').prev("#blankCell").length){
-			
-			blank = $(this).closest('td').prev("#blankCell");
-			if (blank.length) {
-		        //alert('blank to the left');
-		        $this.after(blank);
-		    }
-			
-			$(this).attr('id', 'blankCell');
-			$(this).closest('td').prev("#blankCell").attr('id', 'piece');
-			
-		}else if ($(this).parent().prev().children("#blankCell").index() == $(this).index()){
+		if ($(this).parent().prev().children("#blankCell").index() == $(this).index()){
 			//alert('blank is above');
-			var emtpyCellText = $(this).parent().prev().children("#blankCell").text();
-			$(this).parent().prev().children("#blankCell").text($(this).text());
-			$(this).text(emtpyCellText);
+
+			var blank = document.getElementById("blankCell");
+			var after = blank.nextSibling; 
+			this.parentNode.insertBefore(blank, this); 
+			after.parentNode.insertBefore(this, after);
+			
 			$(this).attr('id', 'blankCell');
 			$(this).parent().prev().children("#blankCell").attr('id', 'piece');
 			
 		}else if ($(this).parent().next().children("#blankCell").index() == $(this).index()){
 			//alert('blank is below');	
-			var emtpyCellText = $(this).parent().next().children("#blankCell").text();
-			$(this).parent().next().children("#blankCell").text($(this).text());
+			
+			var blank = document.getElementById("blankCell");
+			var after = blank.previousSibling; 
+			this.parentNode.insertBefore(blank, this); 
+			after.parentNode.insertBefore(this, after);
+			
+			//var emtpyCellText = $(this).parent().next().children("#blankCell").text();
+			//$(this).parent().next().children("#blankCell").text($(this).text());
 			$(this).text(emtpyCellText);
 			$(this).attr('id', 'blankCell');
 			$(this).parent().next().children("#blankCell").attr('id', 'piece');
