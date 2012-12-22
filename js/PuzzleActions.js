@@ -7,6 +7,10 @@ $(document).ready(function() {
 		var rowCount = $("#numOfPieces").val();
 		
 		console.log("Scrambling image into " + rowCount + 'x' + rowCount + ' rows and cols');
+
+		// array to store the newly created canvas elements
+		// it stores the sequence of images in the correct order
+		// can be comared against to check if the puzzle is solved
 		var canvasArray = PicPuzzle_Image.split( $("#image").val() , rowCount * rowCount);
 		
 		$(function () {
@@ -23,8 +27,9 @@ $(document).ready(function() {
 				for (var j = 0; j < rowCount; j++) {
 				
 					//var $cell = $("<td>").text('Row : ' + i + ', Col: ' + j);
-					
-					var $cell = $("<td>").append(canvasArray[tileCount]); // Each data cell will contain a separate <canvas> element
+
+					// Each data cell will contain a separate <canvas> element
+					var $cell = $("<td>").append(canvasArray[tileCount]);
 					
 					console.log('jQuery Tiles: ', canvasArray.length);
 					tileCount++;
@@ -41,9 +46,9 @@ $(document).ready(function() {
 		});
 		
 		// set table cell to be blank for logic purposes
-		$('#grid tr:nth-child(2) td:last').prev().text("empty");
-		$('#grid tr:nth-child(2) td:last').prev().attr('id', 'blankCell');
-		
+		// Dynamically sets last cell to be the blank one
+		$('#grid tr:last td:last').text("empty");
+		$('#grid tr:last td:last').attr('id', 'blankCell');
 		return false;
 	});
 

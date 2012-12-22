@@ -1,0 +1,21 @@
+Add or remove items as they are needed or completed
+
+
+
+1. Mapping of js objects to images (determine if image is in right cell)
+   -- We can use canvas array as a reference as that already has the correct number of elements in the correct order. 
+
+2. Wikis (design doc)
+
+3. Add a licence, some form of GPL
+   --include any licences for external libraries
+
+4. Add soem stock images for the user to choose from
+   --must be safe to use eg creative commons
+
+5. Design the user interface
+   --Mock up UI's
+   
+6. Add to extention
+
+7. Test
