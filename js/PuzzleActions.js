@@ -10,10 +10,27 @@ $(document).ready(function() {
 
 		// array to store the newly created canvas elements
 		// it stores the sequence of images in the correct order
-		// can be comared against to check if the puzzle is solved
+		// can be comatred against to check if the puzzle is solved
 		var canvasArray = PicPuzzle_Image.split( $("#image").val() , rowCount * rowCount);
 		
+		//list to keep track of the tiles which have been randomly chosen 
+		var tilesChosen = new Array(rowCount^2);
+
+
 		$(function () {
+
+
+		//initialize tilesChosen         
+		//it contains the number of tiles that are possible to select from at random
+		//array is full as no values have been randomly selected yet
+
+		for (var i = 0; i <canvasArray.length; i++) {
+		            //initialize the list with tile numbers
+					tilesChosen[i] = i ;
+		}
+
+
+
 
 			var $tbl = $('<table border="1">').attr('id', 'grid');
 			var $tbody = $('<tbody>').attr('id', 'tableBody');
@@ -29,12 +46,24 @@ $(document).ready(function() {
 					//var $cell = $("<td>").text('Row : ' + i + ', Col: ' + j);
 
 					// Each data cell will contain a separate <canvas> element
-					var $cell = $("<td>").append(canvasArray[tileCount]);
+					//var $cell = $("<td>").append(canvasArray[tileCount]);
 					
+
+					//choose a random tile
+					var random =randomChoice(tilesChosen);
+					var $cell = $("<td>").append(canvasArray[random]);
+					//remove random value from the possible selection of tiles
+					tilesChosen = removeItemFromList(tilesChosen, random);
+					console.log('Random tile: ',random);
+					console.log('TilesChosen: ',tilesChosen);
+
 					console.log('jQuery Tiles: ', canvasArray.length);
+					
 					tileCount++;
 
 					$cell.appendTo(trow); 
+
+
 				}
 
 				trow.appendTo($tbody);
@@ -49,10 +78,38 @@ $(document).ready(function() {
 		// Dynamically sets last cell to be the blank one
 		$('#grid tr:last td:last').text("empty");
 		$('#grid tr:last td:last').attr('id', 'blankCell');
+
+
 		return false;
 	});
 
 	
+
+
+	//remove a value from a array
+	//returns an array
+
+	function removeItemFromList(array, removeItem){
+
+	array =  jQuery.grep(array, function(value) {
+		return value != removeItem;
+		});
+
+	return array;
+	};
+
+
+
+
+	//get a random value from a list of elements
+	function randomChoice(list){
+	
+		return list[Math.floor(Math.random()*list.length)];
+	};
+
+
+
+
 	// Event handler for clicking table cells
 	$('body').on('click', '#grid td', function(e) {
 		
