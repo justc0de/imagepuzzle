@@ -10,7 +10,7 @@ Add or remove items as they are needed or completed
 3. Add a licence, some form of GPL
    --include any licences for external libraries
 
-4. Add soem stock images for the user to choose from
+4. Add some stock images for the user to choose from
    --must be safe to use eg creative commons
 
 5. Design the user interface
