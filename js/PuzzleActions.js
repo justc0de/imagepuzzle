@@ -4,6 +4,10 @@ $(document).ready(function() {
 		idCounter,
 		score,
 		target;
+	
+	//the number of moves a player has made
+	var noOfMoves = 0;
+
 
 	// listener attached to form submit button
 	// generates table
@@ -13,8 +17,6 @@ $(document).ready(function() {
 		console.log("Scrambling image into " + rowCount + 'x' + rowCount + ' rows and cols');
 
 		// array to store the newly created canvas elements
-		// it stores the sequence of images in the correct order
-		// can be compared against to check if the puzzle is solved
 		var canvasArray = PicPuzzle_Image.split( $("#image").val() , rowCount * rowCount);
 		
 		//list to keep track of the tiles which are available for random selection 
@@ -56,7 +58,7 @@ $(document).ready(function() {
 					tilesAvailable = removeItemFromList(tilesAvailable, random);
 					console.log('Random tile: ',random);
 					
-				 	 //Get the row and column position of the last canvas element
+				 	//Get the row and column position of the last canvas element
 				    if(random == ((canvasArray.length -1))){
 					                   
 						blankRow = i ;
@@ -78,6 +80,10 @@ $(document).ready(function() {
 		$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').children().hide();
 		$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').attr('id', 'blankCell');
 		console.log('br: '+blankRow+' bc:  '+blankCol);
+		
+		//reset number of moves if the image has been scrambled
+		if (noOfMoves != 0)
+			noOfMoves = 0;
 
 		return false;
 	});
@@ -100,8 +106,6 @@ $(document).ready(function() {
 	};
 
 
-	//the number of moves a player has made
-	var noOfMoves = 0;
 
 	// Event handler for clicking table cells
 	$('body').on('click', '#grid td', function(e) {
@@ -137,7 +141,7 @@ $(document).ready(function() {
 	    	if ($(this).children().attr("id") == "canvas" + idCounter){
 	    		score++;
 	    		if (score == target){
-	    			alert("You Win!");
+	    			alert("Congratulations You have solved the puzzle!\nIn "+noOfMoves+" moves");
 	    		}
 	    	}
 	    	
