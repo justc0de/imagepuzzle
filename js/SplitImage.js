@@ -38,18 +38,18 @@ var PicPuzzle_Image = {
 	var xoffset = 0;
 	var yoffset = 0;
  
-	for (var i = 1; i < tiles + 1; i++){
+	for (var i = 0; i < tiles; i++){
     
 		console.log('canvas', i);
 		console.log('xoffset',xoffset);
 		console.log('yoffset',yoffset);
 
 		//create canvas element and set attributes and get the canvas context
-		canvasArray[i - 1] = document.createElement('canvas');
-		canvasArray[i - 1].setAttribute('width', tileW);
-		canvasArray[i - 1].setAttribute('height', tileH);
-		canvasArray[i - 1].setAttribute('id', 'canvas'+i);
-		var ctx = canvasArray[i - 1].getContext('2d');
+		canvasArray[i] = document.createElement('canvas');
+		canvasArray[i].setAttribute('width', tileW);
+		canvasArray[i].setAttribute('height', tileH);
+		canvasArray[i].setAttribute('id', 'canvas'+i);
+		var ctx = canvasArray[i].getContext('2d');
    
 		//document.body.appendChild(canvasArray[i-1]);
     
@@ -63,7 +63,7 @@ var PicPuzzle_Image = {
     
 		//if i is a multiple of the total number of tiles to a row,
 		//move down a column and reset the row_col
-		if(i % row_col == 0){
+		if((i + 1) % row_col == 0){
 			yoffset -= tileH;
 			xoffset =0;
 		}else{

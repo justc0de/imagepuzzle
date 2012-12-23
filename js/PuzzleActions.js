@@ -1,11 +1,15 @@
 $(document).ready(function() {
+	
+	var rowCount,
+		idCounter,
+		score,
+		target;
 
 	// listener attached to form submit button
 	// generates table
 	$('#pieceSelection').submit(function() {
 	
-		var rowCount = $("#numOfPieces").val();
-		
+		rowCount = $("#numOfPieces").val();
 		console.log("Scrambling image into " + rowCount + 'x' + rowCount + ' rows and cols');
 
 		// array to store the newly created canvas elements
@@ -23,7 +27,6 @@ $(document).ready(function() {
 
 		$(function () {
 
-
 			//initialize tilesAvailable         
 			//it contains the tile numbers that are possible to select from at random
 			//array is full as no values have been randomly selected yet
@@ -33,8 +36,8 @@ $(document).ready(function() {
 			}
 
 
-			var $tbl = $('<table border="1">').attr('id', 'grid');
-			var $tbody = $('<tbody>').attr('id', 'tableBody');
+			var $tbl = $('<table border="1">').attr('id', 'grid'),
+				$tbody = $('<tbody>').attr('id', 'tableBody');
 			
 			for (var i = 0; i < rowCount; i++) {
 
@@ -43,14 +46,11 @@ $(document).ready(function() {
 				for (var j = 0; j < rowCount; j++) {
 				
 					//var $cell = $("<td>").text('Row : ' + i + ', Col: ' + j);
-
-					// Each data cell will contain a separate <canvas> element
-
 					console.log('TilesAvailable: ',tilesAvailable);
 
 					//choose a random tile
-					var random =randomChoice(tilesAvailable);
-					var $cell = $("<td>").append(canvasArray[random]);
+					var random =randomChoice(tilesAvailable),
+						$cell = $("<td>").append(canvasArray[random]);
 
 					//remove random value from the possible selection of tiles
 					tilesAvailable = removeItemFromList(tilesAvailable, random);
@@ -59,17 +59,14 @@ $(document).ready(function() {
 				 	 //Get the row and column position of the last canvas element
 				    if(random == ((canvasArray.length -1))){
 					                   
-							blankRow = i ;
-							blankCol = j ;
+						blankRow = i ;
+						blankCol = j ;
 					}                 
 
-					
 					$cell.appendTo(trow); 
-					
 				}
 
 				trow.appendTo($tbody);
-
 			}
 
 			$tbl.append($tbody);
@@ -78,17 +75,12 @@ $(document).ready(function() {
 		});
 
 		//Position the blank cell in the position of the last canvas element
-		$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').text("empty");
+		$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').children().hide();
 		$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').attr('id', 'blankCell');
 		console.log('br: '+blankRow+' bc:  '+blankCol);
 
-
-
 		return false;
 	});
-
-	
-
 
 	//remove a value from a array
 	//returns an array
@@ -101,9 +93,6 @@ $(document).ready(function() {
 		return array;
 	};
 
-
-
-
 	//get a random value from a list of elements
 	//returns a random value
 	function randomChoice(list){
@@ -112,12 +101,14 @@ $(document).ready(function() {
 	};
 
 
-
 	//the number of moves a player has made
 	var noOfMoves = 0;
 
 	// Event handler for clicking table cells
 	$('body').on('click', '#grid td', function(e) {
+		
+		idCounter = 0;
+		score = 0;
 		
 		var empty = $("#blankCell").get(0);
 		if (!empty || this == empty) return; // abort, abort!
@@ -139,5 +130,19 @@ $(document).ready(function() {
 			noOfMoves++;
 			console.log('Moves: '+noOfMoves);
 	    }
+	    
+	    // Check if puzzle is complete after each move
+	    $("td").each(function() {
+	    	target = rowCount * rowCount;
+	    	
+	    	if ($(this).children().attr("id") == "canvas" + idCounter){
+	    		score++;
+	    		if (score == target){
+	    			alert("You Win!");
+	    		}
+	    	}
+	    	
+	    	idCounter++;
+		});
 	});
 });
