@@ -73,7 +73,7 @@ $(document).ready(function() {
 
 			$tbl.append($tbody);
 			$('table').remove();
-			$('body').append($tbl);
+			$('#content').append($tbl);
 		});
 
 		//Position the blank cell in the position of the last canvas element
@@ -84,6 +84,8 @@ $(document).ready(function() {
 		//reset number of moves if the image has been scrambled
 		if (noOfMoves != 0)
 			noOfMoves = 0;
+			
+			updateText('moveCount',noOfMoves);
 
 		return false;
 	});
@@ -105,10 +107,15 @@ $(document).ready(function() {
 		return list[Math.floor(Math.random()*list.length)];
 	};
 
-
+	//update text of an element
+	//Parameters: The element ID, the text
+	function updateText(elementID,text){
+		document.getElementById(elementID).innerHTML = text;
+	};
+	
 
 	// Event handler for clicking table cells
-	$('body').on('click', '#grid td', function(e) {
+	$('#content').on('click', '#grid td', function(e) {
 		
 		idCounter = 0;
 		score = 0;
@@ -131,6 +138,9 @@ $(document).ready(function() {
 			
 
 			noOfMoves++;
+			
+			updateText('moveCount',noOfMoves);
+
 			console.log('Moves: '+noOfMoves);
 	    }
 	    

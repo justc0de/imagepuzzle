@@ -7,11 +7,27 @@
 		<script type="text/javascript" src="js/PuzzleActions.js"></script>         
 		<script type="text/javascript" src="js/SplitImage.js"></script>                                               
 	</head>                                                
-	<body> 
-		<form id="pieceSelection">
-			Number of Rows<input type="text" id="numOfPieces" size="1" maxLength="1" value="3"/><br>
-			Image Path<input type="text" id="image" value="images/hippo.jpg"/><br>
-			<input type="submit" value="Scramble image" />
-		</form>
+	<body>
+
+
+		<div id="container">
+			<div id="content">
+			<form id="pieceSelection">
+				Number of Tiles Squared <input type="text" id="numOfPieces" size="1" maxLength="1" value="3"/><br>
+			
+
+				Image URL<input type="text" id="image" value="images/hippo.jpg"/><br>
+				<input type="submit" id="scramble" value="Scramble image" />
+			</form>
+
+			</div>
+		</div>
+		
+		<div id="footer">
+			<h3>Moves Made: <span id="moveCount">0</span> <h3>
+		</div>
+
+
+
 	</body>                                                                 
 </html>
