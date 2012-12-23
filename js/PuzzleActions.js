@@ -72,7 +72,11 @@ $(document).ready(function() {
 			}
 
 			$tbl.append($tbody);
-			$('table').remove();
+			
+			if ($('#content').children().length > 0 ){
+				$('table').remove();
+			}
+			
 			$('#content').append($tbl);
 		});
 
