@@ -21,8 +21,8 @@ $(document).ready(function() {
 		var tilesAvailable = new Array(rowCount^2);
 		
 		//store the row and col of the blank cell
-		var blankRow =0;
-		var blankCol =0;
+		var blankRow =0,
+			blankCol =0;
 
 
 		$(function () {
@@ -96,7 +96,6 @@ $(document).ready(function() {
 	//get a random value from a list of elements
 	//returns a random value
 	function randomChoice(list){
-	
 		return list[Math.floor(Math.random()*list.length)];
 	};
 

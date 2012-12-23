@@ -7,26 +7,23 @@
 *
 * Author: Dylan Byrne
 */ 
-
-
-
 var PicPuzzle_Image = {
   split: function(imgsrc, tiles) {
   
-	var img = new Image();
-	var canvasArray = new Array();
-	var imgWidth;
-	var imgHeight;
-	var r,g,b = 0;
+	var img = new Image(),
+		canvasArray = new Array(),
+		imgWidth,
+		imgHeight,
+		r,g,b = 0;
 	img.src = imgsrc;   
    
 	console.log('imgWidth',img.width);
 	console.log('imgHeight',img.height);
   
 	//get the number of tiles in a row or column (row == column )
-	var row_col = Math.sqrt(tiles); 
-	var tileH = img.height / row_col;
-	var tileW = img.width / row_col;
+	var row_col = Math.sqrt(tiles),
+		tileH = img.height / row_col,
+		tileW = img.width / row_col;
 
 	console.log('row_col',row_col);
 	console.log('tileH',tileH);
@@ -35,8 +32,8 @@ var PicPuzzle_Image = {
 
 	canvasArray = [tiles];
   
-	var xoffset = 0;
-	var yoffset = 0;
+	var xoffset = 0,
+		yoffset = 0;
  
 	for (var i = 0; i < tiles; i++){
     
@@ -75,4 +72,3 @@ var PicPuzzle_Image = {
 	return canvasArray;
   }
 };
-
