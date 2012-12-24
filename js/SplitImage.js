@@ -9,9 +9,11 @@
 */ 
 var PicPuzzle_Image = {
   split: function(imgsrc, tiles) {
-  
-	var img = new Image(),
-		canvasArray = new Array(),
+		
+	//resize the image
+	var img = ResizeImage.resize(imgsrc);
+	
+	var	canvasArray = new Array(),
 		imgWidth,
 		imgHeight,
 		r,g,b = 0;
@@ -62,7 +64,7 @@ var PicPuzzle_Image = {
 		//move down a column and reset the row_col
 		if((i + 1) % row_col == 0){
 			yoffset -= tileH;
-			xoffset =0;
+				xoffset =0;
 		}else{
 			//otherwise move across the image
 			xoffset -= tileW; 

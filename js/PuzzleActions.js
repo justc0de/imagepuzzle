@@ -151,11 +151,13 @@ $(document).ready(function() {
 	    	if ($(this).children().attr("id") == "canvas" + idCounter){
 	    		score++;
 	    		if (score == target){
-	    			alert("Congratulations, You solved the puzzle!\nIn "+noOfMoves+" move(s)");
 	    			
-	    			//show complete image
-	    			$("#blankCell").children().show();
-	    			$("#blankCell").attr('id', $("#blankCell").children().attr('id'));
+					 //show complete image
+					 $("#blankCell").children().show();
+					 $("#blankCell").attr('id', $("#blankCell").children().attr('id'));
+
+					alert("Congratulations, You solved the puzzle!\nIn "+noOfMoves+" move(s)");
+	    			
 	    			
 	    			var retVal = confirm("Do you want to play again?");
 	    			if( retVal == true ){
