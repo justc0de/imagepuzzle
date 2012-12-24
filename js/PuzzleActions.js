@@ -51,11 +51,11 @@ $(document).ready(function() {
 					console.log('TilesAvailable: ',tilesAvailable);
 
 					//choose a random tile
-					var random =randomChoice(tilesAvailable),
+					var random = PicPuzzle_Utils.randomChoice(tilesAvailable),
 						$cell = $("<td>").append(canvasArray[random]);
 
 					//remove random value from the possible selection of tiles
-					tilesAvailable = removeItemFromList(tilesAvailable, random);
+					tilesAvailable = PicPuzzle_Utils.removeItemFromList(tilesAvailable, random);
 					console.log('Random tile: ',random);
 					
 				 	//Get the row and column position of the last canvas element
@@ -87,33 +87,10 @@ $(document).ready(function() {
 		
 		//reset number of moves when image is scrambled
 		noOfMoves = 0;
-		updateText('moveCount',noOfMoves);
+		PicPuzzle_Utils.updateText('moveCount',noOfMoves);
 
 		return false;
 	});
-
-	//remove a value from a array
-	//returns an array
-	function removeItemFromList(array, removeItem){
-
-		array =  jQuery.grep(array, function(value) {
-			return value != removeItem;
-		});
-
-		return array;
-	};
-
-	//get a random value from a list of elements
-	//returns a random value
-	function randomChoice(list){
-		return list[Math.floor(Math.random()*list.length)];
-	};
-
-	//update text of an element
-	//Parameters: The element ID, the text
-	function updateText(elementID,text){
-		document.getElementById(elementID).innerHTML = text;
-	};
 	
 
 	// Event handler for clicking table cells
@@ -140,7 +117,7 @@ $(document).ready(function() {
 			
 
 			noOfMoves++;			
-			updateText('moveCount',noOfMoves);
+			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
 			console.log('Moves: '+noOfMoves);
 	    }
 	    
