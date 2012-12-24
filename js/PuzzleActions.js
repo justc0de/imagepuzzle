@@ -85,11 +85,9 @@ $(document).ready(function() {
 		$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').attr('id', 'blankCell');
 		console.log('br: '+blankRow+' bc:  '+blankCol);
 		
-		//reset number of moves if the image has been scrambled
-		if (noOfMoves != 0)
-			noOfMoves = 0;
-			
-			updateText('moveCount',noOfMoves);
+		//reset number of moves when image is scrambled
+		noOfMoves = 0;
+		updateText('moveCount',noOfMoves);
 
 		return false;
 	});
@@ -141,10 +139,8 @@ $(document).ready(function() {
 	        emptyrow.insertBefore(this, afterempty);
 			
 
-			noOfMoves++;
-			
+			noOfMoves++;			
 			updateText('moveCount',noOfMoves);
-
 			console.log('Moves: '+noOfMoves);
 	    }
 	    
@@ -156,6 +152,10 @@ $(document).ready(function() {
 	    		score++;
 	    		if (score == target){
 	    			alert("Congratulations You have solved the puzzle!\nIn "+noOfMoves+" moves");
+	    			
+	    			//show complete image
+	    			$("#blankCell").children().show();
+	    			$("#blankCell").attr('id', $("#blankCell").children().attr('id'));
 	    		}
 	    	}
 	    	
