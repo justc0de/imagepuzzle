@@ -6,7 +6,7 @@ body > #container { height: auto; min-height: 100%; }
 
 body 
 { 
-	background-image:url(../images/background.jpg);	
+	background-image:url(../images/assets/background.jpg);	
 	background-repeat:repeat;
 	color:#fff;
 
