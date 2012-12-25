@@ -33,15 +33,21 @@ body
 
 /* Center Form */
 
-#pieceSelection 
+#pieceSelection
 { 
 	text-align:center;
 	color:#fff
 }
+/* Status Messages*/
+#notifications
+{
+	text-align:center;
+	width:100%;
+	height:20px;
+}
 
-
-
-#footer {
+#footer 
+{
 	clear: both;
  	position: relative;
  	z-index: 10;
