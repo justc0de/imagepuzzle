@@ -15,9 +15,17 @@
 		<div id="container">
 			<div id="content">
 			<form id="pieceSelection">
-				Number of Tiles Squared <input type="text" id="numOfPieces" size="1" maxLength="1" value="3"/><br>
-			
-
+				Grid size
+				<select id="numOfPieces">
+					<option value="2">2x2</option>
+				  	<option value="3">3x3</option>
+				  	<option value="4">4x4</option>
+				  	<option value="5">5x5</option>
+				  	<option value="6">6x6</option>
+				  	<option value="7">7x7</option>
+				  	<option value="8">8x8</option>
+				  	<option value="9">9x9</option>
+				</select><br>
 				Image URL<input type="text" id="image" value="images/batman.jpg"/><br>
 				<input type="submit" id="scramble" value="Scramble image" />
 			</form>
