@@ -126,34 +126,13 @@ $(document).ready(function() {
 	    		score++;
 	    		if (score == target){
 	    			
-					 //show complete image
-					 $("#blankCell").children().show();
-					 $("#blankCell").attr('id', $("#blankCell").children().attr('id'));
+	    			//show complete image
+					$("#blankCell").children().show();
+					$("#blankCell").attr('id', $("#blankCell").children().attr('id'));
 					 
-					 var gameEndTime = new Date(),
-					 	timeTaken = gameEndTime.getTime() - gameBeginTime.getTime(),
-					 	daysTaken = Math.round(timeTaken / (1000*60*60*24)),
-					 	hoursTaken = Math.round(timeTaken / (1000*60*60)),
-					 	minutesTaken = Math.round(timeTaken / (1000*60)),
-					 	secondsTaken = Math.round(timeTaken / (1000)),
-					 	timeTakenString = "And ";
-					 
-					 if (daysTaken > 0)
-						 timeTakenString += daysTaken + " day(s), ";
-					 
-					 if (hoursTaken > 0)
-						 timeTakenString += hoursTaken + " hour(s), ";
-					 
-					 if (minutesTaken > 0)
-						 timeTakenString += minutesTaken + " minute(s), ";
-					 
-					 if (secondsTaken > 0)
-						 timeTakenString += secondsTaken + " second(s)";
-					 
-
 					alert("Congratulations, You solved the puzzle!\n" +
 							"In "+noOfMoves+" move(s)\n" +
-							timeTakenString);
+							"And within " + PicPuzzle_Utils.diffBetweenTimes(gameBeginTime, new Date()));
 	    			
 	    			var retVal = confirm("Do you want to play again?");
 	    			if( retVal == true ){

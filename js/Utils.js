@@ -1,6 +1,5 @@
 var PicPuzzle_Utils = {
 	
-	
 	//remove a value from a array
 	//returns an array
 	removeItemFromList: function(array, removeItem) {
@@ -37,7 +36,28 @@ var PicPuzzle_Utils = {
 	     setTimeout(function() {
 	      	$(elementID).fadeTo('fast', 0)
 		  }, duration); 
+	},
+	
+	diffBetweenTimes: function(beginTime, endTime){
+		var timeTaken = endTime.getTime() - beginTime.getTime(),
+	 	daysTaken = Math.round(timeTaken / (1000*60*60*24)),
+	 	hoursTaken = Math.round(timeTaken / (1000*60*60)),
+	 	minutesTaken = Math.round(timeTaken / (1000*60)),
+	 	secondsTaken = Math.round(timeTaken / (1000)),
+	 	timeTakenString = "";
+	 
+	 if (daysTaken > 0)
+		 timeTakenString += daysTaken + " day(s), ";
+	 
+	 if (hoursTaken > 0)
+		 timeTakenString += hoursTaken + " hour(s), ";
+	 
+	 if (minutesTaken > 0)
+		 timeTakenString += minutesTaken + " minute(s), ";
+	 
+	 if (secondsTaken > 0)
+		 timeTakenString += secondsTaken + " second(s)";
+		
+	 	return timeTakenString;
 	}
-
-
 };
