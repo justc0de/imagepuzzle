@@ -6,8 +6,6 @@
 *	Returns: A resized canvas Element (Image)
 *
 */
-
-
 var ResizeImage = {
 	
 	resize: function(imgsrc){
@@ -21,7 +19,7 @@ var ResizeImage = {
 		//show message to the user if the image is a small size
 		if(img.width < screen.width/4 || img.height < screen.height/4){
 			PicPuzzle_Utils.updateText('message','As the submitted image is small it may lose quality when scaled up');
-			PicPuzzle_Utils.notify('#message',3000);
+			PicPuzzle_Utils.notify('#message',10000);
 		}
 
 		//maximum imaage size
@@ -29,8 +27,6 @@ var ResizeImage = {
 		canvas.height = screen.height/2;
 		ctx.drawImage(img,0,0,screen.width/2,screen.height/2); 
 		
-		
-	
 		return canvas;
 	}
 
