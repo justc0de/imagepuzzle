@@ -21,16 +21,7 @@ var ResizeImage = {
 		//show message to the user if the image is a small size
 		if(img.width < screen.width/4 || img.height < screen.height/4){
 			PicPuzzle_Utils.updateText('message','As the submitted image is small it may lose quality when scaled up');
-			
-			//set message to show in case it has previously faded out
-		    $('#message').fadeTo('fast', 1)
-			
-			
-			//set message to fade out
-			setTimeout(function() {
-			    //$('#message').fadeOut('fast');
-				 $('#message').fadeTo('fast', 0)
-				}, 3000); // <-- time in milliseconds
+			PicPuzzle_Utils.notify('#message',3000);
 		}
 
 		//maximum imaage size
