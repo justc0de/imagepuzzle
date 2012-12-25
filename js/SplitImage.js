@@ -21,7 +21,7 @@ var PicPuzzle_Image = {
 		imgWidth,
 		imgHeight,
 		r,g,b = 0;
-	img.src = imgsrc;   
+	//img.src = imgsrc;   
    
 	console.log('imgWidth',img.width);
 	console.log('imgHeight',img.height);
