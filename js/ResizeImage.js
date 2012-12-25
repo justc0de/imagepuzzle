@@ -1,5 +1,4 @@
 /*
-		://si0.twimg.com/profile_images/625974152/why-laughter-is-contagious-2_reasonably_small.jpg/console.log('Max Img Height',maxImgH);
 *	Function ResizeImage
 *	Description: Resizes an image to half the screen height and half the 
 *				 screen width.
@@ -18,14 +17,6 @@ var ResizeImage = {
 			ctx = canvas.getContext("2d");
 	
 		img.src	 = imgsrc;
-
-
-		//console.log('imgWidth',img.width);
-		//console.log('imgHeight',img.height);
-		//console.log('Screen Width',screen.width);
-		//console.log('Screen Height',screen.height);
-		//console.log('Max Img Width',screen.width/2);
-		//console.log('Max Img Height',screen.height/2);
 
 		//minimum image size
 		if(img.width < screen.width/4 || img.height < screen.height/4){

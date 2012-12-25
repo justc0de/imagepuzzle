@@ -17,24 +17,20 @@ var PicPuzzle_Image = {
 	//resize the image
 	var img = ResizeImage.resize(imgsrc);
 	
-	var	canvasArray = new Array(),
-		imgWidth,
-		imgHeight,
-		r,g,b = 0;
-	//img.src = imgsrc;   
+	var	canvasArray = new Array();
    
-	console.log('imgWidth',img.width);
-	console.log('imgHeight',img.height);
+	//console.log('imgWidth',img.width);
+	//console.log('imgHeight',img.height);
   
 	//get the number of tiles in a row or column (row == column )
 	var row_col = Math.sqrt(tiles),
 		tileH = img.height / row_col,
 		tileW = img.width / row_col;
 
-	console.log('row_col',row_col);
-	console.log('tileH',tileH);
-	console.log('tilW',tileW);
-	console.log('Tiles: ', tiles)
+	//console.log('row_col',row_col);
+	//console.log('tileH',tileH);
+	//console.log('tilW',tileW);
+	//console.log('Tiles: ', tiles)
 
 	canvasArray = [tiles];
   
@@ -43,9 +39,9 @@ var PicPuzzle_Image = {
  
 	for (var i = 0; i < tiles; i++){
     
-		console.log('canvas', i);
-		console.log('xoffset',xoffset);
-		console.log('yoffset',yoffset);
+		//console.log('canvas', i);
+		//console.log('xoffset',xoffset);
+		//console.log('yoffset',yoffset);
 
 		//create canvas element and set attributes and get the canvas context
 		canvasArray[i] = document.createElement('canvas');
