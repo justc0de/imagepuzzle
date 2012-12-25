@@ -3,7 +3,8 @@ $(document).ready(function() {
 	var rowCount,
 		idCounter,
 		score,
-		target;
+		target,
+		gameBeginTime;
 	
 	//the number of moves a player has made
 	var noOfMoves = 0;
@@ -23,8 +24,8 @@ $(document).ready(function() {
 		var tilesAvailable = new Array(rowCount^2);
 		
 		//store the row and col of the blank cell
-		var blankRow =0,
-			blankCol =0;
+		var blankRow = 0,
+			blankCol = 0;
 
 
 		$(function () {
@@ -32,11 +33,9 @@ $(document).ready(function() {
 			//initialize tilesAvailable         
 			//it contains the tile numbers that are possible to select from at random
 			//array is full as no values have been randomly selected yet
-
 			for (var i = 0; i <canvasArray.length; i++) {
 				tilesAvailable[i] = i ;
 			}
-
 
 			var $tbl = $('<table border="1">').attr('id', 'grid'),
 				$tbody = $('<tbody>').attr('id', 'tableBody');
@@ -61,8 +60,8 @@ $(document).ready(function() {
 				 	//Get the row and column position of the last canvas element
 				    if(random == ((canvasArray.length -1))){
 					                   
-						blankRow = i ;
-						blankCol = j ;
+						blankRow = i,
+							blankCol = j;
 					}                 
 
 					$cell.appendTo(trow); 
@@ -72,11 +71,7 @@ $(document).ready(function() {
 			}
 
 			$tbl.append($tbody);
-			
-			if ($('#content').children().length > 0 ){
-				$('table').remove();
-			}
-			
+			$('table').remove();	
 			$('#content').append($tbl);
 		});
 
@@ -88,6 +83,8 @@ $(document).ready(function() {
 		//reset number of moves when image is scrambled
 		noOfMoves = 0;
 		PicPuzzle_Utils.updateText('moveCount',noOfMoves);
+		
+		gameBeginTime = new Date();
 
 		return false;
 	});
@@ -132,9 +129,31 @@ $(document).ready(function() {
 					 //show complete image
 					 $("#blankCell").children().show();
 					 $("#blankCell").attr('id', $("#blankCell").children().attr('id'));
+					 
+					 var gameEndTime = new Date(),
+					 	timeTaken = gameEndTime.getTime() - gameBeginTime.getTime(),
+					 	daysTaken = Math.round(timeTaken / (1000*60*60*24)),
+					 	hoursTaken = Math.round(timeTaken / (1000*60*60)),
+					 	minutesTaken = Math.round(timeTaken / (1000*60)),
+					 	secondsTaken = Math.round(timeTaken / (1000)),
+					 	timeTakenString = "And ";
+					 
+					 if (daysTaken > 0)
+						 timeTakenString += daysTaken + " day(s), ";
+					 
+					 if (hoursTaken > 0)
+						 timeTakenString += hoursTaken + " hour(s), ";
+					 
+					 if (minutesTaken > 0)
+						 timeTakenString += minutesTaken + " minute(s), ";
+					 
+					 if (secondsTaken > 0)
+						 timeTakenString += secondsTaken + " second(s)";
+					 
 
-					alert("Congratulations, You solved the puzzle!\nIn "+noOfMoves+" move(s)");
-	    			
+					alert("Congratulations, You solved the puzzle!\n" +
+							"In "+noOfMoves+" move(s)\n" +
+							timeTakenString);
 	    			
 	    			var retVal = confirm("Do you want to play again?");
 	    			if( retVal == true ){
