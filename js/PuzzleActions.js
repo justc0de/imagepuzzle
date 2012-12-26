@@ -68,7 +68,6 @@ $(document).ready(function() {
 			//Position the blank cell in the position of the last canvas element
 			$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').children().hide();
 			$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').attr('id', 'blankCell');
-			console.log('br: '+blankRow+' bc:  '+blankCol);
 			
 			//reset number of moves when image is scrambled
 			noOfMoves = 0;
@@ -120,18 +119,15 @@ $(document).ready(function() {
 	    			//show complete image
 					$("#blankCell").children().show();
 					$("#blankCell").attr('id', $("#blankCell").children().attr('id'));
-					 
-					alert("Congratulations, You solved the puzzle!\n" +
-							"In "+noOfMoves+" move(s)\n" +
-							"And within " + PicPuzzle_Utils.diffBetweenTimes(gameBeginTime, new Date()));
-	    			
-	    			var retVal = confirm("Do you want to play again?");
-	    			if( retVal == true ){
-	    				$('#pieceSelection').submit();
-	    				return true;
-	    			}else{
-	    				return false;
-	    			}
+					
+					//Show winning dialog and ask user to play again 
+					PicPuzzle_Utils.playAgain("Congratulations, You solved the puzzle!\n" +
+					                             "In "+noOfMoves+" move(s)\n" +
+				                                 "and within " + PicPuzzle_Utils.diffBetweenTimes(gameBeginTime, new Date()) +
+												 ". Would you like to play again ?");
+												
+					
+
 	    		}
 	    	}
 	    	

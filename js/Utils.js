@@ -59,5 +59,24 @@ var PicPuzzle_Utils = {
 		 timeTakenString += secondsTaken + " second(s)";
 		
 	 	return timeTakenString;
-	}
+	},
+
+	//Display the winning message to the user(s)
+	//ask them to play again ?
+	//Parameters: the winning message
+	playAgain: function(message){
+	            
+		var NewDialog = $('<div id="playAgainDialog">\<p>'+message+'.</p>\</div>');
+	    NewDialog.dialog({
+	    	modal: true,
+		    title: "Play Again ?",
+		    buttons: [
+			          {text: "Yes", click: function() {$('#pieceSelection').submit(),$(this).dialog("close")}},
+			          {text: "No", click: function() {$(this).dialog("close")}}
+			         ]
+		});
+		
+		return false;
+				                      
+	}      
 };
