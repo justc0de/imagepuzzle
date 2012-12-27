@@ -33,7 +33,7 @@ body
 
 /* Center Form */
 
-#pieceSelection
+#pieceSelection, #javascriptDisabled-warning
 { 
 	text-align:center;
 	color:#fff
