@@ -78,5 +78,17 @@ var PicPuzzle_Utils = {
 		
 		return false;
 				                      
-	}      
+	},
+	
+	initUIElements: function(){
+		$( document ).tooltip();
+		
+		$(function() {
+		    $("#radio").buttonset();
+		});
+
+		$("#radio :radio").click(function(e) {
+			$('#pieceSelection').submit();
+		});
+	}
 };

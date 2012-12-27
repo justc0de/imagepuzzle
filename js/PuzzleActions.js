@@ -1,19 +1,13 @@
 $(document).ready(function() {
 	
-	$(function() {
-	    $("#radio").buttonset();
-	});
-
-	$("#radio :radio").click(function(e) {
-		$('#pieceSelection').submit();
-	});
-	
 	var rowCount,
 		idCounter,
 		score,
 		target,
 		gameBeginTime,
 		noOfMoves = 0;
+	
+	PicPuzzle_Utils.initUIElements();
 
 	// Generate grid
 	$('#pieceSelection').submit(function() {
