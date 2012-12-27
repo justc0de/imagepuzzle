@@ -12,29 +12,23 @@
 		<script type="text/javascript" src="js/Utils.js"></script>                                           
 	</head>                                                
 	<body>
-
-
 		<div id="container">
 			<div id="content">
-
-			<form id="pieceSelection">
-				Grid size
-				<select id="numOfPieces">
-					<option value="2">2x2</option>
-				  	<option value="3" selected="selected">3x3</option>
-				  	<option value="4">4x4</option>
-				  	<option value="5">5x5</option>
-				  	<option value="6">6x6</option>
-				  	<option value="7">7x7</option>
-				  	<option value="8">8x8</option>
-				  	<option value="9">9x9</option>
-				</select><br>
-				Image URL<input type="text" id="image" value="images/stock/walkin.jpg"/><br>
-				<input type="submit" id="scramble" value="Scramble image" />
+				<form id="pieceSelection">
+				    Image URL<input type="text" id="image" value="images/stock/walkin.jpg"/>
+				    <div id="radio">Grid dimensions
+				        <input type="radio" id="radio1" name="radio"/><label for="radio1">2x2</label>
+				        <input type="radio" id="radio2" name="radio" checked="checked"/><label for="radio2">3x3</label>
+				        <input type="radio" id="radio3" name="radio"/><label for="radio3">4x4</label>
+				        <input type="radio" id="radio4" name="radio"/><label for="radio4">5x5</label>
+				        <input type="radio" id="radio5" name="radio"/><label for="radio5">6x6</label>
+				        <input type="radio" id="radio6" name="radio"/><label for="radio6">7x7</label>
+				        <input type="radio" id="radio7" name="radio"/><label for="radio7">8x8</label>
+				        <input type="radio" id="radio8" name="radio"/><label for="radio8">9x9</label>
+				    </div>
 				</form>
 
-				<div id="notifications" ><h4><span id="message"></span><h4></div>
-								
+				<div id="notifications" ><h4><span id="message"></span><h4></div>								
 			</div>
 		</div>
 		
@@ -42,8 +36,5 @@
 			<h3>Moves Made: <span id="moveCount">0</span> <h3>
 		
 		</div>
-
-
-
 	</body>                                                                 
 </html>

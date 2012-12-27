@@ -1,5 +1,13 @@
 $(document).ready(function() {
 	
+	$(function() {
+	    $("#radio").buttonset();
+	});
+
+	$("#radio :radio").click(function(e) {
+		$('#pieceSelection').submit();
+	});
+	
 	var rowCount,
 		idCounter,
 		score,
@@ -7,13 +15,11 @@ $(document).ready(function() {
 		gameBeginTime,
 		noOfMoves = 0;
 
-	// listener attached to form submit button
-	// generates table
+	// Generate grid
 	$('#pieceSelection').submit(function() {
 	
-		rowCount = $("#numOfPieces").val();
+		rowCount = $("#radio :radio:checked + label").text()[0];
 
-		// array to store the newly created canvas elements
 		PicPuzzle_Image.split($("#image").val(), rowCount * rowCount, function(canvasArray) {	    
 		
 			//list to keep track of the tiles which are available for random selection 
@@ -83,8 +89,8 @@ $(document).ready(function() {
 	// Event handler for clicking table cells
 	$('#content').on('click', '#grid td', function(e) {
 		
-		idCounter = 0;
-		score = 0;
+		idCounter = 0,
+			score = 0;
 		
 		var empty = $("#blankCell").get(0);
 		if (!empty || this == empty) return; // abort, abort!
@@ -102,7 +108,6 @@ $(document).ready(function() {
 	        currow.insertBefore(empty, afterthis); 
 	        emptyrow.insertBefore(this, afterempty);
 			
-
 			noOfMoves++;			
 			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
 			console.log('Moves: '+noOfMoves);
@@ -121,13 +126,11 @@ $(document).ready(function() {
 					$("#blankCell").attr('id', $("#blankCell").children().attr('id'));
 					
 					//Show winning dialog and ask user to play again 
-					PicPuzzle_Utils.playAgain("Congratulations, You solved the puzzle!\n" +
-					                             "In "+noOfMoves+" move(s)\n" +
-				                                 "and within " + PicPuzzle_Utils.diffBetweenTimes(gameBeginTime, new Date()) +
-												 ". Would you like to play again ?");
-												
-					
-
+					PicPuzzle_Utils.playAgain(
+							"Congratulations, You solved the puzzle!\n" +
+					        "In "+noOfMoves+" move(s)\n" +
+				            "and within " + PicPuzzle_Utils.diffBetweenTimes(gameBeginTime, new Date()) +
+							". Would you like to play again ?");
 	    		}
 	    	}
 	    	
