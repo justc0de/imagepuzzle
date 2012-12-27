@@ -82,6 +82,12 @@ var PicPuzzle_Utils = {
 	
 	initUIElements: function(){
 		$( document ).tooltip();
+		$( "#image" ).tooltip({
+            show: {
+                effect: "slideDown",
+                delay: 250
+            }
+        });
 		
 		$(function() {
 		    $("#radio").buttonset();
