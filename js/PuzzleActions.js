@@ -121,10 +121,11 @@ $(document).ready(function() {
 					
 					//Show winning dialog and ask user to play again 
 					PicPuzzle_Utils.playAgain(
-							"Congratulations, You solved the puzzle!\n" +
-					        "In "+noOfMoves+" move(s)\n" +
+							"Congratulations!<br/>" +
+							"You solved the puzzle in<br/>" +
+					        + noOfMoves + " move(s)<br/>" +
 				            "and within " + PicPuzzle_Utils.diffBetweenTimes(gameBeginTime, new Date()) +
-							". Would you like to play again ?");
+							"<br/><br/>Would you like to play again?");
 	    		}
 	    	}
 	    	
