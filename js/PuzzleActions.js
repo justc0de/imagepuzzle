@@ -5,8 +5,9 @@ $(document).ready(function() {
 		score,
 		target,
 		gameBeginTime,
+		puzzlesSolved = 0,
 		noOfMoves = 0;
-	
+			
 	PicPuzzle_Utils.initUIElements();
 
 	// Generate grid
@@ -119,6 +120,10 @@ $(document).ready(function() {
 					$("#blankCell").children().show();
 					$("#blankCell").attr('id', $("#blankCell").children().attr('id'));
 					
+
+					//increase puzzlesSolved
+					PicPuzzle_Utils.updateText('puzzlesSolved',++puzzlesSolved);
+
 					//Show winning dialog and ask user to play again 
 					PicPuzzle_Utils.playAgain(
 							"Congratulations!<br/>" +
