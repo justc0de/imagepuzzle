@@ -49,10 +49,10 @@ body
 #footer 
 {
 	clear: both;
- 	position: relative;
- 	z-index: 10;
- 	height: 3em;
- 	margin-top: -3em;
+	background: rgba(0,0,0,0.5);
+ 	position: center;
+ 	height: 2em;
+ 	margin-top: -2em;
 
 }
 
