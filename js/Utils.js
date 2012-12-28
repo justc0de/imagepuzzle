@@ -40,13 +40,47 @@ var PicPuzzle_Utils = {
 	
 	diffBetweenTimes: function(beginTime, endTime){
 		var timeTaken = endTime.getTime() - beginTime.getTime(),
-	 	daysTaken = Math.round(timeTaken / (1000*60*60*24)),
-	 	hoursTaken = Math.round(timeTaken / (1000*60*60)),
-	 	minutesTaken = Math.round(timeTaken / (1000*60)),
+	 	daysTaken,
+	 	hoursTaken, 
+	 	minutesTaken, 
 	 	secondsTaken = Math.round(timeTaken / (1000)),
 	 	timeTakenString = "";
 	 
-	 if (daysTaken > 0)
+	
+		
+
+	
+		
+		if (secondsTaken > 60){
+				//convert seconds into minutes
+				minutesTaken = Math.floor(secondsTaken / 60);
+				
+				//remove converted seconds
+				secondsTaken = secondsTaken % 60;
+			
+			if(minutesTaken > 60){
+			
+				//convert minutes to hours
+				hoursTaken = Math.floor(minutesTaken / 60);
+
+				//remove converted minutes
+				minutesTaken = Math.floor(minutesTaken % 60);
+
+				if(hoursTaken > 24){
+				
+					//convert hours to days
+					daysTaken = Math.floor(hoursTaken / 24);
+					
+					//remove converted hours
+					hoursTaken = hoursTaken % 24;
+				}
+			
+			}
+		}
+
+
+
+	if (daysTaken > 0)
 		 timeTakenString += daysTaken + " day(s), ";
 	 
 	 if (hoursTaken > 0)
@@ -57,7 +91,11 @@ var PicPuzzle_Utils = {
 	 
 	 if (secondsTaken > 0)
 		 timeTakenString += secondsTaken + " second(s)";
+	
+
 		
+
+
 	 	return timeTakenString;
 	},
 
