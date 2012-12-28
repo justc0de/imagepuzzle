@@ -6,12 +6,17 @@ $(document).ready(function() {
 		target,
 		gameBeginTime,
 		puzzlesSolved = 0,
-		noOfMoves = 0;
-			
+		noOfMoves = 0,
+		move_snd = new Audio("sounds/move1.wav"),
+		shuffle_snd = new Audio("sounds/shuffle1.wav");
+		win_snd  = new Audio("sounds/success1.wav");
+	
+
 	PicPuzzle_Utils.initUIElements();
 
 	// Generate grid
 	$('#pieceSelection').submit(function() {
+
 	
 		rowCount = $("#radio :radio:checked + label").text()[0];
 
@@ -74,6 +79,9 @@ $(document).ready(function() {
 			noOfMoves = 0;
 			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
 			
+			shuffle_snd.play();
+
+
 			gameBeginTime = new Date();
 		});
 
@@ -103,7 +111,11 @@ $(document).ready(function() {
 	        currow.insertBefore(empty, afterthis); 
 	        emptyrow.insertBefore(this, afterempty);
 			
-			noOfMoves++;			
+			noOfMoves++;
+
+			//play the move sound
+			move_snd.play();
+			
 			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
 			console.log('Moves: '+noOfMoves);
 	    }
@@ -120,6 +132,9 @@ $(document).ready(function() {
 					$("#blankCell").children().show();
 					$("#blankCell").attr('id', $("#blankCell").children().attr('id'));
 					
+
+					//play success sound
+					win_snd.play();
 
 					//increase puzzlesSolved
 					PicPuzzle_Utils.updateText('puzzlesSolved',++puzzlesSolved);
