@@ -14,15 +14,17 @@
 	</head>                                                
 	
 	<body>
-		<div id="container">
-			<div id="content">
-				<form id="pieceSelection">
+		<section id="container">
+			<section id="content">
+				
+				<aside id="formContent">
+					<form id="pieceSelection">
 					
-				   <div id="imageInput"> Image URL <input type="text" id="image" value="images/stock/walkin.jpg"
+				   		<div id="imageInput"> Image URL <input type="text" id="image" value="images/stock/walkin.jpg"
 				    		   title="Select one of the stock images or paste an image URL e.g http://server.com/path/to/image.jpg"/>
-				   </div>
+				   		</div>
 
-					<div id="radio">
+						<div id="radio">
 					        <input type="radio" id="radio1" name="radio"/><label for="radio1">2x2</label>
 					        <input type="radio" id="radio2" name="radio" checked="checked"/><label for="radio2">3x3</label>
 					        <input type="radio" id="radio3" name="radio"/><label for="radio3">4x4</label>
@@ -31,26 +33,28 @@
 					        <input type="radio" id="radio6" name="radio"/><label for="radio6">7x7</label>
 					        <input type="radio" id="radio7" name="radio"/><label for="radio7">8x8</label>
 					        <input type="radio" id="radio8" name="radio"/><label for="radio8">9x9</label>
-					</div>
-				</form>
-			
+						</div>
+					</form>
+				<aside>
 		        
 		        	<noscript>
 			        	<div id="javascriptDisabled-warning">This game requires Javascript to be enabled</div>
 			    	</noscript>
+					
 					<button type="button" id="soundClick">Sound</button>
+					
 					<div id="notifications" ><h4><span id="message"></span><h4></div>
 		
 		
-			</div>
-		</div>
+			</section>
+		</section>
 
-		<div id="footer">
+		<section id="footer">
 				<ul>
 					<li>Moves Made: <span id="moveCount">0</span></li>
 					<li>Time: <span id="timer">00:00</span></li>
 					<li>Puzzles Solved: <span id="puzzlesSolved">0</span></li>
 				<ul>
-		</div>
+		</section>
 	</body>                                                                 
 </html>
