@@ -80,16 +80,29 @@ var PicPuzzle_Utils = {
 
 
 	if (daysTaken > 0)
-		 timeTakenString += daysTaken + " day(s), ";
+		timeTakenString += daysTaken + " day(s) ";
 	 
-	 if (hoursTaken > 0)
-		 timeTakenString += hoursTaken + " hour(s), ";
-	 
-	 if (minutesTaken > 0)
-		 timeTakenString += minutesTaken + " minute(s), ";
-	 
-	 if (secondsTaken > 0)
-		 timeTakenString += secondsTaken + " second(s)";
+	if (hoursTaken > 0 && hoursTaken < 10)
+		timeTakenString += "0" +  hoursTaken + " : ";
+	
+	else if (hoursTaken > 10)
+		timeTakenString += hoursTaken + " : ";
+	else
+	 //dont show hours
+
+	if (minutesTaken > 0 && minutesTaken < 10)
+		timeTakenString += "0" + minutesTaken + " : ";
+	else if(minutesTaken > 10)
+	 	timeTakenString += minutesTaken + " : ";
+    else
+	 	timeTakenString += "00 : ";
+
+    if (secondsTaken > 0 && secondsTaken < 10)
+		timeTakenString += "0"+ secondsTaken ;
+    else if(secondsTaken > 10)
+	 	timeTakenString += secondsTaken;
+    else
+	 	timeTakenString += "00" ;
 	
 
 	
