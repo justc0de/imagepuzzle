@@ -68,7 +68,7 @@ $(document).ready(function() {
 	
 				$tbl.append($tbody);
 				$('table').remove();	
-				$('#content').append($tbl);
+				$('#main').append($tbl);
 			}
 	
 			//Position the blank cell in the position of the last canvas element

@@ -1,21 +1,25 @@
 /* CSS for index.html */
-
 html, body, #container { height: 100%; }
 body > #container { height: auto; min-height: 100%; }
-
-
-body 
-{ 
+body { 
 	background-image:url(../images/assets/background.jpg);	
 	background-repeat:repeat;
 	color:#fff;
-
 }
 
-/* Center the grid */
 
-#grid 
-{ 
+#pieceSelection p input[type="text"] {
+    width: 30%;
+}
+#pieceSelection #radio.ui-buttonset .ui-button-text-only {
+    font-weight: bold;
+    font-size: .8em;
+    padding: 0 1.2%;
+}
+
+
+/* Center the grid */
+#grid { 
 	margin-left:auto;
 	margin-right:auto;
 	/*border: 1px white solid; */
@@ -29,25 +33,19 @@ body
 	-webkit-box-shadow: 10px 10px 10px rgba(0,0,0,0.5); 
 	-moz-box-shadow: 10px 10px 10px rgba(0,0,0,0.5); 
 }
-
-
 /* Center Form */
-
-#pieceSelection, #javascriptDisabled-warning
-{ 
+#pieceSelection, #javascriptDisabled-warning { 
 	text-align:center;
 	color:#fff
 }
-/* Status Messages*/
-#notifications
-{
+#notifications {
 	text-align:center;
 	width:100%;
 	height:20px;
 }
 
-#footer 
-{
+
+#footer {
 	clear: both;
 	background: rgba(0,0,0,0.5);
  	position: center;
@@ -55,19 +53,14 @@ body
  	margin-top: -2em;
 
 }
-
-#footer ul
-{
+#footer ul {
 	margin:0;
 	padding:0;
 	list-style:none;
 	text-align:center;
 
 } 
-
-
-#footer li
-{
+#footer li {
 	display:inline;
 	padding:5px;
 }
