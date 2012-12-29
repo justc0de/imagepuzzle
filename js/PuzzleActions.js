@@ -80,7 +80,7 @@ $(document).ready(function() {
 			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
 			
 			shuffle_snd.play();
-
+			shuffle_snd.currentTime = 0;
 
 			gameBeginTime = new Date();
 		});
@@ -115,6 +115,7 @@ $(document).ready(function() {
 
 			//play the move sound
 			move_snd.play();
+			move_snd.currentTime = 0 ;
 			
 			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
 			console.log('Moves: '+noOfMoves);
@@ -135,7 +136,7 @@ $(document).ready(function() {
 
 					//play success sound
 					win_snd.play();
-
+					win_snd.currentTime = 0;
 					//increase puzzlesSolved
 					PicPuzzle_Utils.updateText('puzzlesSolved',++puzzlesSolved);
 
