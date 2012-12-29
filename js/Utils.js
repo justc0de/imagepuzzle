@@ -38,6 +38,10 @@ var PicPuzzle_Utils = {
 		  }, duration); 
 	},
 	
+
+	//Get the time difference between two javascript date objects
+	//Paramaters: Two Date Objects
+	//Returns a string containing the time.
 	diffBetweenTimes: function(beginTime, endTime){
 		var timeTaken = endTime.getTime() - beginTime.getTime(),
 	 	daysTaken,
@@ -45,31 +49,26 @@ var PicPuzzle_Utils = {
 	 	minutesTaken, 
 	 	secondsTaken = Math.round(timeTaken / (1000)),
 	 	timeTakenString = "";
-	 
-	
-		
-
-	
 		
 		if (secondsTaken > 60){
 				//convert seconds into minutes
 				minutesTaken = Math.floor(secondsTaken / 60);
 				
 				//remove converted seconds
-				secondsTaken = secondsTaken % 60;
+				secondsTaken = Math.floor(secondsTaken % 60);
 			
 			if(minutesTaken > 60){
 			
 				//convert minutes to hours
-				hoursTaken = Math.floor(minutesTaken / 60);
+				hoursTaken = minutesTaken / 60;
 
 				//remove converted minutes
-				minutesTaken = Math.floor(minutesTaken % 60);
+				minutesTaken = minutesTaken % 60;
 
 				if(hoursTaken > 24){
 				
 					//convert hours to days
-					daysTaken = Math.floor(hoursTaken / 24);
+					daysTaken = hoursTaken / 24;
 					
 					//remove converted hours
 					hoursTaken = hoursTaken % 24;
@@ -93,11 +92,11 @@ var PicPuzzle_Utils = {
 		 timeTakenString += secondsTaken + " second(s)";
 	
 
-		
-
-
+	
 	 	return timeTakenString;
 	},
+
+
 
 	//Display the winning message to the user(s)
 	//ask them to play again ?
@@ -118,6 +117,8 @@ var PicPuzzle_Utils = {
 				                      
 	},
 	
+	
+	//Initialize UI elements
 	initUIElements: function(){
 		$( document ).tooltip();
 		$( "#image" ).tooltip({
