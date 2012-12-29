@@ -4,6 +4,7 @@ $(document).ready(function() {
 		idCounter,
 		score,
 		target,
+		sound = "on",
 		gameBeginTime,
 		puzzlesSolved = 0,
 		noOfMoves = 0,
@@ -13,6 +14,23 @@ $(document).ready(function() {
 	
 
 	PicPuzzle_Utils.initUIElements();
+		
+    //check for sound toggle
+    $('#soundClick').on('click', function(e) {
+		if(sound == "on"){
+        	sound = "off";
+			PicPuzzle_Utils.updateText('message','Sounds disabled');
+			PicPuzzle_Utils.notify('#message',3000);
+		}
+        else{
+        	sound = "on";
+			PicPuzzle_Utils.updateText('message','Sounds enabled');
+			PicPuzzle_Utils.notify('#message',3000);
+
+		}
+     });
+
+
 
 	// Generate grid
 	$('#pieceSelection').submit(function() {
@@ -58,7 +76,7 @@ $(document).ready(function() {
 				    if(random == ((canvasArray.length -1))){
 					                   
 						blankRow = i,
-							blankCol = j;
+						blankCol = j;
 					}                 
 
 					$cell.appendTo(trow); 
@@ -79,14 +97,20 @@ $(document).ready(function() {
 			noOfMoves = 0;
 			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
 			
-			shuffle_snd.play();
-			shuffle_snd.currentTime = 0;
+			//play start sound
+			if (sound == "on"){
+				shuffle_snd.play();
+				shuffle_snd.currentTime = 0;
+			}
 
 			gameBeginTime = new Date();
 		});
 
 		return false;
 	});
+
+
+
 	
 
 	// Event handler for clicking table cells
@@ -114,9 +138,11 @@ $(document).ready(function() {
 			noOfMoves++;
 
 			//play the move sound
-			move_snd.play();
-			move_snd.currentTime = 0 ;
-			
+			if(sound == "on"){
+				move_snd.play();
+				move_snd.currentTime = 0 ;
+			}
+
 			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
 			console.log('Moves: '+noOfMoves);
 	    }
@@ -135,8 +161,12 @@ $(document).ready(function() {
 					
 
 					//play success sound
-					win_snd.play();
-					win_snd.currentTime = 0;
+					if(sound == "on"){
+						win_snd.play();
+						win_snd.currentTime = 0;
+					}
+					
+					
 					//increase puzzlesSolved
 					PicPuzzle_Utils.updateText('puzzlesSolved',++puzzlesSolved);
 
