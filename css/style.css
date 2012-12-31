@@ -1,50 +1,121 @@
-/* CSS for index.html */
-
-
 html,
-body,
-#container 
-{ 
-	height: 100%; 
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
-
-body > #container 
-{ 
-	height: auto; 
-	min-height: 100%; 
+html body,
+html body input {
+    font: normal .9em Arial, Verdana, sans-serif;
 }
-
-body 
-{ 
+body { 
 	background-image:url(../images/assets/background.jpg);	
 	background-repeat:repeat;
 	color:#fff;
 }
-
-
-
-#PieceSelection input
-{
-	width:30%;
-
+section,
+header,
+footer {
+    display: block;
 }
-
-
-#radio.ui-buttonset,
-.ui-button-text-only,
-#imageInput
-{
+header,
+article > *,
+footer > * {
+    margin: 20px;
+}
+footer > * {
+    margin: 20px;
+}
+h1 {
+    font: bold 2.4em Georgia, serif;
+    padding: 10px 0 0;
+}
+strong {
+    font-weight: bold;
+}
+#container {
+    width: 100%;
+    min-width: 740px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+#header {
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+#pieceSelection {
+    text-align: center;
+}
+#pieceSelection p,
+#pieceSelection p input[type="text"] {
+    text-align: center;
+}
+#pieceSelection p input[type="text"] {
+    width: 30%;
+}
+#pieceSelection #radio.ui-buttonset .ui-button-text-only {
     font-weight: bold;
     font-size: .8em;
     padding: 0 1.2%;
-	float:none;
-	text-align:center;
 }
-
-
-/* Center the grid */
-#grid 
-{ 
+#content {
+    display: table;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+#menu,
+#main {
+    display: table-cell;
+    text-align: center;
+}
+#menu {
+    width: 10%;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+#main {
+    vertical-align: middle;
+}
+#selectable {
+    width: 240px;
+    min-height: 500px;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+}
+#selectable:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+#selectable li {
+    float: left;
+    margin: 5px;
+    padding: 1px;
+    width: 105px;
+    height: 82px;
+}
+#selectable li img {
+    width: 100%;
+    height: 100%;
+}
+#selectable .ui-selected {
+    background: #F39814;
+    color: white;
+}
+#notifications {
+	text-align:center;
+	width:100%;
+	height:20px;
+}
+#grid {
 	margin-left:auto;
 	margin-right:auto;
 	/*border: 1px white solid; */
@@ -58,44 +129,19 @@ body
 	-webkit-box-shadow: 10px 10px 10px rgba(0,0,0,0.5); 
 	-moz-box-shadow: 10px 10px 10px rgba(0,0,0,0.5); 
 }
-
-
-#pieceSelection, 
-#javascriptDisabled-warning,
-{	
-	font-weight: bold;
-	color:#fff;
+#footer {
+    margin-top: -3.3em;
+    background-color: #fff;
+    opacity: .7;
 }
-
-
-#notifications 
-{
-	text-align:center;
-	width:100%;
-	height:20px;
+#footer ul {
+    margin: 0;
+    padding: 1em;
+    list-style: none;
+    text-align: center;
 }
-
-
-#footer 
-{
-	clear: both;
-	background: rgba(0,0,0,0.5);
- 	position: center;
- 	height: 2em;
- 	margin-top: -2em;
-
-}
-
-#footer ul 
-{
-	margin:0;
-	padding:0;
-	list-style:none;
-	text-align:center;
-
-} 
-
 #footer li {
-	display:inline;
-	padding:5px;
+	color: #444;
+    display: inline;
+    padding: 0 5px;
 }

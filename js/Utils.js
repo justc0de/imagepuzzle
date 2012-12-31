@@ -167,6 +167,18 @@ var PicPuzzle_Utils = {
 		$("#radio :radio").click(function(e) {
 			$('#pieceSelection').submit();
 		});
+		
+		$(function() {
+		    $("#selectable").selectable();
+		});
+
+		$("#selectable" ).selectable({
+		   selected: function(event, ui) { 
+			   $("#image").val($(ui.selected).children().attr('src'));
+			   $('#pieceSelection').submit();
+		   }
+		});
+
 	},
 	
 	initTimer: function(){
