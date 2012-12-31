@@ -70,18 +70,18 @@ var PicPuzzle_Utils = {
 			if(minutesTaken > 60){
 			
 				//convert minutes to hours
-				hoursTaken = minutesTaken / 60;
+				hoursTaken = Math.floor(minutesTaken / 60);
 
 				//remove converted minutes
-				minutesTaken = minutesTaken % 60;
+				minutesTaken = Math.floor(minutesTaken % 60);
 
 				if(hoursTaken > 24){
 				
 					//convert hours to days
-					daysTaken = hoursTaken / 24;
+					daysTaken = Math.floor(hoursTaken / 24);
 					
 					//remove converted hours
-					hoursTaken = hoursTaken % 24;
+					hoursTaken = Math.floor(hoursTaken % 24);
 				}
 			
 			}
