@@ -5,9 +5,9 @@ $(document).ready(function() {
 		score,
 		target,
 		sound = "on",
-		gameBeginTime,
 		puzzlesSolved = 0,
 		noOfMoves = 0,
+		timerIntervalId = 0,
 		move_snd = new Audio("sounds/move1.wav"),
 		shuffle_snd = new Audio("sounds/shuffle1.wav");
 		win_snd  = new Audio("sounds/success1.wav");
@@ -102,9 +102,16 @@ $(document).ready(function() {
 				shuffle_snd.play();
 				shuffle_snd.currentTime = 0;
 			}
-
-			gameBeginTime = new Date();
 		});
+		
+		PicPuzzle_Utils.setStartTime(new Date());
+		
+		//ensuring timerIntervalId is cleared
+		if (timerIntervalId){
+			clearInterval(timerIntervalId)
+		}
+		
+		timerIntervalId = setInterval(PicPuzzle_Utils.initTimer, 1000);
 
 		return false;
 	});
@@ -169,13 +176,18 @@ $(document).ready(function() {
 					
 					//increase puzzlesSolved
 					PicPuzzle_Utils.updateText('puzzlesSolved',++puzzlesSolved);
+					
+					// stop timer in UI
+					clearInterval(timerIntervalId);					
 
 					//Show winning dialog and ask user to play again 
 					PicPuzzle_Utils.playAgain(
 							"Congratulations!<br/>" +
 							"You solved the puzzle in<br/>" +
 					        + noOfMoves + " move(s)<br/>" +
-				            "and within " + PicPuzzle_Utils.diffBetweenTimes(gameBeginTime, new Date()) +
+				            "and within " + PicPuzzle_Utils.diffBetweenTimes(
+				            		PicPuzzle_Utils.getStartTime(), 
+				            		new Date()) +
 							"<br/><br/>Would you like to play again?");
 	    		}
 	    	}

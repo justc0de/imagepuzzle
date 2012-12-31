@@ -1,4 +1,14 @@
 var PicPuzzle_Utils = {
+		
+	startTime: null,
+	getStartTime: function(){
+		
+		return this.startTime;
+	},
+	
+	setStartTime: function(startTimeTemp){
+		this.startTime = startTimeTemp;
+	},
 	
 	//remove a value from a array
 	//returns an array
@@ -83,19 +93,19 @@ var PicPuzzle_Utils = {
 		timeTakenString += daysTaken + " day(s) ";
 	 
 	if (hoursTaken > 0 && hoursTaken < 10)
-		timeTakenString += "0" +  hoursTaken + " : ";
+		timeTakenString += "0" +  hoursTaken + ":";
 	
 	else if (hoursTaken > 10)
-		timeTakenString += hoursTaken + " : ";
+		timeTakenString += hoursTaken + ":";
 	else
 	 //dont show hours
 
 	if (minutesTaken > 0 && minutesTaken < 10)
-		timeTakenString += "0" + minutesTaken + " : ";
+		timeTakenString += "0" + minutesTaken + ":";
 	else if(minutesTaken > 10)
-	 	timeTakenString += minutesTaken + " : ";
+	 	timeTakenString += minutesTaken + ":";
     else
-	 	timeTakenString += "00 : ";
+	 	timeTakenString += "00:";
 
     if (secondsTaken > 0 && secondsTaken < 10)
 		timeTakenString += "0"+ secondsTaken ;
@@ -120,10 +130,19 @@ var PicPuzzle_Utils = {
 	    NewDialog.dialog({
 	    	modal: true,
 		    title: "Play Again ?",
-		    buttons: [
-			          {text: "Yes", click: function() {$('#pieceSelection').submit(),$(this).dialog("close")}},
-			          {text: "No", click: function() {$(this).dialog("close")}}
-			         ]
+		    buttons:[
+		             {
+		            	 text: "Yes", click: function() {
+		            		 $('#pieceSelection').submit();
+		            		 $(this).dialog("close");
+		            	 }
+		             },
+			         {
+		            	 text: "No", click: function() {
+		            		 $(this).dialog("close");
+			        	 }
+			         }
+			        ]
 		});
 		
 		return false;
@@ -148,5 +167,14 @@ var PicPuzzle_Utils = {
 		$("#radio :radio").click(function(e) {
 			$('#pieceSelection').submit();
 		});
+	},
+	
+	initTimer: function(){
+
+		PicPuzzle_Utils.updateText(
+	    		'timer', 
+	    		PicPuzzle_Utils.diffBetweenTimes(
+	    				PicPuzzle_Utils.startTime, 
+	    				new Date()));
 	}
 };
