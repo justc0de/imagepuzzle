@@ -60,14 +60,14 @@ var PicPuzzle_Utils = {
 	 	secondsTaken = Math.round(timeTaken / (1000)),
 	 	timeTakenString = "";
 		
-		if (secondsTaken > 60){
+		if (secondsTaken >= 60){
 				//convert seconds into minutes
 				minutesTaken = Math.floor(secondsTaken / 60);
 				
 				//remove converted seconds
 				secondsTaken = Math.floor(secondsTaken % 60);
 			
-			if(minutesTaken > 60){
+			if(minutesTaken >= 60){
 			
 				//convert minutes to hours
 				hoursTaken = Math.floor(minutesTaken / 60);
@@ -75,7 +75,7 @@ var PicPuzzle_Utils = {
 				//remove converted minutes
 				minutesTaken = Math.floor(minutesTaken % 60);
 
-				if(hoursTaken > 24){
+				if(hoursTaken >= 24){
 				
 					//convert hours to days
 					daysTaken = Math.floor(hoursTaken / 24);
@@ -95,21 +95,20 @@ var PicPuzzle_Utils = {
 	if (hoursTaken > 0 && hoursTaken < 10)
 		timeTakenString += "0" +  hoursTaken + ":";
 	
-	else if (hoursTaken > 10)
+    if (hoursTaken >= 10)
 		timeTakenString += hoursTaken + ":";
-	else
-	 //dont show hours
+
 
 	if (minutesTaken > 0 && minutesTaken < 10)
 		timeTakenString += "0" + minutesTaken + ":";
-	else if(minutesTaken > 10)
+	else if(minutesTaken >= 10)
 	 	timeTakenString += minutesTaken + ":";
     else
 	 	timeTakenString += "00:";
 
     if (secondsTaken > 0 && secondsTaken < 10)
 		timeTakenString += "0"+ secondsTaken ;
-    else if(secondsTaken > 10)
+    else if(secondsTaken >= 10)
 	 	timeTakenString += secondsTaken;
     else
 	 	timeTakenString += "00" ;
