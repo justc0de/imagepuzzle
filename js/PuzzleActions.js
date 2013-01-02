@@ -19,11 +19,11 @@ $(document).ready(function() {
     $('#soundClick').on('click', function(e) {
 		if(sound == "on"){
         	sound = "off";
-        	$(this).html('Enable sound');
+        	$(this).html('Unmute');
 		}
         else{
         	sound = "on";
-        	$(this).html('Disable sound');
+        	$(this).html('Mute');
 
 		}
      });
