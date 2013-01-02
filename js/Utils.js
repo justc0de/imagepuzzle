@@ -132,7 +132,7 @@ var PicPuzzle_Utils = {
 		    buttons:[
 		             {
 		            	 text: "Yes", click: function() {
-		            		 $('#pieceSelection').submit();
+		            		 $('#newGame').submit();
 		            		 $(this).dialog("close");
 		            	 }
 		             },
@@ -164,7 +164,7 @@ var PicPuzzle_Utils = {
 		});
 
 		$("#radio :radio").click(function(e) {
-			$('#pieceSelection').submit();
+			$('#newGame').submit();
 		});
 		
 		$(function() {
@@ -174,7 +174,7 @@ var PicPuzzle_Utils = {
 		$("#selectable" ).selectable({
 		   selected: function(event, ui) { 
 			   $("#image").val($(ui.selected).children().attr('src'));
-			   $('#pieceSelection').submit();
+			   $('#newGame').submit();
 		   }
 		});
 

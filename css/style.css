@@ -46,17 +46,17 @@ strong {
     font-weight: bold;
     font-size: 1.1em;
 }
-#pieceSelection {
+#newGame {
     text-align: center;
 }
-#pieceSelection p,
-#pieceSelection p input[type="text"] {
+#newGame p,
+#newGame p input[type="text"] {
     text-align: center;
 }
-#pieceSelection p input[type="text"] {
+#newGame p input[type="text"] {
     width: 30%;
 }
-#pieceSelection #radio.ui-buttonset .ui-button-text-only {
+#newGame #radio.ui-buttonset .ui-button-text-only {
     font-weight: bold;
     font-size: .8em;
     padding: 0 1.2%;

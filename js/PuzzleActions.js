@@ -19,33 +19,30 @@ $(document).ready(function() {
     $('#soundClick').on('click', function(e) {
 		if(sound == "on"){
         	sound = "off";
-			PicPuzzle_Utils.updateText('message','Sounds disabled');
-			PicPuzzle_Utils.notify('#message',3000);
+        	$(this).html('Enable sound');
 		}
         else{
         	sound = "on";
-			PicPuzzle_Utils.updateText('message','Sounds enabled');
-			PicPuzzle_Utils.notify('#message',3000);
+        	$(this).html('Disable sound');
 
 		}
      });
 
 
 
-	// Generate grid
-	$('#pieceSelection').submit(function() {
+	// New game
+	$('#newGame').submit(function() {
 
-	
+		//store the row and col of the blank cell
+		var blankRow = 0,
+			blankCol = 0;
+		
 		rowCount = $("#radio :radio:checked + label").text()[0];
 
 		PicPuzzle_Image.split($("#image").val(), rowCount * rowCount, function(canvasArray) {	    
 		
 			//list to keep track of the tiles which are available for random selection 
 			var tilesAvailable = new Array(rowCount^2);
-			
-			//store the row and col of the blank cell
-			var blankRow = 0,
-				blankCol = 0;
 	
 			//tilesAvailable contains possible tile numbers to select from at random
 			//array is full as no values have been randomly selected yet
@@ -88,21 +85,21 @@ $(document).ready(function() {
 				$('table').remove();	
 				$('#content').append($tbl);
 			}
-	
-			//Position the blank cell in the position of the last canvas element
-			$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').children().hide();
-			$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').attr('id', 'blankCell');
-			
-			//reset number of moves when image is scrambled
-			noOfMoves = 0;
-			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
-			
-			//play start sound
-			if (sound == "on"){
-				shuffle_snd.play();
-				shuffle_snd.currentTime = 0;
-			}
 		});
+		
+		//Position the blank cell in the position of the last canvas element
+		$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').children().hide();
+		$('#grid tr:eq('+blankRow+') td:eq('+blankCol+')').attr('id', 'blankCell');
+		
+		//reset number of moves when image is scrambled
+		noOfMoves = 0;
+		PicPuzzle_Utils.updateText('moveCount',noOfMoves);
+		
+		//play start sound
+		if (sound == "on"){
+			shuffle_snd.play();
+			shuffle_snd.currentTime = 0;
+		}
 		
 		PicPuzzle_Utils.setStartTime(new Date());
 		
