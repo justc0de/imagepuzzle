@@ -53,68 +53,40 @@ var PicPuzzle_Utils = {
 	//Paramaters: Two Date Objects
 	//Returns a string containing the time.
 	diffBetweenTimes: function(beginTime, endTime){
-		var timeTaken = endTime.getTime() - beginTime.getTime(),
-	 	daysTaken,
-	 	hoursTaken, 
-	 	minutesTaken, 
-	 	secondsTaken = Math.round(timeTaken / (1000)),
-	 	timeTakenString = "";
+		var timeTaken = new Date(endTime.getTime() - beginTime.getTime()),
+		 	timeTakenString = "";
 		
-		if (secondsTaken >= 60){
-				//convert seconds into minutes
-				minutesTaken = Math.floor(secondsTaken / 60);
-				
-				//remove converted seconds
-				secondsTaken = Math.floor(secondsTaken % 60);
+		// calc hours
+		if ((timeTaken.getHours() - 1) < 1)	
+			timeTakenString += '00:';
+		else if((timeTaken.getHours() - 1) >= 0 && (timeTaken.getHours() - 1) < 10)
+			timeTakenString += '0' + (timeTaken.getHours() - 1).toString() + ':';
+		else
+			timeTakenString += (timeTaken.getHours() - 1).toString() + ':';
+		
+		// calc minutes
+		if (timeTaken.getMinutes() < 1)
+			timeTakenString += '00:';
+		else if(timeTaken.getMinutes() >= 0 && timeTaken.getMinutes() < 10)
+			timeTakenString += '0' + timeTaken.getMinutes().toString() + ':';
+		else
+			timeTakenString += timeTaken.getMinutes().toString() + ':';
+		
+		//calc seconds
+		if (timeTaken.getSeconds() < 1)
+			timeTakenString += '00.';
+		else if(timeTaken.getSeconds() >= 0 && timeTaken.getSeconds() < 10)
+			timeTakenString += '0' + timeTaken.getSeconds().toString() + '.';
+		else
+			timeTakenString += timeTaken.getSeconds().toString() + '.';
 			
-			if(minutesTaken >= 60){
-			
-				//convert minutes to hours
-				hoursTaken = Math.floor(minutesTaken / 60);
-
-				//remove converted minutes
-				minutesTaken = Math.floor(minutesTaken % 60);
-
-				if(hoursTaken >= 24){
-				
-					//convert hours to days
-					daysTaken = Math.floor(hoursTaken / 24);
-					
-					//remove converted hours
-					hoursTaken = Math.floor(hoursTaken % 24);
-				}
-			
-			}
-		}
+		//calc decisecond
+		if (parseInt(timeTaken.getMilliseconds().toString()[0]) < 1)
+			timeTakenString += '0';
+		else
+			timeTakenString += timeTaken.getMilliseconds().toString()[0];
 
 
-
-	if (daysTaken > 0)
-		timeTakenString += daysTaken + " day(s) ";
-	 
-	if (hoursTaken > 0 && hoursTaken < 10)
-		timeTakenString += "0" +  hoursTaken + ":";
-	
-    if (hoursTaken >= 10)
-		timeTakenString += hoursTaken + ":";
-
-
-	if (minutesTaken > 0 && minutesTaken < 10)
-		timeTakenString += "0" + minutesTaken + ":";
-	else if(minutesTaken >= 10)
-	 	timeTakenString += minutesTaken + ":";
-    else
-	 	timeTakenString += "00:";
-
-    if (secondsTaken > 0 && secondsTaken < 10)
-		timeTakenString += "0"+ secondsTaken ;
-    else if(secondsTaken >= 10)
-	 	timeTakenString += secondsTaken;
-    else
-	 	timeTakenString += "00" ;
-	
-
-	
 	 	return timeTakenString;
 	},
 

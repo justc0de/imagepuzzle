@@ -108,7 +108,7 @@ $(document).ready(function() {
 			clearInterval(timerIntervalId)
 		}
 		
-		timerIntervalId = setInterval(PicPuzzle_Utils.initTimer, 1000);
+		timerIntervalId = setInterval(PicPuzzle_Utils.initTimer, 100);
 
 		return false;
 	});
@@ -175,16 +175,19 @@ $(document).ready(function() {
 					PicPuzzle_Utils.updateText('puzzlesSolved',++puzzlesSolved);
 					
 					// stop timer in UI
-					clearInterval(timerIntervalId);					
+					clearInterval(timerIntervalId);	
+					
+					var duration = PicPuzzle_Utils.diffBetweenTimes(
+		            		PicPuzzle_Utils.getStartTime(), 
+		            		new Date()); 
+					PicPuzzle_Utils.updateText('timer', duration);
 
 					//Show winning dialog and ask user to play again 
 					PicPuzzle_Utils.playAgain(
 							"Congratulations!<br/>" +
 							"You solved the puzzle in<br/>" +
 					        + noOfMoves + " move(s)<br/>" +
-				            "and within " + PicPuzzle_Utils.diffBetweenTimes(
-				            		PicPuzzle_Utils.getStartTime(), 
-				            		new Date()) +
+				            "Duration: " + duration +
 							"<br/><br/>Would you like to play again?");
 	    		}
 	    	}
