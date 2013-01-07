@@ -18,15 +18,16 @@ var PicPuzzle_ImageActions = {
         var canvasArray = new Array();
         var split = function() {
         	var img = PicPuzzle_ImageActions.resize(imgsrc);
-            //console.log(1);
-            var row_col = Math.sqrt(tiles),
+            
+			var row_col = Math.sqrt(tiles),
                 tileH = Math.round(img.height / row_col),
                 tileW = img.width / row_col,
 
                 xoffset = 0,
                 yoffset = 0;
             for (var i = 0; i < tiles; i++) {
-                //create canvas element and set attributes and get the canvas context
+            
+				//create canvas element and set attributes and get the canvas context
                 canvasArray[i] = document.createElement('canvas');
                 canvasArray[i].setAttribute('width', tileW);
                 canvasArray[i].setAttribute('height', tileH);
@@ -71,16 +72,21 @@ var PicPuzzle_ImageActions = {
 			ctx = canvas.getContext("2d");
 	
 		img.src	 = imgsrc;
+		console.log(imgsrc);
+		console.log("image h "+img.height+"\nimage w "+img.width);
+		console.log("screen h/4 "+screen.height/4+"\nscreen w/4 "+screen.width/4);
 
+		
 		//show message to the user if the image is a small size
-		if(img.width < screen.width/4 || img.height < screen.height/4){
+		if((img.width < screen.width/4 && img.width != 0) || (img.height < screen.height/4 && img.height !=0) ){
 			PicPuzzle_Utils.updateText('message','As the submitted image is small it may lose quality when scaled up');
-			PicPuzzle_Utils.notify('#message',10000);
+			PicPuzzle_Utils.notify('#message',3000);
 		}
 
-		//maximum imaage size
+		//maximum image size
 		canvas.width = screen.width/2;
 		canvas.height = screen.height/2;
+
 		ctx.drawImage(img,0,0,screen.width/2,screen.height/2); 
 		
 		return canvas;
