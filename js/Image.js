@@ -11,13 +11,13 @@
 *
 */
 
-var PicPuzzle_Image = {
+var PicPuzzle_ImageActions = {
     split: function(imgsrc, tiles, callback) {
 
         var canvasArray = new Array(),
             imgWidth, imgHeight, r, g, b = 0;
         var split = function() {
-        	var img = ResizeImage.resize(imgsrc);
+        	var img = PicPuzzle_ImageActions.resize(imgsrc);
             //console.log(1);
             var row_col = Math.sqrt(tiles),
                 tileH = Math.round(img.height / row_col),
@@ -52,5 +52,27 @@ var PicPuzzle_Image = {
         //console.log(img.complete);
         
         if (img.complete) {split()} else  $(img).load(split);
-    }
+    },
+    
+    resize: function(imgsrc){
+    	
+		var img = new Image(),
+			canvas = document.createElement('canvas'),
+			ctx = canvas.getContext("2d");
+	
+		img.src	 = imgsrc;
+
+		//show message to the user if the image is a small size
+		if(img.width < screen.width/4 || img.height < screen.height/4){
+			PicPuzzle_Utils.updateText('message','As the submitted image is small it may lose quality when scaled up');
+			PicPuzzle_Utils.notify('#message',10000);
+		}
+
+		//maximum imaage size
+		canvas.width = screen.width/2;
+		canvas.height = screen.height/2;
+		ctx.drawImage(img,0,0,screen.width/2,screen.height/2); 
+		
+		return canvas;
+	}
 };

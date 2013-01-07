@@ -39,7 +39,7 @@ $(document).ready(function() {
 		
 		rowCount = $("#radio :radio:checked + label").text()[0];
 
-		PicPuzzle_Image.split($("#image").val(), rowCount * rowCount, function(canvasArray) {	    
+		PicPuzzle_ImageActions.split($("#image").val(), rowCount * rowCount, function(canvasArray) {	    
 		
 			//list to keep track of the tiles which are available for random selection 
 			var tilesAvailable = new Array(rowCount^2);
