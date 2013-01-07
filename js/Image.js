@@ -1,21 +1,21 @@
-/*
-* Function SplitImg 
-* Description: splits an image into a number or canvas elements
-* 			   and appends those canvas elements to the invoking 
-*			   html page
-* 
-* Paramaters: Path to image and the number of tiles required
-* 			  Ex 9 tiles for a 3x3 image. tiles must be a 
-*			  number squared
-* Returns: an Array of canvasElements (Images)			  
-*
-*/
-
 var PicPuzzle_ImageActions = {
-    split: function(imgsrc, tiles, callback) {
+ 
+/*
+ * Function Split 
+ * Description: splits an image into a number or canvas elements
+ *              and appends those canvas elements to the invoking 
+ *              html page
+ * 
+ * Paramaters: Path to image and the number of tiles required
+ *             Ex 9 tiles for a 3x3 image. tiles must be a 
+ *             number squared
+ * Returns: an Array of canvasElements (Images)            
+ *
+ */
 
-        var canvasArray = new Array(),
-            imgWidth, imgHeight, r, g, b = 0;
+ 	split: function(imgsrc, tiles, callback) {
+
+        var canvasArray = new Array();
         var split = function() {
         	var img = PicPuzzle_ImageActions.resize(imgsrc);
             //console.log(1);
@@ -53,7 +53,17 @@ var PicPuzzle_ImageActions = {
         
         if (img.complete) {split()} else  $(img).load(split);
     },
-    
+
+/*
+ *  Function ResizeImage
+ *  Description: Resizes an image to half the screen height and half the 
+ *         screen width.
+ *  Parameters: The Image path
+ *  Returns: A resized canvas Element (Image)
+ *
+ */
+
+
     resize: function(imgsrc){
     	
 		var img = new Image(),
