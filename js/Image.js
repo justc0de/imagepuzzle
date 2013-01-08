@@ -12,7 +12,6 @@ var PicPuzzle_ImageActions = {
  * Returns: an Array of canvasElements (Images)            
  *
  */
-
  	split: function(imgsrc, tiles, callback) {
 
         var canvasArray = new Array();
@@ -62,8 +61,6 @@ var PicPuzzle_ImageActions = {
  *  Returns: A resized canvas Element (Image)
  *
  */
-
-
     resize: function(imgsrc){
     	
 		var img = new Image(),
@@ -72,10 +69,9 @@ var PicPuzzle_ImageActions = {
 	
 		img.src	 = imgsrc;
 		
-		console.log(imgsrc);
-		console.log("image h "+img.height+"\nimage w "+img.width);
-		console.log("screen h/4 "+screen.height/4+"\nscreen w/4 "+screen.width/4);
-
+		//console.log(imgsrc);
+		//console.log("image h "+img.height+"\nimage w "+img.width);
+		//console.log("screen h/4 "+screen.height/4+"\nscreen w/4 "+screen.width/4);
 		
 		//show message to the user if the image is a small size
 		if((img.width < screen.width/4 && img.width != 0) || (img.height < screen.height/4 && img.height !=0) ){
@@ -87,8 +83,12 @@ var PicPuzzle_ImageActions = {
 		canvas.width = screen.width/2;
 		canvas.height = screen.height/2;
 		
-	
-		ctx.drawImage(img,0,0,screen.width/2,screen.height/2); 
+		try{
+			ctx.drawImage(img,0,0,screen.width/2,screen.height/2); 
+		}catch(err){
+			PicPuzzle_Utils.updateText('message','Please try again, image loading did not fully complete that time.');
+			PicPuzzle_Utils.notify('#message',5000);
+		}
 		
 		return canvas;
 	}
