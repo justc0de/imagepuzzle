@@ -49,7 +49,6 @@ var PicPuzzle_ImageActions = {
             callback(canvasArray);
         };
         var img = new Image();
-        img.src = imgsrc;
         //console.log(img.complete);
         
         if (img.complete) {split()} else  $(img).load(split);
