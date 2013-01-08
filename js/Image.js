@@ -21,7 +21,7 @@ var PicPuzzle_ImageActions = {
             
 			var row_col = Math.sqrt(tiles),
                 tileH = Math.round(img.height / row_col),
-                tileW = img.width / row_col,
+                tileW = Math.round(img.width / row_col),
 
                 xoffset = 0,
                 yoffset = 0;
@@ -72,6 +72,7 @@ var PicPuzzle_ImageActions = {
 			ctx = canvas.getContext("2d");
 	
 		img.src	 = imgsrc;
+		
 		console.log(imgsrc);
 		console.log("image h "+img.height+"\nimage w "+img.width);
 		console.log("screen h/4 "+screen.height/4+"\nscreen w/4 "+screen.width/4);
@@ -86,7 +87,8 @@ var PicPuzzle_ImageActions = {
 		//maximum image size
 		canvas.width = screen.width/2;
 		canvas.height = screen.height/2;
-
+		
+	
 		ctx.drawImage(img,0,0,screen.width/2,screen.height/2); 
 		
 		return canvas;
