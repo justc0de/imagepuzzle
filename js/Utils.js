@@ -1,6 +1,7 @@
 var PicPuzzle_Utils = {
 		
 	startTime: null,
+	notificationIntervalId: null,
 	getStartTime: function(){
 		
 		return this.startTime;
@@ -42,8 +43,13 @@ var PicPuzzle_Utils = {
          //set message to show in case it has previously faded out
          $(elementID).fadeTo('fast', 1)
                                 
+       //ensuring notificationIntervalId is cleared
+ 		if (this.notificationIntervalId){
+ 			clearInterval(this.notificationIntervalId)
+ 		}
+ 		
 	     //set message to fade out
-	     setTimeout(function() {
+ 		this.notificationIntervalId = setTimeout(function() {
 	      	$(elementID).fadeTo('fast', 0)
 		  }, duration); 
 	},
