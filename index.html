@@ -1,8 +1,9 @@
 <html>                                                                
 	<head>
-		<meta charset="UTF-8"></meta>
+		<meta charset="UTF-8"/>
 		
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
 		<link rel="stylesheet" type="text/css" href="css/vader/jquery-ui-1.9.2.custom.min.css"/>
 		
 		<script type="text/javascript" src="lib/jquery-1.8.3.min.js"></script>   
@@ -12,34 +13,32 @@
 	</head>                                                
 	
 	<body>
-		<header id="game_header"><h3>Game Name or Logo will go here</h3><header>
+		<header id="game_header"><h3>Game Name or Logo will go here</h3></header>
 		<section id="container">  
 		    <section id="content">
-		       		
+
+					<div id="modeButtons">
+
+						<form method="get" action="game.html">
+							<input type="hidden" name="mode" value="timetrial">
+					    	<button type="submit">Time Trial</button>
+						</form>
 					
-					<form method="get" action="game.html">
-						<input type="hidden" name="mode" value="timetrial">
-					    <button type="submit">Time Trial</button>
-					</form>
-					
-					<form method="get" action="game.html">
-						<input type="hidden" name="mode" value="arcade">
-						<button type="submit">Arcade</button>
-					</form>
+						<form method="get" action="game.html">
+							<input type="hidden" name="mode" value="arcade">
+							<button type="submit">Arcade</button>
+						</form>
 		        
-					<form method="get" action="choose.html">
-				        <button type="submit">Free Play</button>
-				    </form>
+						<form method="get" action="choose.html">
+				        	<button type="submit">Free Play</button>
+				    	</form>
+					
+					</div>
 
-
-
-
-
-
-					<div id="notifications" ><h4><span id="message"></span></h4></div>
 		            <noscript>
 			        	<div id="javascriptDisabled-warning">This game requires Javascript to be enabled</div>
 			    	</noscript>
+
 			    	
 		        </section>
 		</section>

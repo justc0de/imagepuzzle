@@ -1,7 +1,8 @@
 <html>
 	<head>
-		<meta charset="UTF-8"></meta>
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<meta charset="UTF-8"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/choose.css"/>
 		<link rel="stylesheet" type="text/css" href="css/vader/jquery-ui-1.9.2.custom.min.css"/>
       
 		<script type="text/javascript" src="lib/jquery-1.8.3.min.js"></script>   
@@ -12,52 +13,72 @@
 	</head>
 
 	<body>
-		<section id="imageSelectionDialog">
-
-			<ol id="selectable">
-				<li class="ui-state-default"><img src="images/stock/day_and_night.jpg"/></li>
-				<li class="ui-state-default"><img src="images/stock/denmark.jpg"/></li>
-				<li class="ui-state-default"><img src="images/stock/gherkin.jpg"/></li>
-				<li class="ui-state-default"><img src="images/stock/house.jpg"/></li>
-				<li class="ui-state-default"><img src="images/stock/looking_at_sunset.jpg"/></li>
-				<li class="ui-state-default"><img src="images/stock/nelson's_column.jpg"/></li>
-				<li class="ui-state-default"><img src="images/stock/slow_swaying.jpg"/></li>
-				<li class="ui-state-default"><img src="images/stock/walkin.jpg"/></li>
-			</ol>
-							  
-							  
-			<form id="pieceSelection" action="game.html" method="get" >
-	       		
-				<input type="hidden" name="mode" value="freeplay">
-
-				<div id="imageInput">
-					<input type="text" id="image" name="image" value="images/stock/walkin.jpg"
-	        			title="Paste an image URL e.g http://server.com/path/to/image.jpg"/>
-				</div>
+		<section id="container">
+			<header id="choose_header"><h3>Choose an image from below or paste a url</h3></header>			
+			<section id="content">
 		
-				<div id="radio">
-					<input type="radio" id="radio1" name="radio" value="2"/>
-					<label for="radio1">2x2</label>
-					<input type="radio" id="radio2" name="radio" value="3" checked/>
-					<label for="radio2">3x3</label>
-					<input type="radio" id="radio3" name="radio" value="4"/>
-					<label for="radio3">4x4</label>
-					<input type="radio" id="radio4" name="radio" value="5"/>
-					<label for="radio4">5x5</label>
-					<input type="radio" id="radio5" name="radio" value="6"/>
-					<label for="radio5">6x6</label>
-					<input type="radio" id="radio6" name="radio" value="7"/>
-					<label for="radio6">7x7</label>
-					<input type="radio" id="radio7" name="radio" value="8"/>
-					<label for="radio7">8x8</label>
-					<input type="radio" id="radio8" name="radio" value="9"/>
-					<label for="radio8">9x9</label>
-				</div>
+				<ol id="selectable">
+					<li class="ui-state-default"><img src="images/stock/day_and_night.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/denmark.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/gherkin.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/house.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/looking_at_sunset.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/nelson's_column.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/slow_swaying.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/walkin.jpg"/></li>
+				
+					<!-- Images to be replaced with new images-->
+					<li class="ui-state-default"><img src="images/stock/day_and_night.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/denmark.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/gherkin.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/house.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/looking_at_sunset.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/nelson's_column.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/slow_swaying.jpg"/></li>
+					<li class="ui-state-default"><img src="images/stock/walkin.jpg"/></li>
+
+				</ol>
+							  
+							  
+				<form id="pieceSelection" action="game.html" method="get" >
+	       		
+					<input type="hidden" name="mode" value="freeplay">
+
+					<div id="imageInput">
+						<input type="text" id="image" name="image" value="images/stock/walkin.jpg"
+	        			title="Paste an image URL e.g http://server.com/path/to/image.jpg"/>
+					</div>
+
+					<noscript>
+                         <div id="javascriptDisabled-warning">This game requires Javascript to be enabled</div>
+                    </noscript>
+
+
+		
+					<div id="radio">
+						<input type="radio" id="radio1" name="radio" value="2"/>
+						<label for="radio1">2x2</label>
+						<input type="radio" id="radio2" name="radio" value="3" checked/>
+						<label for="radio2">3x3</label>
+						<input type="radio" id="radio3" name="radio" value="4"/>
+						<label for="radio3">4x4</label>
+						<input type="radio" id="radio4" name="radio" value="5"/>
+						<label for="radio4">5x5</label>
+						<input type="radio" id="radio5" name="radio" value="6"/>
+						<label for="radio5">6x6</label>
+						<input type="radio" id="radio6" name="radio" value="7"/>
+						<label for="radio6">7x7</label>
+						<input type="radio" id="radio7" name="radio" value="8"/>
+						<label for="radio7">8x8</label>
+						<input type="radio" id="radio8" name="radio" value="9"/>
+						<label for="radio8">9x9</label>
+					</div>
             
 					<button type="submit">Play Game</button>
 
-			</form>
-		<section>
+				</form>
+			</section>
+		</section>
 	</body>
 
 <html>
