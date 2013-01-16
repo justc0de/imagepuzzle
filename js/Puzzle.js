@@ -7,13 +7,35 @@ $(document).ready(function() {
 		sound = "on",
 		puzzlesSolved = 0,
 		noOfMoves = 0,
+		mode,
+		image,
 		timerIntervalId = 0,
 		move_snd = new Audio("sounds/move1.wav"),
 		shuffle_snd = new Audio("sounds/shuffle1.wav");
 		win_snd  = new Audio("sounds/success1.wav");
 	
 
-	PicPuzzle_Utils.initUIElements();
+	//get mode and paramaters
+	console.log(window.location.href)
+	var url = window.location.href;
+	
+	mode = (url.split('&')[0]).split('=')[1];
+
+
+	if( mode == "freeplay"){
+		//get other params
+
+		image = decodeURIComponent((url.split('&')[1]).split('=')[1]);
+		rowCount = (url.split('&')[2]).split('=')[1];
+		console.log(image);
+		console.log(rowCount);
+		newGame(image,rowCount);
+	}
+	
+	
+	
+	console.log(mode);
+
 		
     //check for sound toggle
     $('#soundClick').on('click', function(e) {
@@ -31,15 +53,15 @@ $(document).ready(function() {
 
 
 	// New game
-	$('#newGame').submit(function() {
+	function newGame(image,rowCount){
 
 		//store the row and col of the blank cell
 		var blankRow = 0,
 			blankCol = 0;
 		
-		rowCount = $("#radio :radio:checked + label").text()[0];
+		//rowCount = $("#radio :radio:checked + label").text()[0];
 
-		PicPuzzle_ImageActions.split($("#image").val(), rowCount * rowCount, function(canvasArray) {	    
+		PicPuzzle_ImageActions.split(image, rowCount * rowCount, function(canvasArray) {	    
 		
 			//list to keep track of the tiles which are available for random selection 
 			var tilesAvailable = new Array(rowCount^2);
@@ -98,7 +120,7 @@ $(document).ready(function() {
 		//play start sound
 		if (sound == "on"){
 			shuffle_snd.play();
-			shuffle_snd.currentTime = 0;
+		  //shuffle_snd.currentTime = 0;
 		}
 		
 		PicPuzzle_Utils.setStartTime(new Date());
@@ -111,7 +133,7 @@ $(document).ready(function() {
 		timerIntervalId = setInterval(PicPuzzle_Utils.initTimer, 100);
 
 		return false;
-	});
+	};
 
 
 

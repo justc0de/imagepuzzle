@@ -104,12 +104,13 @@ var PicPuzzle_Utils = {
 		    buttons:[
 		             {
 		            	 text: "Yes", click: function() {
-		            		 $('#newGame').submit();
+		            		 window.location = "choose.html" ;
 		            		 $(this).dialog("close");
 		            	 }
 		             },
 			         {
 		            	 text: "No", click: function() {
+						 	window.location = "index.html" ;
 		            		 $(this).dialog("close");
 			        	 }
 			         }
@@ -136,7 +137,6 @@ var PicPuzzle_Utils = {
 		});
 
 		$("#radio :radio").click(function(e) {
-			$('#newGame').submit();
 		});
 		
 		$(function() {
@@ -146,11 +146,11 @@ var PicPuzzle_Utils = {
 		$("#selectable" ).selectable({
 		   selected: function(event, ui) { 
 			   $("#image").val($(ui.selected).children().attr('src'));
-			   $('#newGame').submit();
 		   }
 		});
 
 	},
+
 	
 	initTimer: function(){
 
