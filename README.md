@@ -1,4 +1,4 @@
-Welcome to imagepuzzle!
+Welcome to Image Puzzle!
 
 The project aims to implement a [sliding puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle) game, accessed through a web browser.
 ### Technologies used:
