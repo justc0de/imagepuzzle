@@ -156,7 +156,23 @@ var PicPuzzle_Utils = {
 		});
 
 	},
+	
+	validateForm: function(){
+		var imageurl = $('#image').val();
+		
+		//check to ensure an image has been selected
+		if(imageurl == null || imageurl == ""){
+			alert("You must select an image\nChoose one above or paste a URL");
+			return false;
+			
+		//check that a valid image has been submitted
+		}else if( (imageurl.toLowerCase()).indexOf(".png") == -1 && (imageurl.toLowerCase()).indexOf(".jpg") == -1 ){
+			alert ("Image must be a PNG or JPG file type");
+			return false;
+		}else
+			return true;
 
+	},
 	
 	initTimer: function(){
 
