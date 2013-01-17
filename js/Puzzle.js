@@ -166,7 +166,7 @@ $(document).ready(function() {
 			//play the move sound
 			if(sound == "on"){
 				move_snd.play();
-				move_snd.currentTime = 0 ;
+				//move_snd.currentTime = 0 ;
 			}
 
 			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
@@ -189,7 +189,7 @@ $(document).ready(function() {
 					//play success sound
 					if(sound == "on"){
 						win_snd.play();
-						win_snd.currentTime = 0;
+						//win_snd.currentTime = 0;
 					}
 					
 					

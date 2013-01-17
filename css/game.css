@@ -1,4 +1,11 @@
-#grid {
+#game_buttons
+{
+	text-align:center;
+
+}
+
+#grid 
+{
 	margin-left:auto;
 	margin-right:auto;
 	/*border: 1px white solid; */
