@@ -24,7 +24,12 @@ var PicPuzzle_ImageActions = {
 
                 xoffset = 0,
                 yoffset = 0;
-            for (var i = 0; i < tiles; i++) {
+            
+			var imgNumBgSizeWidth,
+				imgNumXOffset;
+
+			
+			for (var i = 0; i < tiles; i++) {
             
 				//create canvas element and set attributes and get the canvas context
                 canvasArray[i] = document.createElement('canvas');
@@ -34,6 +39,25 @@ var PicPuzzle_ImageActions = {
                 var ctx = canvasArray[i].getContext('2d');
 
                 ctx.drawImage(img, xoffset, yoffset);
+
+				
+				if (i+1 > 9){
+					imgNumBgSizeWidth = 16;
+					imgNumXOffset = 1;
+				}
+				else{
+
+	            	imgNumBgSizeWidth = 10;
+					imgNumXOffset = 2;
+				}
+
+				//draw tile numbers
+				ctx.fillStyle     = 'rgba(0, 0, 0, 0.5)';
+				ctx.fillRect(0, 0, imgNumBgSizeWidth, 10);
+				ctx.fillStyle = '#fff';
+				ctx.font = 'italic 10px sans-serif';
+				ctx.textBaseline = 'top';
+				ctx.fillText (i+1, imgNumXOffset, 1);
 
                 //if i is a multiple of the total number of tiles to a row,
                 //move down a column and reset the row_col
