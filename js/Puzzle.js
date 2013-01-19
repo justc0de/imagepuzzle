@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var rowCount,
 		idCounter,
 		score,
+		stage,
 		target,
 		sound = "on",
 		puzzlesSolved = 0,
@@ -14,6 +15,26 @@ $(document).ready(function() {
 		shuffle_snd = new Audio("sounds/shuffle1.wav");
 		win_snd  = new Audio("sounds/success1.wav");
 	
+
+	//stock images for arcade and time trial
+	var stockImages = new Array(8);
+		stockImages[0]="images/stock/day_and_night.jpg";
+		stockImages[1]="images/stock/denmark.jpg";
+		stockImages[2]="images/stock/gherkin.jpg";
+		stockImages[3]="images/stock/house.jpg";
+		stockImages[4]="images/stock/looking_at_sunset.jpg";
+		stockImages[5]="images/stock/nelson's_column.jpg";
+		stockImages[6]="images/stock/slow_swaying.jpg";
+		stockImages[7]="images/stock/walking.jpg";
+	
+	//array to keep track of the available images for Time Trial and Arcade
+	var stockImagesAvailable = new Array(stockImages.length);
+	
+	//initialize the array
+	for(var i=0; i<stockImages.length; i++)
+		stockImagesAvailable[i] = i;
+
+
 
 	//get mode and paramaters
 	console.log(window.location.href)
@@ -27,9 +48,38 @@ $(document).ready(function() {
 
 		image = decodeURIComponent((url.split('&')[1]).split('=')[1]);
 		rowCount = (url.split('&')[2]).split('=')[1];
+
+		//check incase user has changed the row count in the url
+		if(rowCount > 9)
+			rowCount = 9;
+		if(rowCount < 2)
+			rowCount = 2;
+
 		console.log(image);
 		console.log(rowCount);
 		newGame(image,rowCount);
+	}
+
+	if( mode == "arcade"){
+		
+		//this will be put in a function and called each time a game is won
+
+		stage=2;
+
+		//choose a random image 
+		console.log('Images Available: ',stockImagesAvailable);
+		 
+		//choose a random image
+		var randomImg = PicPuzzle_Utils.randomChoice(stockImagesAvailable);
+	    
+		image = stockImages[randomImg];
+		 
+	 	//remove random value from the possible selection of tiles
+    	 stockImagesAvailable = PicPuzzle_Utils.removeItemFromList(stockImagesAvailable, randomImg);
+
+		
+		//begin the game
+		newGame(image, stage);
 	}
 	
 	

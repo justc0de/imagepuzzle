@@ -140,7 +140,6 @@ var PicPuzzle_Utils = {
 		
 		$(function() {
 		    $("#radio").buttonset();
-			$("#selectable").selectable();
 		});
 		
 
