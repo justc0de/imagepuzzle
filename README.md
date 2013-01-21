@@ -10,6 +10,7 @@ The project aims to implement a [sliding puzzle](https://en.wikipedia.org/wiki/S
 ### Useful documents:
 * [How to play](https://github.com/justc0de/imagepuzzle/wiki/How-to-play)
 * [Development Todo list](https://github.com/justc0de/imagepuzzle/wiki/To-Do)
+* [Development environment](https://github.com/justc0de/imagepuzzle/wiki/Development-environment)
 * [Image Attributions](https://github.com/justc0de/imagepuzzle/wiki/Image-Attributions)
 * [Sound Attributions](https://github.com/justc0de/imagepuzzle/wiki/Sound-Attributions)
 * [Deployment possibilities](https://github.com/justc0de/imagepuzzle/wiki/Deployment-possibilities)
