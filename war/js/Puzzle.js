@@ -50,10 +50,21 @@ $(document).ready(function() {
 		rowCount = (url.split('&')[2]).split('=')[1];
 
 		//check incase user has changed the row count in the url
-		if(rowCount > 9)
+		//notify user in each case
+
+		if(rowCount > 9){
 			rowCount = 9;
-		if(rowCount < 2)
+		 	PicPuzzle_Utils.updateText('message','9x9 is the maximum grid size.');
+		 	PicPuzzle_Utils.notify('#message',5000);
+
+		}
+
+		if(rowCount < 2){
 			rowCount = 2;
+			PicPuzzle_Utils.updateText('message','2x2 is the minimum grid size.');
+			PicPuzzle_Utils.notify('#message',5000);
+
+		}
 
 		console.log(image);
 		console.log(rowCount);
