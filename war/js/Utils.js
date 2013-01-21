@@ -175,5 +175,34 @@ var PicPuzzle_Utils = {
 	    		PicPuzzle_Utils.diffBetweenTimes(
 	    				PicPuzzle_Utils.startTime, 
 	    				new Date()));
+	},
+	
+	getTopTimes: function(){
+		
+		var xmlhttp = new XMLHttpRequest();
+		
+		xmlhttp.onreadystatechange = callback;
+		xmlhttp.open("GET", "TopTimes", true);
+		xmlhttp.send(null);
+		
+		function callback() {
+
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+				var NewDialog = $('<div>\<p>' + xmlhttp.responseText + '.</p>\</div>');
+			    NewDialog.dialog({
+			    	modal: true,
+				    title: "Top Times",
+				    buttons:[{ 
+				    	text: "Ok", click: function() {
+				    		$(this).dialog("close");
+					    }
+					}]
+				});
+			    
+			} else {
+			    // have not recieved top times yet
+			}
+		}
 	}
 };
