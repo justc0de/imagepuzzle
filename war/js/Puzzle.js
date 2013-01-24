@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var rowCount,
 		idCounter,
 		score,
+		usersName = "justc0de",
 		stage,
 		target,
 		sound = "on",
@@ -260,10 +261,16 @@ $(document).ready(function() {
 					// stop timer in UI
 					clearInterval(timerIntervalId);	
 					
-					var duration = PicPuzzle_Utils.diffBetweenTimes(
+					var endTime = new Date(),
+						duration = PicPuzzle_Utils.diffBetweenTimes(
 		            		PicPuzzle_Utils.getStartTime(), 
-		            		new Date()); 
+		            		endTime); 
 					PicPuzzle_Utils.updateText('timer', duration);
+					
+					// check if users completion time was fastest for this grid size
+					var durationLong = new Date(endTime.getTime() - PicPuzzle_Utils.getStartTime().getTime()).getTime();
+					PicPuzzle_Utils.compareUsersTime(rowCount, usersName, durationLong);
+					
 
 					//Show winning dialog and ask user to play again 
 					PicPuzzle_Utils.playAgain(

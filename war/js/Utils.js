@@ -206,12 +206,16 @@ var PicPuzzle_Utils = {
 		}
 	},
 	
-	compareUsersTime: function(){
+	compareUsersTime: function(rowCount, usersName, usersTime){
 		
 		var xmlhttp = new XMLHttpRequest();
 		
 		xmlhttp.onreadystatechange = callback;
-		xmlhttp.open("GET", "TopTimes?operation=compareUsersTime", true);
+		xmlhttp.open("GET", "TopTimes" +
+				"?operation=compareUsersTime" +
+				"&gridSize=" + rowCount +
+				"&usersName=" + usersName +
+				"&usersTime=" + usersTime, true);
 		xmlhttp.send(null);
 		
 		function callback() {
