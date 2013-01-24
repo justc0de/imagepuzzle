@@ -182,7 +182,7 @@ var PicPuzzle_Utils = {
 		var xmlhttp = new XMLHttpRequest();
 		
 		xmlhttp.onreadystatechange = callback;
-		xmlhttp.open("GET", "TopTimes", true);
+		xmlhttp.open("GET", "TopTimes?operation=getTopTimes", true);
 		xmlhttp.send(null);
 		
 		function callback() {
@@ -202,6 +202,26 @@ var PicPuzzle_Utils = {
 			    
 			} else {
 			    // have not recieved top times yet
+			}
+		}
+	},
+	
+	compareUsersTime: function(){
+		
+		var xmlhttp = new XMLHttpRequest();
+		
+		xmlhttp.onreadystatechange = callback;
+		xmlhttp.open("GET", "TopTimes?operation=compareUsersTime", true);
+		xmlhttp.send(null);
+		
+		function callback() {
+
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				
+				// was users time the quickest?
+			    
+			} else {
+			    // have not recieved result yet
 			}
 		}
 	}
