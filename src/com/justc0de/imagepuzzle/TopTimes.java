@@ -3,6 +3,7 @@ package com.justc0de.imagepuzzle;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,13 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 public class TopTimes extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String operation = request.getParameter("operation");
-		
-		if (operation.compareTo("getTopTimes") == 0){
+		if (request.getParameter("operation").compareTo("getTopTimes") == 0){
 			
 			getTopTimes(response);
 			
-		}else if(operation.compareTo("compareUsersTime") == 0){
+		}else if(request.getParameter("operation").compareTo("compareUsersTime") == 0){
 			
 			compareUsersTime(response, 
 					Integer.parseInt(request.getParameter("gridSize")),
@@ -31,7 +30,13 @@ public class TopTimes extends HttpServlet {
 	private void getTopTimes(HttpServletResponse response){
 		try {
 			
-			// get latest times from storage then write back to requesting doc
+			/*
+			 * get latest times from storage then write back to requesting doc
+			 * 
+			 * DataStorage connection = new GAEDataStoreOperations();
+			 * Vector<TimeEntry> topTimes = connection.getTopTimes();
+			 */
+			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 
@@ -44,13 +49,22 @@ public class TopTimes extends HttpServlet {
 	
 	private void compareUsersTime(HttpServletResponse response, int gridSize, String usersName, Date usersTime){
 		
-		//System.out.println(String.valueOf(gridSize));
-		//System.out.println(String.valueOf(usersName));
-		//System.out.println(String.valueOf(usersTime.getTime()));
+		TimeEntry timeEntry = new TimeEntry(gridSize, usersName, usersTime);
 		
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
+			
+			/*
+			 * check if users time was quicker then time stored , if so, update stored data
+			 * 
+			 * DataStorage connection = new GAEDataStoreOperations();
+			 * 
+			 * if (connection.getTopTimeForGridSize(timeEntry.getGridSize()).getTime() < 
+			 *     timeEntry.getUsersTime().getTime()){
+			 *         connection.setTopTimeForGridSize(timeEntry);
+			 * }
+			 */
 
 			out.write("Data in servlet");
 
