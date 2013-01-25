@@ -151,7 +151,6 @@ $(document).ready(function() {
 
 					//remove random value from the possible selection of tiles
 					tilesAvailable = PicPuzzle_Utils.removeItemFromList(tilesAvailable, random);
-					//console.log('Random tile: ',random);
 					
 				 	//Get the row and column position of the last canvas element
 				    if(random == ((canvasArray.length -1))){
@@ -270,7 +269,6 @@ $(document).ready(function() {
 					// check if users completion time was fastest for this grid size
 					var durationLong = new Date(endTime.getTime() - PicPuzzle_Utils.getStartTime().getTime()).getTime();
 					PicPuzzle_Utils.compareUsersTime(rowCount, usersName, durationLong);
-					
 
 					//Show winning dialog and ask user to play again 
 					PicPuzzle_Utils.playAgain(

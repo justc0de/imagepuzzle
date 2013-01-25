@@ -36,13 +36,24 @@ public class TopTimes extends HttpServlet {
 			DataStorage connection = new GAEDataStoreOperations();
 			List<TimeEntry> topTimes = connection.getTopTimes();
 			
-			// TODO results need to be formatted correctly
-			String results = "";
+			String results = 
+					"<table>" +
+						"<tr>" +
+							"<th>Grid size</th>" +
+							"<th>Users name</th>" +
+							"<th>Top time</th>" +
+						"</tr>";
+			
 			for (TimeEntry timeEntry: topTimes){
-				results += "Grid size: " + timeEntry.getGridSize() +
-	        			", Users name: " + timeEntry.getUsersName() +
-	        			", Users time: " + timeEntry.getUsersTime().getTime() + "<br/>";
+				results += 
+						"<tr>" +
+							"<td>" + timeEntry.getGridSize() + "</td>" +
+		        			"<td>" + timeEntry.getUsersName() + "</td>" +
+		        			"<td>" + timeEntry.getUsersTime().getTime() + "</td>" +
+		        		"</tr>";
 			}
+			
+			results += "</table>";
 			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
@@ -56,18 +67,22 @@ public class TopTimes extends HttpServlet {
 	
 	private void compareUsersTime(HttpServletResponse response, TimeEntry timeEntry){
 		
-		DataStorage connection = new GAEDataStoreOperations();
-		Date savedTime = connection.getTopTimeForGridSize(timeEntry.getGridSize());
-		
-		if (savedTime.getTime() > timeEntry.getUsersTime().getTime()){
-			connection.setTopTimeForGridSize(timeEntry);
-		}
-		
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-
-			out.write("Saved to storage");
+			
+			DataStorage connection = new GAEDataStoreOperations();
+			Date savedTime = connection.getTopTimeForGridSize(timeEntry.getGridSize());
+			
+			if (savedTime == null){
+				connection.setTopTimeForGridSize(timeEntry);
+				out.write("true");
+			}else if (savedTime.getTime() > timeEntry.getUsersTime().getTime()){
+				connection.setTopTimeForGridSize(timeEntry);
+				out.write("true");
+			}else{
+				out.write("false");
+			}
 
 		} catch (IOException io) {
 			io.printStackTrace();

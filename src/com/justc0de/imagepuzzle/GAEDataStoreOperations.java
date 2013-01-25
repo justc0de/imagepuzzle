@@ -41,7 +41,7 @@ public class GAEDataStoreOperations implements DataStorage {
 			}
 		}
 		
-		return new Date(new Date().getTime() - new Date().getTime());
+		return null;
 	}
 
 	public void setTopTimeForGridSize(TimeEntry timeEntry) {

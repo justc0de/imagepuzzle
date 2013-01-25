@@ -177,7 +177,7 @@ var PicPuzzle_Utils = {
 	    				new Date()));
 	},
 	
-	getTopTimes: function(){
+	getTopTimes: function(dialogTitle){
 		
 		var xmlhttp = new XMLHttpRequest();
 		
@@ -188,17 +188,8 @@ var PicPuzzle_Utils = {
 		function callback() {
 
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-
-				var NewDialog = $('<div>\<p>' + xmlhttp.responseText + '.</p>\</div>');
-			    NewDialog.dialog({
-			    	modal: true,
-				    title: "Top Times",
-				    buttons:[{ 
-				    	text: "Ok", click: function() {
-				    		$(this).dialog("close");
-					    }
-					}]
-				});
+				
+				PicPuzzle_Utils.showTimes("Top Times", xmlhttp.responseText)
 			    
 			} else {
 			    // have not recieved top times yet
@@ -219,14 +210,47 @@ var PicPuzzle_Utils = {
 		xmlhttp.send(null);
 		
 		function callback() {
+			
+			var results;
 
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				
-				// was users time the quickest?
+				if (xmlhttp.responseText == "true"){
+					
+					results = 
+						"<table>" +
+							"<tr>" +
+								"<th>Grid size</th>" +
+								"<th>Users name</th>" +
+								"<th>Top time</th>" +
+							"</tr>" +
+							"<tr>" +
+								"<td>" + rowCount + "</td>" +
+			        			"<td>" + usersName + "</td>" +
+			        			"<td>" + usersTime + "</td>" +
+			        		"</tr>" +
+			        	"</table>";
+					
+					PicPuzzle_Utils.showTimes("You've set a new Top Time", results);
+				}
 			    
 			} else {
 			    // have not recieved result yet
 			}
 		}
+	},
+	
+	showTimes: function(title, body){
+
+		var NewDialog = $('<div><p>' + body + '</p></div>');
+	    NewDialog.dialog({
+	    	modal: true,
+		    title: title,
+		    buttons:[{ 
+		    	text: "Ok", click: function() {
+		    		$(this).dialog("close");
+			    }
+			}]
+		});
 	}
 };
