@@ -8,8 +8,6 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 
 public class GAEDataStoreOperations implements DataStorage {
@@ -18,9 +16,8 @@ public class GAEDataStoreOperations implements DataStorage {
 		
 		List<TimeEntry> topTimes = new ArrayList<TimeEntry>();
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Key topTimesKey = KeyFactory.createKey("TopTimes", "times");
 		
-	    Query query = new Query("TimeEntry", topTimesKey);
+	    Query query = new Query("TimeEntry");
 	    List<Entity> timeEntries = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(8));
 	    
 	    for (Entity timeEntry: timeEntries){
@@ -34,19 +31,24 @@ public class GAEDataStoreOperations implements DataStorage {
 	}
 
 	public Date getTopTimeForGridSize(int gridSize) {
-		// TODO query DataStore for TopTimeEntry Entity for particular gridSize
 		
-		return null;
+		List<TimeEntry> topTimes = getTopTimes();
+
+		for (TimeEntry timeEntry: topTimes){
+			
+			if (timeEntry.getGridSize() == gridSize){
+				return timeEntry.getUsersTime();
+			}
+		}
+		
+		return new Date(new Date().getTime() - new Date().getTime());
 	}
 
 	public void setTopTimeForGridSize(TimeEntry timeEntry) {
 		
-		// TODO logic to determine if time is faster then stored time
-		// this is only debug code to save all times
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Key topTimesKey = KeyFactory.createKey("TopTimes", "times");
 
-        Entity timeEntity = new Entity("TimeEntry", topTimesKey);
+        Entity timeEntity = new Entity("TimeEntry", timeEntry.getGridSize());
         timeEntity.setProperty("gridSize", timeEntry.getGridSize());
         timeEntity.setProperty("usersName", timeEntry.getUsersName());
         timeEntity.setProperty("usersTime", timeEntry.getUsersTime());

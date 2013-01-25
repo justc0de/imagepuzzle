@@ -57,7 +57,11 @@ public class TopTimes extends HttpServlet {
 	private void compareUsersTime(HttpServletResponse response, TimeEntry timeEntry){
 		
 		DataStorage connection = new GAEDataStoreOperations();
-		connection.setTopTimeForGridSize(timeEntry);
+		Date savedTime = connection.getTopTimeForGridSize(timeEntry.getGridSize());
+		
+		if (savedTime.getTime() > timeEntry.getUsersTime().getTime()){
+			connection.setTopTimeForGridSize(timeEntry);
+		}
 		
 		try {
 			response.setContentType("text/html");
