@@ -4,20 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.Query;
 
 @SuppressWarnings("serial")
 public class TopTimes extends HttpServlet {
@@ -65,32 +56,12 @@ public class TopTimes extends HttpServlet {
 	
 	private void compareUsersTime(HttpServletResponse response, TimeEntry timeEntry){
 		
-		// TODO logic to determine if time is faster then stored time
-		// this is only debug code to save all times
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Key topTimesKey = KeyFactory.createKey("TopTimes", "times");
-
-        Entity timeEntity = new Entity("TimeEntry", topTimesKey);
-        timeEntity.setProperty("gridSize", timeEntry.getGridSize());
-        timeEntity.setProperty("usersName", timeEntry.getUsersName());
-        timeEntity.setProperty("usersTime", timeEntry.getUsersTime());
-
-        datastore.put(timeEntity);
+		DataStorage connection = new GAEDataStoreOperations();
+		connection.setTopTimeForGridSize(timeEntry);
 		
 		try {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			
-			/*
-			 * check if users time was quicker then time stored , if so, update stored data
-			 * 
-			 * DataStorage connection = new GAEDataStoreOperations();
-			 * 
-			 * if (connection.getTopTimeForGridSize(timeEntry.getGridSize()).getTime() < 
-			 *     timeEntry.getUsersTime().getTime()){
-			 *         connection.setTopTimeForGridSize(timeEntry);
-			 * }
-			 */
 
 			out.write("Saved to storage");
 

@@ -2,9 +2,7 @@ package com.justc0de.imagepuzzle;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -42,6 +40,17 @@ public class GAEDataStoreOperations implements DataStorage {
 	}
 
 	public void setTopTimeForGridSize(TimeEntry timeEntry) {
-		//TODO update DataStore TopTimeEntry Entity for particular gridSize
+		
+		// TODO logic to determine if time is faster then stored time
+		// this is only debug code to save all times
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		Key topTimesKey = KeyFactory.createKey("TopTimes", "times");
+
+        Entity timeEntity = new Entity("TimeEntry", topTimesKey);
+        timeEntity.setProperty("gridSize", timeEntry.getGridSize());
+        timeEntity.setProperty("usersName", timeEntry.getUsersName());
+        timeEntity.setProperty("usersTime", timeEntry.getUsersTime());
+
+        datastore.put(timeEntity);
 	}
 }
