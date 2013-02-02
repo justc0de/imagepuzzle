@@ -40,16 +40,47 @@ public class TopTimes extends HttpServlet {
 					"<table>" +
 						"<tr>" +
 							"<th>Grid size</th>" +
-							"<th>Users name</th>" +
+							//"<th>Users name</th>" +
 							"<th>Top time</th>" +
 						"</tr>";
 			
 			for (TimeEntry timeEntry: topTimes){
+				
+				String timeTakenString = "";
+				
+				// calc hours
+				if ((timeEntry.getUsersTime().getHours() - 1) < 1)	{
+					timeTakenString += "00:";
+				}else if((timeEntry.getUsersTime().getHours() - 1) >= 0 && (timeEntry.getUsersTime().getHours() - 1) < 10){
+					timeTakenString += "0" + String.valueOf((timeEntry.getUsersTime().getHours() - 1)) + ":";
+				}else{
+					timeTakenString += String.valueOf((timeEntry.getUsersTime().getHours() - 1)) + ":";
+				}
+				
+				// calc minutes
+				if (timeEntry.getUsersTime().getMinutes() < 1){
+					timeTakenString += "00:";
+				}else if(timeEntry.getUsersTime().getMinutes() >= 0 && timeEntry.getUsersTime().getMinutes() < 10){
+					timeTakenString += "0" + String.valueOf(timeEntry.getUsersTime().getMinutes()) + ":";
+				}else{
+					timeTakenString += String.valueOf(timeEntry.getUsersTime().getMinutes()) + ":";
+				}
+					
+				//calc seconds
+				if (timeEntry.getUsersTime().getSeconds() < 1){
+					timeTakenString += "00.";
+				}else if(timeEntry.getUsersTime().getSeconds() >= 0 && timeEntry.getUsersTime().getSeconds() < 10){
+					timeTakenString += "0" + String.valueOf(timeEntry.getUsersTime().getSeconds()) + ".";
+				}else{
+					timeTakenString += String.valueOf(timeEntry.getUsersTime().getSeconds()) + ".";
+				}
+				
+				
 				results += 
 						"<tr>" +
 							"<td>" + timeEntry.getGridSize() + "</td>" +
-		        			"<td>" + timeEntry.getUsersName() + "</td>" +
-		        			"<td>" + timeEntry.getUsersTime().getTime() + "</td>" +
+		        			//"<td>" + timeEntry.getUsersName() + "</td>" +
+		        			"<td>" + timeTakenString + "</td>" +
 		        		"</tr>";
 			}
 			

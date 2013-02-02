@@ -59,8 +59,13 @@ var PicPuzzle_Utils = {
 	//Paramaters: Two Date Objects
 	//Returns a string containing the time.
 	diffBetweenTimes: function(beginTime, endTime){
-		var timeTaken = new Date(endTime.getTime() - beginTime.getTime()),
-		 	timeTakenString = "";
+		var timeTaken = new Date(endTime.getTime() - beginTime.getTime());
+		
+	 	return PicPuzzle_Utils.formatTime(timeTaken);
+	},
+	
+	formatTime: function(timeTaken){
+		var timeTakenString = "";
 		
 		// calc hours
 		if ((timeTaken.getHours() - 1) < 1)	
@@ -212,7 +217,7 @@ var PicPuzzle_Utils = {
 		function callback() {
 			
 			var results;
-
+			
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				
 				if (xmlhttp.responseText == "true"){
@@ -221,13 +226,13 @@ var PicPuzzle_Utils = {
 						"<table>" +
 							"<tr>" +
 								"<th>Grid size</th>" +
-								"<th>Users name</th>" +
+								//"<th>Users name</th>" +
 								"<th>Top time</th>" +
 							"</tr>" +
 							"<tr>" +
 								"<td>" + rowCount + "</td>" +
-			        			"<td>" + usersName + "</td>" +
-			        			"<td>" + usersTime + "</td>" +
+			        			//"<td>" + usersName + "</td>" +
+			        			"<td>" + PicPuzzle_Utils.formatTime(new Date(usersTime)) + "</td>" +
 			        		"</tr>" +
 			        	"</table>";
 					
