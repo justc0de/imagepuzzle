@@ -1,6 +1,7 @@
 Welcome to Image Puzzle!
 
-The project aims to implement a [sliding puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle) game, accessed through a web browser.
+The project aims to implement a [sliding puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle) game, accessed through a web browser.<br/>
+Version 1.0 deployed, [play here](http://image-puzzle-game.appspot.com/)!
 ### Technologies used:
 * HTML
 * JavaScript
