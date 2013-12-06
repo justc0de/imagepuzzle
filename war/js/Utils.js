@@ -159,18 +159,18 @@ var PicPuzzle_Utils = {
 	validateForm: function(){
 		var imageurl = $('#image').val();
 		
-		//check to ensure an image has been selected
+		// image selected?
 		if(imageurl == null || imageurl == ""){
-			alert("You must select an image\nChoose one above or paste a URL");
+			PicPuzzle_Utils.dialog('No image selected', 'You must select an image<br/>Choose one above or paste a URL');
+			
 			return false;
 			
-		//check that a valid image has been submitted
+		// image valid?
 		}else if( (imageurl.toLowerCase()).indexOf(".png") == -1 && (imageurl.toLowerCase()).indexOf(".jpg") == -1 ){
-			alert ("Image must be a PNG or JPG file type");
+			PicPuzzle_Utils.dialog('Image not valid', 'Image must be a PNG or JPG file type');
+			
 			return false;
-		}else
-			return true;
-
+		}
 	},
 	
 	initTimer: function(){
@@ -194,7 +194,7 @@ var PicPuzzle_Utils = {
 
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				
-				PicPuzzle_Utils.showTimes("Top Times", xmlhttp.responseText)
+				PicPuzzle_Utils.dialog("Top Times", xmlhttp.responseText)
 			    
 			} else {
 			    // have not recieved top times yet
@@ -236,7 +236,7 @@ var PicPuzzle_Utils = {
 			        		"</tr>" +
 			        	"</table>";
 					
-					PicPuzzle_Utils.showTimes("You've set a new Top Time", results);
+					PicPuzzle_Utils.dialog("You've set a new Top Time", results);
 				}
 			    
 			} else {
@@ -245,7 +245,7 @@ var PicPuzzle_Utils = {
 		}
 	},
 	
-	showTimes: function(title, body){
+	dialog: function(title, body){
 
 		var NewDialog = $('<div><p>' + body + '</p></div>');
 	    NewDialog.dialog({
