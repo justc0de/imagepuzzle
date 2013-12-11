@@ -16,20 +16,10 @@
 		<header id="game_header"><h3>Game Name or Logo will go here</h3></header>
 		<section id="container">  
 		    <section id="content">
-					<div id="modeButtons">
-						<!-- <form method="get" action="game.html">
-							<input type="hidden" name="mode" value="timetrial">
-					    	<button class="styled-button" type="submit">Time Trial</button>
-						</form>
-					
-						<form method="get" action="game.html">
-							<input type="hidden" name="mode" value="arcade">
-							<button class="styled-button" type="submit">Arcade</button>
-						</form> -->
-		        
+					<div id="modeButtons" >
 						<form method="get" action="choose.html">
 				        	<button class="styled-button" type="submit">Play Game</button>
-				    	</form>
+					</form>
 				    	
 				    	<button 
 				    		class="styled-button" 
@@ -40,8 +30,11 @@
 				    	</button>
 					</div>
 
-	            <noscript>
+			<noscript>
 		        	<div id="javascriptDisabled-warning">Game requires JavaScript to be enabled in the browser</div>
+				<style>
+				  #modeButtons { display:none;}
+				</style>
 		    	</noscript>
 	        </section>
 		</section>
