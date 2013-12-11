@@ -9,7 +9,6 @@ $(document).ready(function() {
 		sound = "on",
 		puzzlesSolved = 0,
 		noOfMoves = 0,
-		mode,
 		image,
 		timerIntervalId = 0,
 		move_snd = new Audio("sounds/move1.wav"),
@@ -41,62 +40,34 @@ $(document).ready(function() {
 	console.log(window.location.href)
 	var url = window.location.href;
 	
-	mode = (url.split('&')[0]).split('=')[1];
 
 
-	if( mode == "freeplay"){
-		//get other params
 
-		image = decodeURIComponent((url.split('&')[1]).split('=')[1]);
-		rowCount = (url.split('&')[2]).split('=')[1];
+	image = decodeURIComponent((url.split('&')[0]).split('=')[1]);
+	rowCount = (url.split('&')[1]).split('=')[1];
 
-		//check incase user has changed the row count in the url
-		//notify user in each case
+	//check incase user has changed the row count in the url
+	//notify user in each case
 
-		if(rowCount > 9){
-			rowCount = 9;
-		 	PicPuzzle_Utils.updateText('message','9x9 is the maximum grid size.');
-		 	PicPuzzle_Utils.notify('#message',5000);
+	if(rowCount > 9){
+		rowCount = 9;
+		PicPuzzle_Utils.updateText('message','9x9 is the maximum grid size.');
+		PicPuzzle_Utils.notify('#message',5000);
 
-		}
-
-		if(rowCount < 2){
-			rowCount = 2;
-			PicPuzzle_Utils.updateText('message','2x2 is the minimum grid size.');
-			PicPuzzle_Utils.notify('#message',5000);
-
-		}
-
-		console.log(image);
-		console.log(rowCount);
-		newGame(image,rowCount);
 	}
 
-	if( mode == "arcade"){
-		
-		//this will be put in a function and called each time a game is won
+	if(rowCount < 2){
+		rowCount = 2;
+		PicPuzzle_Utils.updateText('message','2x2 is the minimum grid size.');
+		PicPuzzle_Utils.notify('#message',5000);
 
-		stage=2;
-
-		//choose a random image 
-		console.log('Images Available: ',stockImagesAvailable);
-		 
-		//choose a random image
-		var randomImg = PicPuzzle_Utils.randomChoice(stockImagesAvailable);
-	    
-		image = stockImages[randomImg];
-		 
-	 	//remove random value from the possible selection of tiles
-    	 stockImagesAvailable = PicPuzzle_Utils.removeItemFromList(stockImagesAvailable, randomImg);
-
-		
-		//begin the game
-		newGame(image, stage);
 	}
+
+	console.log(image);
+	console.log(rowCount);
+	newGame(image,rowCount);
 	
 	
-	
-	console.log(mode);
 
 		
     //check for sound toggle
