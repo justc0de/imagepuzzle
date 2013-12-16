@@ -72,16 +72,15 @@ $(document).ready(function() {
 	
 
 		
-    //check for sound toggle
+	//check for sound toggle
     $('#soundClick').on('click', function(e) {
 		if(sound == "on"){
         	sound = "off";
-        	$(this).html('Unmute');
+        	$(this).button('option', 'label', 'Unmute');
 		}
         else{
         	sound = "on";
-        	$(this).html('Mute');
-
+        	$(this).button('option', 'label', 'Mute');
 		}
      });
 
