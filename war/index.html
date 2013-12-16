@@ -4,38 +4,37 @@
 		
 		<link rel="stylesheet" type="text/css" href="css/base.css"/>
 		<link rel="stylesheet" type="text/css" href="css/index.css"/>
-		<link rel="stylesheet" type="text/css" href="css/vader/jquery-ui-1.9.2.custom.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/vader/jquery-ui-1.10.3.custom.min.css"/>
 		
-		<script type="text/javascript" src="lib/jquery-1.8.3.min.js"></script>   
-		<script type="text/javascript" src="lib/jquery-ui-1.9.2.custom.min.js"></script>
+		<script type="text/javascript" src="lib/jquery-1.10.2.min.js"></script>   
+		<script type="text/javascript" src="lib/jquery-ui-1.10.3.custom.min.js"></script>
 		<script type="text/javascript" src="js/Utils.js"></script>
 	</head>                                                
 	
-	<body>
-
+	<body onload="PicPuzzle_Utils.initButtons();">
 		<header id="game_header"><h3>Game Name or Logo will go here</h3></header>
 		<section id="container">  
 		    <section id="content">
-					<div id="modeButtons" >
-						<form method="get" action="choose.html">
-				        	<button class="styled-button" type="submit">Play Game</button>
-					</form>
-				    	
-				    	<button 
-				    		class="styled-button" 
-				    		title="View the fastest completion times for each grid size" 
-				    		type="button" 
-				    		onclick="PicPuzzle_Utils.getTopTimes('Top Times');">
-				    		Top Times
-				    	</button>
-					</div>
+				<div id="modeButtons" >
+					<form method="get" action="choose.html">
+			        	<button class="styled-button" type="submit">Play Game</button>
+				</form>
+			    	
+			    	<button
+			    		class="styled-button"
+			    		title="View the fastest completion times for each grid size" 
+			    		type="button" 
+			    		onclick="PicPuzzle_Utils.getTopTimes('Top Times');">
+			    		Top Times
+			    	</button>
+				</div>
 
-			<noscript>
-		        	<div id="javascriptDisabled-warning">Game requires JavaScript to be enabled in the browser</div>
-				<style>
-				  #modeButtons { display:none;}
-				</style>
-		    	</noscript>
+				<noscript>
+			        	<div id="javascriptDisabled-warning">Game requires JavaScript to be enabled in the browser</div>
+					<style>
+					  #modeButtons { display:none;}
+					</style>
+			    </noscript>
 	        </section>
 		</section>
 	</body>                                                                 

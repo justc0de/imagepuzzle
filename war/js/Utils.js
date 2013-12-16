@@ -132,8 +132,12 @@ var PicPuzzle_Utils = {
 				                      
 	},
 	
+	initButtons: function(){
+		$( ".styled-button" ).each(function( i ) {
+			 $(this).button();
+		 });
+	},
 	
-	//Initialize UI elements
 	initUIElements: function(){
 		$( document ).tooltip();
 		$( "#image" ).tooltip({
@@ -153,7 +157,6 @@ var PicPuzzle_Utils = {
 			   $("#image").val($(ui.selected).children().attr('src'));
 		   }
 		});
-
 	},
 	
 	validateForm: function(){
