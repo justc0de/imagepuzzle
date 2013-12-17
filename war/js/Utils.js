@@ -169,7 +169,7 @@ var PicPuzzle_Utils = {
 			return false;
 			
 		// image valid?
-		}else if( (imageurl.toLowerCase()).indexOf(".png") == -1 && (imageurl.toLowerCase()).indexOf(".jpg") == -1 ){
+		}else if( (imageurl.toLowerCase()).substr(-4,4) != ".png" && (imageurl.toLowerCase()).substr(-4,4) != ".jpg"){
 			PicPuzzle_Utils.dialog('Image not valid', 'Image must be a PNG or JPG file type');
 			
 			return false;
