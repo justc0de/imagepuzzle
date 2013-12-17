@@ -66,6 +66,7 @@ $(document).ready(function() {
 	console.log(image);
 	console.log(rowCount);
 	newGame(image,rowCount);
+	jumblePuzzle(rowCount);
 	
 	
 
@@ -108,29 +109,25 @@ $(document).ready(function() {
 			var $tbl = $('<table border="1">').attr('id', 'grid'),
 				$tbody = $('<tbody>').attr('id', 'tableBody');
 			
+			var index =0;
 			for (var i = 0; i < rowCount; i++) {
 
 				var trow = $("<tr>").attr('id', 'row' + i); // New row
 				
 				for (var j = 0; j < rowCount; j++) {
 				
-					//console.log('TilesAvailable: ',tilesAvailable);
+				        var $cell = $("<td>").append(canvasArray[index]);
+					$cell.attr('id','cell'+index);
 
-					//choose a random tile
-					var random = PicPuzzle_Utils.randomChoice(tilesAvailable),
-						$cell = $("<td>").append(canvasArray[random]);
-
-					//remove random value from the possible selection of tiles
-					tilesAvailable = PicPuzzle_Utils.removeItemFromList(tilesAvailable, random);
-					
 				 	//Get the row and column position of the last canvas element
-				    if(random == ((canvasArray.length -1))){
+				    if(index == ((canvasArray.length -1))){
 					                   
 						blankRow = i,
 						blankCol = j;
 					}                 
 
 					$cell.appendTo(trow); 
+					index++;
 				}
 
 				trow.appendTo($tbody);
@@ -167,15 +164,170 @@ $(document).ready(function() {
 		return false;
 	};
 
+	//Description: Jumbles the puzzle to a random but solvable state
+	//Paramaters: rowCount: The number or rows which is equal to the number
+	//	      of columns
+	function jumblePuzzle(rowCount){
+	   
+
+	  for (var i =0; i< rowCount*rowCount *2; i++){
+	  
+	      //get the blank cell
+	      var empty = $("#blankCell").get(0),
+		  emptyrow = empty.parentNode,
+		  ex = empty.cellIndex,
+		  ey = emptyrow.rowIndex;
+
+	      //get possible directions
+	      var dirs = getPossibleDirections(ex,ey,rowCount);
+	      
+	      // choose a dir at random
+	      var randDir = PicPuzzle_Utils.randomChoice(dirs);
+	      console.log(randDir);
+
+	      //move the empty cell in the direction
+	      moveEmptyCell(ex,ey,randDir);
+	  }
+
+	}
 
 
+	//Description: Get the possible directions that the empty cell can move in
+	//Paramaters: empty cell position, 
+	//	      empty row position, 
+	//	      the number of rows
+	//
+	//Returns:    The possible directions to the empty cell can move
+	//            ['l','r','u','d'] left,right,up,down
+	function getPossibleDirections(ex,ey,rowCount){
 	
+	    var max = rowCount -1;
+	    min =0; 
+	    //calculate the possible directions to choose
+	    //the random cell
+
+	    //we can go right or down
+	    //top left corner
+	    if(ex == min && ey == min){
+	        console.log("top left corner"); 
+		var dirs = ['r','d'];
+		return dirs;
+	    }
+	    //we can go right or up
+	    //bottom left corner
+	    else if(ex == min && ey == max){
+	    
+		console.log("bottom left corner");
+		var dirs = ['r','u'];
+		return dirs;
+	    }
+	    //we can go left or down
+	    //top right corner
+	    else if(ex == max && ey == min){
+	   
+		console.log("top right corner"); 
+		var dirs = ['l','d'];
+		return dirs;
+	    }
+	    //we can go left or up
+	    //bottom right corner
+	    else if(ex == max && ey == max){
+	    
+		console.log("bottom right corner"); 
+		var dirs = ['l','u'];
+		return dirs;
+	    }
+	    //we can go right, up or down
+	    //left side
+	    else if(ex == min && (ey > min  && ey < max)){
+	    
+	        console.log("left edge"); 
+		var dirs = ['r','u','d'];
+		return dirs;
+	    }
+	    //we can go left, up or down
+	    //right side
+	    else if(ex == max && (ey > min  && ey < max)){
+	    
+		console.log("right edge"); 
+		var dirs = ['l','u','d'];
+		return dirs;
+	    }
+	    //we can go left, right or up
+	    //bottom side
+	    else if(ey == max && (ex > min  && ex < max)){
+	    
+		console.log("bottom edge"); 
+		var dirs = ['l','r','u'];
+		return dirs;
+	    }
+	    //we can go left, right or down
+	    //top side
+	    else if(ey == min && (ex > min  && ex < max)){
+	    
+		console.log("top edge"); 
+		var dirs = ['l','r','d'];
+		return dirs;
+	    }
+	    //we can choose a cell in any direction
+	    //cell is not touching a puzzle edge
+	    else{
+		console.log("any");
+		var dirs = ['l','r','u','d'];
+		return dirs;
+
+	    }
+	}
+	//Description: Moves the empty cell with a cell in a specified direction
+	//Paramaters:  empty cellIndex, empty rowIndex, direction to move
+	function moveEmptyCell(ex,ey,direction){
+	    var cellid ="";	  
+            
+	    //up
+	    if(direction == 'u'){
+	    
+		cellid =document.getElementById("row"+(ey-1)).childNodes[ex].id;
+		console.log(cellid);
+	    }
+	    //down
+	    else if (direction == 'd'){
+	    
+		cellid  =document.getElementById("row"+(ey+1)).childNodes[ex].id;
+		console.log(cellid);
+	    }
+	    //left
+	    else if (direction == 'l'){
+	    
+		cellid =document.getElementById("row"+ey).childNodes[ex-1].id;
+		console.log(cellid);
+	    }
+	    //right
+	    else{
+	    
+		cellid =document.getElementById("row"+ey).childNodes[ex+1].id;
+		console.log(cellid);
+	    }
+	    
+	    //swap cells
+	    var cell = $("#"+cellid).get(0),
+	        currow = cell.parentNode,
+		empty = $("#blankCell").get(0),
+	        emptyrow = empty.parentNode,
+	        afterempty = empty.nextSibling,
+	        afterthis = cell.nextSibling;
+	        currow.insertBefore(empty, afterthis); 
+	        emptyrow.insertBefore(cell, afterempty);
+	  
+	}
+
 
 	// Event handler for clicking table cells
 	$('#content').on('click', '#grid td', function(e) {
 		
 		idCounter = 0,
 			score = 0;
+
+		console.log('onclick: ' +this);
 		
 		var empty = $("#blankCell").get(0);
 		if (!empty || this == empty) return; // abort, abort!
