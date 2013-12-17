@@ -169,8 +169,8 @@ $(document).ready(function() {
 	//Paramaters: rowCount: The number or rows which is equal to the number
 	//	      of columns
 	function jumblePuzzle(rowCount){
-	   
-
+        	   
+          var prevDir = null;
 	  for (var i =0; i< rowCount*rowCount *2; i++){
 	  
 	      //get the blank cell
@@ -182,10 +182,25 @@ $(document).ready(function() {
 	      //get possible directions
 	      var dirs = getPossibleDirections(ex,ey,rowCount);
 	      
-	      // choose a dir at random
+	      
+	      //check to make sure randDir is not the opposite of prevDir
+	       //we do not want to undo the previous move
+	      if (prevDir != null){
+		  
+		//remove the opposite direction from the possible choices
+		  if (prevDir == 'u')
+		       dirs = PicPuzzle_Utils.removeItemFromList(dirs,'d');
+		  else if (prevDir == 'd')
+		       dirs = PicPuzzle_Utils.removeItemFromList(dirs,'u');
+		  else if (prevDir == 'r')
+		       dirs = PicPuzzle_Utils.removeItemFromList(dirs,'l');
+		  else
+		       dirs = PicPuzzle_Utils.removeItemFromList(dirs,'r');
+	      }
+	      
+	      //choose a dir at random
 	      var randDir = PicPuzzle_Utils.randomChoice(dirs);
-	      console.log(randDir);
-
+	      prevDir = randDir; 
 	      //move the empty cell in the direction
 	      moveEmptyCell(ex,ey,randDir);
 	  }
