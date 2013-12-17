@@ -14,6 +14,8 @@ $(document).ready(function() {
 		move_snd = new Audio("sounds/move1.wav"),
 		shuffle_snd = new Audio("sounds/shuffle1.wav");
 		win_snd  = new Audio("sounds/success1.wav");
+		
+	PicPuzzle_Utils.initButtons();
 	
 
 	//stock images for arcade and time trial
@@ -71,16 +73,15 @@ $(document).ready(function() {
 	
 
 		
-    //check for sound toggle
+	//check for sound toggle
     $('#soundClick').on('click', function(e) {
 		if(sound == "on"){
         	sound = "off";
-        	$(this).html('Unmute');
+        	$(this).button('option', 'label', 'Unmute');
 		}
         else{
         	sound = "on";
-        	$(this).html('Mute');
-
+        	$(this).button('option', 'label', 'Mute');
 		}
      });
 
