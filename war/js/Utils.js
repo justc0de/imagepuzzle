@@ -185,69 +185,6 @@ var PicPuzzle_Utils = {
 	    				new Date()));
 	},
 	
-	getTopTimes: function(dialogTitle){
-		
-		var xmlhttp = new XMLHttpRequest();
-		
-		xmlhttp.onreadystatechange = callback;
-		xmlhttp.open("GET", "TopTimes?operation=getTopTimes", true);
-		xmlhttp.send(null);
-		
-		function callback() {
-
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				
-				PicPuzzle_Utils.dialog("Top Times", xmlhttp.responseText)
-			    
-			} else {
-			    // have not recieved top times yet
-			}
-		}
-	},
-	
-	compareUsersTime: function(rowCount, usersName, usersTime){
-		
-		var xmlhttp = new XMLHttpRequest();
-		
-		xmlhttp.onreadystatechange = callback;
-		xmlhttp.open("GET", "TopTimes" +
-				"?operation=compareUsersTime" +
-				"&gridSize=" + rowCount +
-				"&usersName=" + usersName +
-				"&usersTime=" + usersTime, true);
-		xmlhttp.send(null);
-		
-		function callback() {
-			
-			var results;
-			
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				
-				if (xmlhttp.responseText == "true"){
-					
-					results = 
-						"<table>" +
-							"<tr>" +
-								"<th>Grid size</th>" +
-								//"<th>Users name</th>" +
-								"<th>Top time</th>" +
-							"</tr>" +
-							"<tr>" +
-								"<td>" + rowCount + "</td>" +
-			        			//"<td>" + usersName + "</td>" +
-			        			"<td>" + PicPuzzle_Utils.formatTime(new Date(usersTime)) + "</td>" +
-			        		"</tr>" +
-			        	"</table>";
-					
-					PicPuzzle_Utils.dialog("You've set a new Top Time", results);
-				}
-			    
-			} else {
-			    // have not recieved result yet
-			}
-		}
-	},
-	
 	dialog: function(title, body){
 
 		var NewDialog = $('<div><p>' + body + '</p></div>');

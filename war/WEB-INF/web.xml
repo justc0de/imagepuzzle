@@ -3,14 +3,6 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 	
-	<servlet>
-		<servlet-name>TopTimes</servlet-name>
-		<servlet-class>com.justc0de.imagepuzzle.TopTimes</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TopTimes</servlet-name>
-		<url-pattern>/TopTimes</url-pattern>
-	</servlet-mapping>
  <servlet>
   <servlet-name>SystemServiceServlet</servlet-name>
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
