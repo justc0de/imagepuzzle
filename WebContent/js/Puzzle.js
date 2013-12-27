@@ -3,7 +3,6 @@ $(document).ready(function() {
 	var rowCount,
 		idCounter,
 		score,
-		stage,
 		target,
 		sound = "on",
 		puzzlesSolved = 0,
@@ -11,45 +10,19 @@ $(document).ready(function() {
 		image,
 		timerIntervalId = 0,
 		move_snd = new Audio("sounds/move1.wav"),
-		shuffle_snd = new Audio("sounds/shuffle1.wav");
+		shuffle_snd = new Audio("sounds/shuffle1.wav"),
 		win_snd  = new Audio("sounds/success1.wav");
 		
 	PicPuzzle_Utils.initButtons();
-	
-
-	//stock images for arcade and time trial
-	var stockImages = new Array(8);
-		stockImages[0]="images/stock/day_and_night.jpg";
-		stockImages[1]="images/stock/denmark.jpg";
-		stockImages[2]="images/stock/gherkin.jpg";
-		stockImages[3]="images/stock/house.jpg";
-		stockImages[4]="images/stock/looking_at_sunset.jpg";
-		stockImages[5]="images/stock/nelson's_column.jpg";
-		stockImages[6]="images/stock/slow_swaying.jpg";
-		stockImages[7]="images/stock/walking.jpg";
-	
-	//array to keep track of the available images for Time Trial and Arcade
-	var stockImagesAvailable = new Array(stockImages.length);
-	
-	//initialize the array
-	for(var i=0; i<stockImages.length; i++)
-		stockImagesAvailable[i] = i;
-
-
 
 	//get mode and paramaters
-	console.log(window.location.href)
+	console.log(window.location.href);
 	var url = window.location.href;
-	
-
-
-
 	image = decodeURIComponent((url.split('&')[0]).split('=')[1]);
 	rowCount = (url.split('&')[1]).split('=')[1];
 
 	//check incase user has changed the row count in the url
 	//notify user in each case
-
 	if(rowCount > 9){
 		rowCount = 9;
 		PicPuzzle_Utils.updateText('message','9x9 is the maximum grid size.');
@@ -156,7 +129,7 @@ $(document).ready(function() {
 		
 		//ensuring timerIntervalId is cleared
 		if (timerIntervalId){
-			clearInterval(timerIntervalId)
+			clearInterval(timerIntervalId);
 		}
 		
 		timerIntervalId = setInterval(PicPuzzle_Utils.initTimer, 100);

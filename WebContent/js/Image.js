@@ -74,7 +74,7 @@ var PicPuzzle_ImageActions = {
         var img = new Image();
         //console.log(img.complete);
         
-        if (img.complete) {split()} else  $(img).load(split);
+        if (img.complete) {split();} else  $(img).load(split);
     },
 
 /*
