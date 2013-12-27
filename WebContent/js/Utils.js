@@ -41,16 +41,16 @@ var PicPuzzle_Utils = {
 	notify: function(elementID,duration){
 	
          //set message to show in case it has previously faded out
-         $(elementID).fadeTo('fast', 1)
+         $(elementID).fadeTo('fast', 1);
                                 
        //ensuring notificationIntervalId is cleared
  		if (this.notificationIntervalId){
- 			clearInterval(this.notificationIntervalId)
+ 			clearInterval(this.notificationIntervalId);
  		}
  		
 	     //set message to fade out
  		this.notificationIntervalId = setTimeout(function() {
-	      	$(elementID).fadeTo('fast', 0)
+	      	$(elementID).fadeTo('fast', 0);
 		  }, duration); 
 	},
 	
