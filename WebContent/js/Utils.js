@@ -2,6 +2,7 @@ var PicPuzzle_Utils = {
 		
 	startTime: null,
 	notificationIntervalId: null,
+	
 	getStartTime: function(){
 		
 		return this.startTime;
@@ -197,5 +198,45 @@ var PicPuzzle_Utils = {
 			    }
 			}]
 		});
-	}
+	},
+	
+	getCookie: function(cname) {
+		
+		var name = cname + "=",
+			ca = document.cookie.split(';');
+		
+		for(var i=0; i < ca.length; i++){
+			
+			var c = ca[i].trim();
+		  
+			if (c.indexOf(name)==0) {
+				
+				return c.substring(name.length,c.length);
+			}
+		}
+	
+		return "";
+	},
+	
+	setCookie: function(cname, cvalue){
+		
+		document.cookie = cname + "=" + cvalue; 
+	},
+	
+	increasePuzzlesSolved: function(){
+
+		this.setCookie("puzzlesSolved", parseInt(this.getCookie("puzzlesSolved")) + 1);
+	},
+	
+	checkCookie: function(){		
+		
+		if (this.getCookie("puzzlesSolved") != "") {
+
+			this.updateText("puzzlesSolved", this.getCookie("puzzlesSolved"));
+		
+		}else{
+			
+			this.setCookie("puzzlesSolved", '0');
+		}
+	} 
 };

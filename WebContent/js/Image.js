@@ -1,10 +1,12 @@
 var PicPuzzle_ImageActions = {
+		
+	load: function() {
+		
+	},
  
 /*
  * Function Split 
  * Description: splits an image into a number or canvas elements
- *              and appends those canvas elements to the invoking 
- *              html page
  * 
  * Paramaters: Path to image and the number of tiles required
  *             Ex 9 tiles for a 3x3 image. tiles must be a 

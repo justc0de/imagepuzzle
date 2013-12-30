@@ -1,50 +1,39 @@
 $(document).ready(function() {
 	
-	var rowCount,
+	var url = window.location.href,
 		idCounter,
 		score,
 		target,
 		sound = "on",
-		puzzlesSolved = 0,
 		noOfMoves = 0,
-		image,
+		image = decodeURIComponent((url.split('&')[0]).split('=')[1]),
+		rowCount = (url.split('&')[1]).split('=')[1],
 		timerIntervalId = 0,
 		move_snd = new Audio("sounds/move1.wav"),
 		shuffle_snd = new Audio("sounds/shuffle1.wav"),
 		win_snd  = new Audio("sounds/success1.wav");
-		
+	
+	PicPuzzle_Utils.checkCookie();
 	PicPuzzle_Utils.initButtons();
 
-	//get mode and paramaters
-	console.log(window.location.href);
-	var url = window.location.href;
-	image = decodeURIComponent((url.split('&')[0]).split('=')[1]);
-	rowCount = (url.split('&')[1]).split('=')[1];
-
-	//check incase user has changed the row count in the url
-	//notify user in each case
+	//validate row input
 	if(rowCount > 9){
+		
 		rowCount = 9;
 		PicPuzzle_Utils.updateText('message','9x9 is the maximum grid size.');
 		PicPuzzle_Utils.notify('#message',5000);
 
-	}
-
-	if(rowCount < 2){
+	} else if (rowCount < 2){
+		
 		rowCount = 2;
 		PicPuzzle_Utils.updateText('message','2x2 is the minimum grid size.');
 		PicPuzzle_Utils.notify('#message',5000);
-
 	}
-
-	console.log(image);
-	console.log(rowCount);
+	
 	newGame(image,rowCount);
 	jumblePuzzle(rowCount);
 	
 	
-
-		
 	//check for sound toggle
     $('#soundClick').on('click', function(e) {
 		if(sound == "on"){
@@ -59,14 +48,10 @@ $(document).ready(function() {
 
 
 
-	// New game
 	function newGame(image,rowCount){
 
-		//store the row and col of the blank cell
 		var blankRow = 0,
 			blankCol = 0;
-		
-		//rowCount = $("#radio :radio:checked + label").text()[0];
 
 		PicPuzzle_ImageActions.split(image, rowCount * rowCount, function(canvasArray) {	    
 		
@@ -80,9 +65,10 @@ $(document).ready(function() {
 			}
 
 			var $tbl = $('<table border="1">').attr('id', 'grid'),
-				$tbody = $('<tbody>').attr('id', 'tableBody');
+				$tbody = $('<tbody>').attr('id', 'tableBody'),
+				index = 0;
 			
-			var index =0;
+			
 			for (var i = 0; i < rowCount; i++) {
 
 				var trow = $("<tr>").attr('id', 'row' + i); // New row
@@ -96,7 +82,7 @@ $(document).ready(function() {
 				    if(index == ((canvasArray.length -1))){
 					                   
 						blankRow = i,
-						blankCol = j;
+							blankCol = j;
 					}                 
 
 					$cell.appendTo(trow); 
@@ -104,7 +90,6 @@ $(document).ready(function() {
 				}
 
 				trow.appendTo($tbody);
-	
 				$tbl.append($tbody);
 				$('table').remove();	
 				$('#content').append($tbl);
@@ -122,7 +107,6 @@ $(document).ready(function() {
 		//play start sound
 		if (sound == "on"){
 			shuffle_snd.play();
-		  //shuffle_snd.currentTime = 0;
 		}
 		
 		PicPuzzle_Utils.setStartTime(new Date());
@@ -189,8 +173,8 @@ $(document).ready(function() {
 	//            ['l','r','u','d'] left,right,up,down
 	function getPossibleDirections(ex,ey,rowCount){
 	
-	    var max = rowCount -1;
-	    min =0; 
+	    var max = rowCount -1,
+	    	min =0; 
 	    //calculate the possible directions to choose
 	    //the random cell
 
@@ -338,11 +322,9 @@ $(document).ready(function() {
 			//play the move sound
 			if(sound == "on"){
 				move_snd.play();
-				//move_snd.currentTime = 0 ;
 			}
 
 			PicPuzzle_Utils.updateText('moveCount',noOfMoves);
-			console.log('Moves: '+noOfMoves);
 	    }
 	    
 	    // Check if puzzle is complete after each move
@@ -357,16 +339,9 @@ $(document).ready(function() {
 					$("#blankCell").children().show();
 					$("#blankCell").attr('id', $("#blankCell").children().attr('id'));
 					
-
-					//play success sound
 					if(sound == "on"){
 						win_snd.play();
-						//win_snd.currentTime = 0;
 					}
-					
-					
-					//increase puzzlesSolved
-					PicPuzzle_Utils.updateText('puzzlesSolved',++puzzlesSolved);
 					
 					// stop timer in UI
 					clearInterval(timerIntervalId);	
@@ -376,6 +351,9 @@ $(document).ready(function() {
 		            		PicPuzzle_Utils.getStartTime(), 
 		            		endTime); 
 					PicPuzzle_Utils.updateText('timer', duration);
+					
+					PicPuzzle_Utils.increasePuzzlesSolved();
+					PicPuzzle_Utils.updateText('puzzlesSolved', PicPuzzle_Utils.getCookie("puzzlesSolved"));
 
 					PicPuzzle_Utils.playAgain(
 							"Congratulations!<br/>" +
