@@ -119,7 +119,6 @@ var ImagePuzzle_Utils = {
 		             },
 			         {
 		            	 text: "No", click: function() {
-						 	window.location = "index.html" ;
 		            		 $(this).dialog("close");
 			        	 }
 			         }
