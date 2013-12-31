@@ -4,6 +4,20 @@ var ImagePuzzle_ImageActions = {
 		
 		var img = new Image();
 		
+		img.onerror = function() {
+			
+			$('<div><p>Please choose a stock image\nor paste a valid url</p></div>').dialog({
+		    	modal: true,
+			    title: 'Invalid image',
+			    buttons:[{ 
+			    	text: "Ok", click: function() {
+			    		$(this).dialog("close");
+			    		window.location = "choose.html";
+				    }
+				}]
+			});
+		};
+		
 		img.onload = function(){
 			
 			callback(img);

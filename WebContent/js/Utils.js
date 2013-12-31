@@ -1,10 +1,9 @@
-var PicPuzzle_Utils = {
+var ImagePuzzle_Utils = {
 		
 	startTime: null,
 	notificationIntervalId: null,
 	
 	getStartTime: function(){
-		
 		return this.startTime;
 	},
 	
@@ -57,12 +56,11 @@ var PicPuzzle_Utils = {
 	
 
 	//Get the time difference between two javascript date objects
-	//Paramaters: Two Date Objects
 	//Returns a string containing the time.
 	diffBetweenTimes: function(beginTime, endTime){
 		var timeTaken = new Date(endTime.getTime() - beginTime.getTime());
 		
-	 	return PicPuzzle_Utils.formatTime(timeTaken);
+	 	return ImagePuzzle_Utils.formatTime(timeTaken);
 	},
 	
 	formatTime: function(timeTaken){
@@ -109,8 +107,7 @@ var PicPuzzle_Utils = {
 	//Parameters: the winning message
 	playAgain: function(message){
 	            
-		var NewDialog = $('<div id="playAgainDialog">\<p>'+message+'.</p>\</div>');
-	    NewDialog.dialog({
+		$('<div id="playAgainDialog">\<p>'+message+'.</p>\</div>').dialog({
 	    	modal: true,
 		    title: "Play Again ?",
 		    buttons:[
@@ -160,36 +157,18 @@ var PicPuzzle_Utils = {
 		});
 	},
 	
-	validateForm: function(){
-		var imageurl = $('#image').val();
-		
-		// image selected?
-		if(imageurl == null || imageurl == ""){
-			PicPuzzle_Utils.dialog('No image selected', 'You must select an image<br/>Choose one above or paste a URL');
-			
-			return false;
-			
-		// image valid?
-		}else if( (imageurl.toLowerCase()).substr(-4,4) != ".png" && (imageurl.toLowerCase()).substr(-4,4) != ".jpg"){
-			PicPuzzle_Utils.dialog('Image not valid', 'Image must be a PNG or JPG file type');
-			
-			return false;
-		}
-	},
-	
 	initTimer: function(){
 
-		PicPuzzle_Utils.updateText(
+		ImagePuzzle_Utils.updateText(
 	    		'timer', 
-	    		PicPuzzle_Utils.diffBetweenTimes(
-	    				PicPuzzle_Utils.startTime, 
+	    		ImagePuzzle_Utils.diffBetweenTimes(
+	    				ImagePuzzle_Utils.startTime, 
 	    				new Date()));
 	},
 	
 	dialog: function(title, body){
 
-		var NewDialog = $('<div><p>' + body + '</p></div>');
-	    NewDialog.dialog({
+		$('<div><p>' + body + '</p></div>').dialog({
 	    	modal: true,
 		    title: title,
 		    buttons:[{ 

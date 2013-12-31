@@ -1,5 +1,5 @@
 $(document).ready(function(){
 
-	PicPuzzle_Utils.initUIElements();
-	PicPuzzle_Utils.initButtons();
+	ImagePuzzle_Utils.initUIElements();
+	ImagePuzzle_Utils.initButtons();
 });

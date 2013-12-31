@@ -16,19 +16,19 @@ $(document).ready(function() {
 		win_snd = new Audio("sounds/success1.wav");
 	
 	
-	PicPuzzle_Utils.checkCookie();
-	PicPuzzle_Utils.initButtons();
+	ImagePuzzle_Utils.checkCookie();
+	ImagePuzzle_Utils.initButtons();
 	
 	//validate row input
 	if(rowCount > 9){
 		
 		rowCount = 9;
-		PicPuzzle_Utils.dialog('Invalid input', '9x9 is the maximum grid size.');
+		ImagePuzzle_Utils.dialog('Invalid input', '9x9 is the maximum grid size.');
 
 	} else if (rowCount < 2){
 		
 		rowCount = 2;
-		PicPuzzle_Utils.dialog('Invalid input', '2x2 is the minimum grid size.');
+		ImagePuzzle_Utils.dialog('Invalid input', '2x2 is the minimum grid size.');
 	}		
 	
 	//check for sound toggle
@@ -99,14 +99,14 @@ $(document).ready(function() {
 					shuffle_snd.play();
 				}
 	
-				PicPuzzle_Utils.setStartTime(new Date());
+				ImagePuzzle_Utils.setStartTime(new Date());
 	
 				// ensuring timerIntervalId is cleared
 				if (timerIntervalId){
 					clearInterval(timerIntervalId);
 				}
 	
-				timerIntervalId = setInterval(PicPuzzle_Utils.initTimer, 100);
+				timerIntervalId = setInterval(ImagePuzzle_Utils.initTimer, 100);
 				
 				jumblePuzzle(rowCount);
 	
@@ -266,16 +266,16 @@ $(document).ready(function() {
 			  
 		    	//remove the opposite direction from the possible choices
 		    	if (prevDir == 'u')
-		    		dirs = PicPuzzle_Utils.removeItemFromList(dirs,'d');
+		    		dirs = ImagePuzzle_Utils.removeItemFromList(dirs,'d');
 		    	else if (prevDir == 'd')
-		    		dirs = PicPuzzle_Utils.removeItemFromList(dirs,'u');
+		    		dirs = ImagePuzzle_Utils.removeItemFromList(dirs,'u');
 		    	else if (prevDir == 'r')
-		    		dirs = PicPuzzle_Utils.removeItemFromList(dirs,'l');
+		    		dirs = ImagePuzzle_Utils.removeItemFromList(dirs,'l');
 		    	else
-		    		dirs = PicPuzzle_Utils.removeItemFromList(dirs,'r');
+		    		dirs = ImagePuzzle_Utils.removeItemFromList(dirs,'r');
 		    }
 		      
-		    var randDir = PicPuzzle_Utils.randomChoice(dirs);
+		    var randDir = ImagePuzzle_Utils.randomChoice(dirs);
 		    prevDir = randDir; 
 		    moveEmptyCell(ex,ey,randDir);
 		}
@@ -310,7 +310,7 @@ $(document).ready(function() {
 				move_snd.play();
 			}
 	
-			PicPuzzle_Utils.updateText('moveCount', noOfMoves);
+			ImagePuzzle_Utils.updateText('moveCount', noOfMoves);
 	    }
 	    
 	    // Check if puzzle is complete after each move
@@ -332,15 +332,15 @@ $(document).ready(function() {
 					clearInterval(timerIntervalId);	
 					
 					var endTime = new Date(),
-						duration = PicPuzzle_Utils.diffBetweenTimes(
-		            		PicPuzzle_Utils.getStartTime(), 
+						duration = ImagePuzzle_Utils.diffBetweenTimes(
+		            		ImagePuzzle_Utils.getStartTime(), 
 		            		endTime); 
-					PicPuzzle_Utils.updateText('timer', duration);
+					ImagePuzzle_Utils.updateText('timer', duration);
 					
-					PicPuzzle_Utils.increasePuzzlesSolved();
-					PicPuzzle_Utils.updateText('puzzlesSolved', PicPuzzle_Utils.getCookie("puzzlesSolved"));
+					ImagePuzzle_Utils.increasePuzzlesSolved();
+					ImagePuzzle_Utils.updateText('puzzlesSolved', ImagePuzzle_Utils.getCookie("puzzlesSolved"));
 	
-					PicPuzzle_Utils.playAgain(
+					ImagePuzzle_Utils.playAgain(
 							"Congratulations!<br/>" +
 							"You solved the puzzle in<br/>" +
 					        + noOfMoves + " move(s)<br/>" +
