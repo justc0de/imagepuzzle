@@ -152,7 +152,7 @@ var ImagePuzzle_Utils = {
 
 		$("#selectable" ).selectable({
 		   selected: function(event, ui) { 
-			   $("#image").val($(ui.selected).children().attr('src'));
+			   $("#image").val($(ui.selected).children().attr('src').replace("preview","stock"));
 		   }
 		});
 	},
