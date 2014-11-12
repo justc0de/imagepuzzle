@@ -12,7 +12,7 @@ var ImagePuzzle_ImageActions = {
 			    buttons:[{ 
 			    	text: "Ok", click: function() {
 			    		$(this).dialog("close");
-			    		window.location = "choose.html";
+			    		//window.location = "choose.html";
 				    }
 				}]
 			});

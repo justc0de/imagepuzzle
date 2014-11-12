@@ -29,7 +29,7 @@ h1 {
     padding: 10px 0 0;
 }
 
-#container {
+#indexContainer {
     width: 100%;
     height: 100%;
     margin: 0 auto;
@@ -46,7 +46,7 @@ h1 {
 	text-align:center;
 }
 
-#content {
+#indexContent {
     display: block;
     width: 100%;
     margin: 0;
@@ -70,4 +70,11 @@ h1 {
 	color: #fff;
     display: inline;
     padding: 0 5px;
+}
+
+#footerDiv {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:0px;
 }

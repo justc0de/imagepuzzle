@@ -1,8 +1,8 @@
-#container{
+#chooseContainer{
     width:100%;
 
 }
-#content{
+#chooseContent{
     width: 50%;
     margin: 0 auto;
 }
