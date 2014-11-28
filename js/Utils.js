@@ -1,16 +1,30 @@
 $(document).ready(function() {
 	
-	ImagePuzzle_Utils.init();
+	$('#imageSelection').children('li').bind('touchstart mousedown', function(e) {
+	    $('#imageTextfield').val($(this).children('a').children('img').attr('src'));
+	});
 	
-	document.getElementById('loadChooseUI').addEventListener('click', function(event) {
+	$('.loadChooseUI').click(function(){
 		
 		ImagePuzzle_Utils.loadChooseUI();
-		
-	}, false);
+		$('#gameContainer').attr('style', 'display:none');
+		$('#chooseContainer').attr('style', 'display:inline');
+		$('#moveCount').html('0');
+		clearInterval(ImagePuzzle_Game.timerIntervalId);
+	});
 	
 	document.getElementById('submit').addEventListener('click', function(event) {
 		
 		ImagePuzzle_Game.init();
+		
+	}, false);
+	
+	document.getElementById('restartButton').addEventListener('click', function(event) {
+		
+		ImagePuzzle_Utils.loadChooseUI();
+		$('#gameContainer').attr('style', 'display:none');
+		$('#chooseContainer').attr('style', 'display:inline');
+		$('#moveCount').html('0');
 		
 	}, false);
 	
@@ -44,7 +58,7 @@ $(document).ready(function() {
 	        ImagePuzzle_Utils.noOfMoves++;
 	
 			//play the move sound
-			if(ImagePuzzle_Game.sound == 'on'){
+			if($('#mute').val() === 'off'){
 				ImagePuzzle_Game.move_snd.play();
 			}
 	
@@ -53,16 +67,19 @@ $(document).ready(function() {
 	    
 	    // Check if puzzle is complete after each move
 	    $("td").each(function() {
-	
+	    	
 	    	if ($(this).children().attr("id") == "canvas" + ImagePuzzle_Game.idCounter){
+	    		
 	    		ImagePuzzle_Game.score++;
+	    		
+	    		
 	    		if (ImagePuzzle_Game.score == ImagePuzzle_Game.target){
 	    			
 	    			//show complete image
 					$("#blankCell").children().show();
 					$("#blankCell").attr('id', $("#blankCell").children().attr('id'));
 					
-					if(ImagePuzzle_Game.sound == "on"){
+					if($('#mute').val() === "off"){
 						ImagePuzzle_Game.win_snd.play();
 					}
 					
@@ -73,17 +90,11 @@ $(document).ready(function() {
 						duration = ImagePuzzle_Utils.diffBetweenTimes(
 		            		ImagePuzzle_Utils.getStartTime(), 
 		            		endTime); 
-					ImagePuzzle_Utils.updateText('timer', duration);
 					
 					ImagePuzzle_Utils.puzzlesSolved++;
 					ImagePuzzle_Utils.updateText('puzzlesSolved', ImagePuzzle_Utils.puzzlesSolved);
-	
-					ImagePuzzle_Utils.playAgain(
-							"Congratulations!<br/>" +
-							"You solved the puzzle in<br/>" +
-					        + ImagePuzzle_Utils.noOfMoves + " move(s)<br/>" +
-				            "Duration: " + duration +
-							"<br/><br/>Would you like to play again?");
+					
+					$('#playAgainLink').click();
 	    		}
 	    	}
 	    	
@@ -99,12 +110,6 @@ var ImagePuzzle_Utils = {
 	notificationIntervalId: null,
 	puzzlesSolved: 0,
 	noOfMoves: 0,
-	
-	init: function(){
-		
-		ImagePuzzle_Utils.initUIElements();
-		ImagePuzzle_Utils.initButtons();
-	},
 	
 	loadChooseUI: function(){
 		
@@ -176,12 +181,12 @@ var ImagePuzzle_Utils = {
 		var timeTakenString = "";
 		
 		// calc hours
-		if ((timeTaken.getHours() - 1) < 1)	
+		/*if ((timeTaken.getHours() - 1) < 1)	
 			timeTakenString += '00:';
 		else if((timeTaken.getHours() - 1) >= 0 && (timeTaken.getHours() - 1) < 10)
 			timeTakenString += '0' + (timeTaken.getHours() - 1).toString() + ':';
 		else
-			timeTakenString += (timeTaken.getHours() - 1).toString() + ':';
+			timeTakenString += (timeTaken.getHours() - 1).toString() + ':';*/
 		
 		// calc minutes
 		if (timeTaken.getMinutes() < 1)
@@ -207,65 +212,6 @@ var ImagePuzzle_Utils = {
 
 
 	 	return timeTakenString;
-	},
-
-
-
-	//Display the winning message to the user(s)
-	//ask them to play again ?
-	//Parameters: the winning message
-	playAgain: function(message){
-	            
-		$('<div id="playAgainDialog">\<p>'+message+'.</p>\</div>').dialog({
-	    	modal: true,
-		    title: "Play Again ?",
-		    buttons:[
-		             {
-		            	 text: "Yes", click: function() {
-		            		 $(this).dialog("close");
-		            		 
-		            		 ImagePuzzle_Utils.loadChooseUI();
-		            		 $('#gameContainer').attr('style', 'display:none');
-		            		 $('#chooseContainer').attr('style', 'display:inline');
-		            		 $('#moveCount').html('0');
-		            	 }
-		             },
-			         {
-		            	 text: "No", click: function() {
-		            		 $(this).dialog("close");
-			        	 }
-			         }
-			        ]
-		});
-		
-		return false;
-	},
-	
-	initButtons: function(){
-		$( ".styled-button" ).each(function( i ) {
-			 $(this).button();
-		 });
-	},
-	
-	initUIElements: function(){
-		$( document ).tooltip();
-		$( "#image" ).tooltip({
-            show: {
-                effect: "slideDown",
-                delay: 250
-            }
-        });
-		
-		$(function() {
-		    $("#radio").buttonset();
-		});
-		
-
-		$("#selectable" ).selectable({
-		   selected: function(event, ui) { 
-			   $("#image").val($(ui.selected).children().attr('src').replace("preview","stock"));
-		   }
-		});
 	},
 	
 	initTimer: function(){

@@ -1,13 +1,13 @@
 Welcome to Image Puzzle!
 
 The project aims to implement a [sliding puzzle](https://en.wikipedia.org/wiki/Sliding_puzzle) game, accessed through a web browser.<br/>
-Version 1.0.6 deployed, [play here](http://justc0de.github.io/imagepuzzle/)!
+Version 1.1 deployed, [play here](http://justc0de.github.io/imagepuzzle/)!
 
 ### Technologies used:
 * HTML
 * JavaScript
 * CSS
-* jQuery
+* jQuery (Mobile)
 
 ### Useful documents:
 * [How to play](https://github.com/justc0de/imagepuzzle/wiki/How-to-play)

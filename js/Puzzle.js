@@ -4,7 +4,6 @@ var ImagePuzzle_Game = {
     blankCol: 0,
 	idCounter: null,
 	score: null,
-	sound: 'on',
 	imgsrc: null,
 	rowCount: null,
 	target: null,
@@ -13,41 +12,14 @@ var ImagePuzzle_Game = {
 	shuffle_snd: new Audio("sounds/shuffle1.wav"),
 	win_snd: new Audio("sounds/success1.wav"),
 	
-	
 	init: function(){
 		
-		ImagePuzzle_Game.imgsrc = document.getElementById('image').value;
-		ImagePuzzle_Game.rowCount = $("#radio :radio:checked").val();
-		ImagePuzzle_Game.target = ImagePuzzle_Game.rowCount * ImagePuzzle_Game.rowCount;
+		ImagePuzzle_Game.imgsrc = document.getElementById('imageTextfield').value.replace("preview", "stock");
+		ImagePuzzle_Game.rowCount = $('#gridSize :radio:checked').val();
 		
 		$('#chooseContainer').attr('style', 'display:none');
-		$('#gameContainer').attr('style', 'display:inline');
+		$('#gameContainer').attr('style', 'display:inline');	
 		
-		//validate row input
-		if(ImagePuzzle_Game.rowCount > 9){
-			
-			ImagePuzzle_Game.rowCount = 9;
-			ImagePuzzle_Utils.dialog('Invalid input', '9x9 is the maximum grid size.');
-
-		} else if (ImagePuzzle_Game.rowCount < 2){
-			
-			ImagePuzzle_Game.rowCount = 2;
-			ImagePuzzle_Utils.dialog('Invalid input', '2x2 is the minimum grid size.');
-		}		
-		
-		//check for sound toggle
-	    $('#soundClick').on('click', function(e) {
-			if(ImagePuzzle_Game.sound == "on"){
-				ImagePuzzle_Game.sound = "off";
-	        	$(this).button('option', 'label', 'Unmute');
-			
-			}else{
-				ImagePuzzle_Game.sound = "on";
-	        	$(this).button('option', 'label', 'Mute');
-	        }
-	    });
-	    
-	    
 	    newGame(ImagePuzzle_Game.imgsrc, ImagePuzzle_Game.rowCount);
 
 	    function newGame(imgsrc, rowCount){
@@ -75,7 +47,7 @@ var ImagePuzzle_Game = {
 				
 						for (var j = 0; j < rowCount; j++) {
 				
-							var $cell = $("<td>").append(canvasReady[index]);
+							var $cell = $('<td data-transition="flow">').append(canvasReady[index]);
 							$cell.attr('id','cell' + index);
 		
 							// Get the row and column position of the last canvas element
@@ -99,7 +71,7 @@ var ImagePuzzle_Game = {
 					$('#grid tr:eq(' + blankRow + ') td:eq(' + blankCol + ')').children().hide();
 					$('#grid tr:eq(' + blankRow + ') td:eq(' + blankCol + ')').attr('id', 'blankCell');
 		
-					if (ImagePuzzle_Game.sound == 'on'){
+					if ($('#mute').val() === 'off'){
 						ImagePuzzle_Game.shuffle_snd.play();
 					}
 		
@@ -112,6 +84,7 @@ var ImagePuzzle_Game = {
 		
 					ImagePuzzle_Utils.noOfMoves = 0;
 					ImagePuzzle_Game.timerIntervalId = setInterval(ImagePuzzle_Utils.initTimer, 100);
+					ImagePuzzle_Game.target = ImagePuzzle_Game.rowCount * ImagePuzzle_Game.rowCount;
 					
 					jumblePuzzle(rowCount);
 		

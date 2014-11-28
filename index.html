@@ -1,127 +1,164 @@
-<html>                                                                
-	<head>
-		<meta charset="UTF-8"/>
-		
-		<link rel="stylesheet" type="text/css" href="css/base.css"/>
-		<link rel="stylesheet" type="text/css" href="css/index.css"/>
-		<link rel="stylesheet" type="text/css" href="css/choose.css"/>
-		<link rel="stylesheet" type="text/css" href="css/game.css"/>
-		<link rel="stylesheet" type="text/css" href="css/vader/jquery-ui-1.10.3.custom.min.css"/>
-		
-		<script type="text/javascript" src="lib/jquery-1.10.2.min.js"></script>   
-		<script type="text/javascript" src="lib/jquery-ui-1.10.3.custom.min.js"></script>
-		<script type="text/javascript" src="js/Utils.js"></script>
-		<script type="text/javascript" src="js/Image.js"></script>
-		<script type="text/javascript" src="js/Puzzle.js"></script>
-	</head>
+<html>
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="lib/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="lib/jquery-1.10.2.min.js"></script>
+        <script src="lib/jquery.mobile-1.4.5.min.js"></script>
+        <script src="js/Utils.js"></script>
+        <script src="js/Image.js"></script>
+        <script src="js/Puzzle.js"></script>
+    </head>
+    
+    <body>
+    	<div data-role="page" id="pageone" data-theme="b">
+	        <div data-role="header" data-position="fixed"  data-tap-toggle="false">	
+	        	<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+	            	<form>
+						<select data-wrapper-class="custom-size-flipswitch" data-role="flipswitch" id="mute" >
+							<option value="off">Mute</option>
+							<option value="on">Unmute</option>
+						</select>	
+					</form> 
+	            </div>
+	            <h1 class="ui-title" role="heading">Image puzzle</h1>
+	            <div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-right">
+	               	<button class="loadChooseUI">Restart</button>
+	            </div>
+	        </div>
+	        
+	        <div data-role="main" class="ui-content">
+	            <div id="indexContainer">
+	                <div class="centerHorizontally" data-role="controlgroup" data-type="horizontal">	
+	                	<button class="loadChooseUI">Play game</button>
+	                </div>
+	            </div>
+	            
+	            <div id="chooseContainer" style="display:none">
+	                 <h3 class="centerHorizontally">Choose an image or paste a url</h3>
+	                 
+					
+					<ul id="imageSelection" data-role="listview" data-inset="true">
+					    <li data-icon="false">
+					    	<a href="#">
+					        	<img src="images/preview/scattered_moai.jpg" />
+					    		<h2>Scattered Moai</h2>
+					    	</a>
+					    </li>
+					    <li data-icon="false">
+					    	<a href="#">
+						        <img src="images/preview/denmark.jpg" />
+						    	<h2>Denmark</h2>
+					    	</a>
+					    </li>
+					    <li data-icon="false">
+					    	<a href="#">
+					        	<img src="images/preview/thailand.jpg" />
+					    		<h2>Thailand</h2>
+					    	</a>
+					    </li>
+					    <li data-icon="false">
+					    	<a href="#">
+					        	<img src="images/preview/looking_at_sunset.jpg" />
+					    		<h2>Sunset</h2>
+					    	</a>
+					    </li>
+					    <li data-icon="false">
+					    	<a href="#">
+					        	<img src="images/preview/in_the_park.jpg" />
+					    		<h2>Park</h2>
+					    	</a>
+					    </li>
+					    <li data-icon="false">
+					    	<a href="#">
+					        	<img src="images/preview/morning_magic.jpg" />
+					    		<h2>Morning</h2>
+					    	</a>
+					    </li>
+					    <li data-icon="false">
+					    	<a href="#">
+					        	<img src="images/preview/tauranga_bridge.jpg" />
+					    		<h2>Tauranga bridge</h2>
+					    	</a>
+					    </li>
+					    <li data-icon="false">
+					    	<a href="#">
+					        	<img src="images/preview/pink_forest.jpg" />
+					    		<h2>Pink forest</h2>
+					    	</a>
+					    </li>
+					</ul>
 	
-	<body>
-		<section id="indexContainer">
-			<header id="game_header"><img src="images/assets/Logo.png"></header>
-		    <section id="indexContent">
-		    	<div id="modeButtons">
-			    	<button id="loadChooseUI" class="styled-button">
-			    			Play Game	
-			    	</button>
-		    	</div>
-	        </section>
-		</section>
-		
-		
-		
-		<section id="chooseContainer" style="display:none">
-			<header id="choose_header"><h3>Choose an image from below or paste a url</h3></header>			
-			<section id="chooseContent">
-		
-				<ol id="selectable">
-					<li class="ui-state-default"><img src="images/preview/scattered_moai.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/denmark.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/thailand.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/seerose.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/looking_at_sunset.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/tauranga_bridge.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/wolf.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/walkin.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/2409.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/autumn_in_the_new_forest.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/background.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/blackbirds_at_dusk.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/cranbrook_gardens.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/golden_cathedral.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/GOOD_Morning.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/happy_may_the_1st!!!.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/ich_geh_schlafen.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/in_the_blue.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/in_the_park.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/island-126.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/monarch_butterfly.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/morning_magic.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/pink_forest.jpg"/></li>
-					<li class="ui-state-default"><img src="images/preview/sunset_tree.jpg"/></li>
-				</ol>
-	       		
-				<div id="pieceSelection">
-					<div id="imageInput">
-						<input type="text" id="image" name="image" value="images/stock/walkin.jpg"
-	        				title="Paste an image URL e.g http://server.com/path/to/image.jpg"/>
-					</div>
-		
-					<div id="radio">
-						<input type="radio" id="radio1" name="radio" value="2"/>
-						<label for="radio1">2x2</label>
-						<input type="radio" id="radio2" name="radio" value="3" checked/>
-						<label for="radio2">3x3</label>
-						<input type="radio" id="radio3" name="radio" value="4"/>
-						<label for="radio3">4x4</label>
-						<input type="radio" id="radio4" name="radio" value="5"/>
-						<label for="radio4">5x5</label>
-						<input type="radio" id="radio5" name="radio" value="6"/>
-						<label for="radio5">6x6</label>
-						<input type="radio" id="radio6" name="radio" value="7"/>
-						<label for="radio6">7x7</label>
-						<input type="radio" id="radio7" name="radio" value="8"/>
-						<label for="radio7">8x8</label>
-						<input type="radio" id="radio8" name="radio" value="9"/>
-						<label for="radio8">9x9</label>
-					</div>
-            
-					<button id="submit" class="styled-button">Play Game</button>
-				</div>
-			</section>
-		</section>
-		
-		
-		
-		<div id="gameContainer" style="display:none">
-		        <section id="gameContent">
-					  <div id="game_buttons">
-					    <button class="styled-button" type="button" id="soundClick">Mute</button>
-					    <button class="styled-button" type="button" id="help">Help</button>
-					  </div>
-					  
-					  <div id="notifications" ><h4><span id="message"></span></h4></div>
-					  <div id="gridContainer"></div>
-		        </section>
+	                <div id="pieceSelection" class="centerHorizontally">
+	                    <div id="imageInput" data-role="fieldcontain">
+	                        <input data-theme="a" type="text" id="imageTextfield" name="image" value="images/preview/tauranga_bridge.jpg" title="Paste an image URL e.g http://server.com/path/to/image.jpg" />
+	                    </div>
+
+						<form  class="centerHorizontally">
+						    <fieldset id="gridSize" data-role="controlgroup" data-type="horizontal">
+								<input name="radio-choice-h-2" id="radio-choice-h-2a" value="2" checked="checked" type="radio">
+								<label for="radio-choice-h-2a">2x2</label>
+								<input name="radio-choice-h-2" id="radio-choice-h-2b" value="3" type="radio">
+								<label for="radio-choice-h-2b">3x3</label>
+								<input name="radio-choice-h-2" id="radio-choice-h-2c" value="4" type="radio">
+								<label for="radio-choice-h-2c">4x4</label>
+								<input name="radio-choice-h-2" id="radio-choice-h-2d" value="5" type="radio">
+								<label for="radio-choice-h-2d">5x5</label>
+								<input name="radio-choice-h-2" id="radio-choice-h-2e" value="6" type="radio">
+								<label for="radio-choice-h-2e">6x6</label>
+								<input name="radio-choice-h-2" id="radio-choice-h-2f" value="7" type="radio">
+								<label for="radio-choice-h-2f">7x7</label>
+								<input name="radio-choice-h-2" id="radio-choice-h-2g" value="8" type="radio">
+								<label for="radio-choice-h-2g">8x8</label>
+								<input name="radio-choice-h-2" id="radio-choice-h-2h" value="9" type="radio">
+								<label for="radio-choice-h-2h">9x9</label>
+						    </fieldset>
+						</form>
+
+						<div class="centerHorizontally" data-role="controlgroup" data-type="horizontal">
+	                    	<button id="submit">Play Game</button>
+	                    </div>
+	                </div>
+	            </div>
+	            
+	            <div id="gameContainer" style="display:none">
+		            <div id="gameContent">
+		                <div id="gridContainer" class="centerHorizontally"></div>
+		            </div>
+						
+		            <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+			            <div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-left">
+			               	<button id="help">Help</button>
+			            </div>
+		                 <h1>Moves: <span id="moveCount">0</span>, Time: <span id="timer">00:00.0</span></h1>
+		            </div>
+		            
+		            <a data-transition="flow" style="display:none" id="playAgainLink" href="#playAgainDialog" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Play again</a>
+		            <div data-role="popup" id="playAgainDialog">
+				        <div data-role="header">
+				             <h1>Solved!</h1>
+				        </div>
+				        <div data-role="main" class="ui-content centerHorizontally">
+				        	<div>You've solved <span id="puzzlesSolved">0</span> puzzle(s)</div>
+				            <h2>Restart?</h2>
+				 			<a id="restartButton" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-back ui-btn-icon-left" data-rel="back">Yes</a>
+							<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-btn-icon-left ui-icon-delete" data-rel="back">No</a>
+				        </div>
+				    </div>
+		        </div>
 		        
-		        <div id="footerDiv">
-			        <section id="footer">
-					    <ul>
-					        <li>Moves Made: <span id="moveCount">0</span></li>
-					        <li>Time: <span id="timer">00:00:00.0</span></li>
-					        <li>Puzzles Solved: <span id="puzzlesSolved">0</span></li>
-					    </ul>
-					</section>
-				</div>
-		</div>
-		
-		<noscript>
-		  <div id="javascriptDisabled-warning">This game requires Javascript to be enabled</div>
-		    <style>
-		      #container
-		      {
-			display: none;
-		      }
-		    </style>
-		</noscript>
-	</body>                                                                 
+	        </div>
+	        <noscript>
+	            <div id="javascriptDisabled-warning">This game requires Javascript to be enabled</div>
+	            <style>
+	                #container {
+	                    display: none;
+	                }
+	            </style>
+	        </noscript>
+	       </div>
+    </body>
+
 </html>
