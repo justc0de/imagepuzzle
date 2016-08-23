@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	$('#imageSelection').children('li').bind('touchstart mousedown', function(e) {
+	$('#imageSelection').children('li').bind('click', function(e) {
 	    $('#imageTextfield').val($(this).children('a').children('img').attr('src'));
 	});
 	
